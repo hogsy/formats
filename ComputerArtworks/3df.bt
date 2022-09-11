@@ -1,0 +1,18 @@
+// Computer Artworks, 3DF format
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+uint32_t numChars;
+char     charTable[ numChars ];
+
+char unk0[ 4 ];
+
+struct char_coord
+{
+	char  unk0[ 4 ];
+	char  unk1[ 4 ];
+	float left;
+	float bottom;
+	float right;
+	float top;
+};
+struct char_coord coordinates[ numChars ];

@@ -1,0 +1,17 @@
+// Computer Artworks, BT format
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+#include "shared.bt"
+
+struct string16
+{
+	uint32_t index;
+	uint32_t unk0;// ?
+	uint32_t length;
+	char     data[ length * 2 ];// not null-terminated
+};
+
+char     unk2[ 4 ];
+uint32_t numStrings;
+
+struct string16 strings[ numStrings ];
