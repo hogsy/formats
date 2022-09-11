@@ -10,7 +10,7 @@ As noted in the [license](./LICENSE), I'm releasing all of this documentation
 into the public domain. That said, a reference or callout wouldn't hurt! ❤️
 
 Contributions are also welcome! Just keep in mind that the plan is to keep
-*everything* here public domain, 
+*everything* here public domain.
 
 ----
 
