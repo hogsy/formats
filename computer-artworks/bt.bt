@@ -5,8 +5,8 @@
 
 struct bt_string_entry
 {
-	uint32_t index;
-	string   data;
+	uint32_t             index;
+	struct stream_string data;
 };
 
 char     unk2[ 4 ];

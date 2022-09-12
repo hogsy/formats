@@ -1,7 +1,7 @@
 // Computer Artworks, 'Stream' header
 // Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
 
-struct string
+struct stream_string
 {
 	uint32_t encoding;// ?
 	uint32_t length;
@@ -20,10 +20,10 @@ struct string
 
 struct stream_header
 {
-	char          magic[ 9 ];// ARTWORKS\0
-	uint32_t      version;   // 1 in 'evola', 2/3 in 'the thing'
-	char          unk0[ 4 ]; // always null?
-	struct string id;        // 'Stream v<version> ("<filename>")'
+	char                 magic[ 9 ];// ARTWORKS\0
+	uint32_t             version;   // 1 in 'evola', 2/3 in 'the thing'
+	char                 unk0[ 4 ]; // always null?
+	struct stream_string id;        // 'Stream v<version> ("<filename>")'
 };
 
 struct stream_header header;
