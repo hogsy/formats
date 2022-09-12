@@ -1,0 +1,15 @@
+// Computer Artworks, BT format
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+#include "stream.bt"
+
+struct bt_string_entry
+{
+	uint32_t index;
+	string   data;
+};
+
+char     unk2[ 4 ];
+uint32_t numStrings;
+
+struct bt_string_entry strings[ numStrings ];

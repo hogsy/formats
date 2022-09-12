@@ -1,0 +1,29 @@
+// Computer Artworks, 'Stream' header
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+struct string
+{
+	uint32_t encoding;// ?
+	uint32_t length;
+
+	enum string_encode
+	{
+		STRING_ENCODE_U8 = 2617086881,
+		STRING_ENCODE_U16 = 2661024729
+	};
+	local uint32_t v = length;
+	if ( encoding == STRING_ENCODE_U16 )
+		v *= 2;
+
+	char data[ v ];// not null-terminated
+};
+
+struct stream_header
+{
+	char          magic[ 9 ];// ARTWORKS\0
+	uint32_t      version;   // 1 in 'evola', 2/3 in 'the thing'
+	char          unk0[ 4 ]; // always null?
+	struct string id;        // 'Stream v<version> ("<filename>")'
+};
+
+struct stream_header header;

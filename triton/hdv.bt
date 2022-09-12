@@ -1,0 +1,44 @@
+// Triton, HDV format
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+struct hdv_header
+{
+	char     identity[ 32 ];// includes start indicator before text string
+	uint32_t faceOffset;
+	uint32_t vertOffset;
+	uint32_t fileSize[ 2 ];
+
+	char unk0[ 8 ];
+
+	uint16_t numVerts;
+	uint16_t version;
+	uint16_t numFaces;// -2, due to some left-over data
+
+	// the rest of this is unknown - skip to the face offsets once done here!
+};
+
+struct hdv_face
+{
+	char     unk0[ 2 ];
+	uint8_t  flags;// ?
+	char     unk1[ 9 ];
+	uint16_t vertices[ 4 ];
+	char     unk2[ 16 ];
+};
+
+struct hdv_vertex
+{
+	int32_t x;
+	int32_t y;
+	int32_t z;
+};
+
+struct hdv_header header;
+
+// read in all verts
+FSeek( header.vertOffset );
+struct hdv_vertex vertices[ header.numVerts ];
+
+// read in all faces
+FSeek( header.faceOffset );
+struct hdv_face faces[ header.numFaces ];

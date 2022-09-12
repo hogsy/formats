@@ -1,0 +1,6 @@
+// Computer Artworks, BIN format
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+#include "stream.bt"
+
+uint8_t version;
