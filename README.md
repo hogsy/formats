@@ -14,6 +14,12 @@ Contributions are also welcome! Just keep in mind that the plan is to keep
 
 ----
 
+### [Appeal S.A.](https://www.mobygames.com/company/appeal-studios-sa)
+
+Developers behind [Outcast](https://www.mobygames.com/game/windows/outcast).
+
+- [MSH](appeal/appeal_msh.bt) (Mesh data; *Outcast*)
+
 ### [Computer Artworks Ltd.](https://www.mobygames.com/company/computer-artworks-ltd)
 
 Developed two games,
@@ -21,15 +27,15 @@ Developed two games,
 and [The Thing](https://www.mobygames.com/game/thing).
 Both games appear to be derived from the same in-house technology.
 
-- [3DF](computer-artworks/3df.bt) (Bitmap font descriptor; *The Thing*)
+- [3DF](computer-artworks/ca_3df.bt) (Bitmap font descriptor; *The Thing*)
 - AN (Animation data; *The Thing*)
-- [BIN](computer-artworks/bin.bt) (Entity data; *The Thing*)
-- [BT](computer-artworks/bt.bt) (Strings; *The Thing*)
+- [BIN](computer-artworks/ca_bin.bt) (Entity data; *The Thing*)
+- [BT](computer-artworks/ca_bt.bt) (Strings; *The Thing*)
 - ENT (Text-based entity descriptor format; *Evolva*)
 - GEO (Collision mesh data; *The Thing*)
 - FX (Text-based effect descriptor format; *The Thing*)
 - LVL (INI level descriptor format; *Evolva*, *The Thing*)
-- [MSH](computer-artworks/msh.bt) (Mesh data; *Evolva*, *The Thing*)
+- [MSH](computer-artworks/ca_msh.bt) (Mesh data; *Evolva*, *The Thing*)
 - PAK (ZIP package format; *The Thing*)
 - SGH ('SceneGraph' data; *Evolva*, *The Thing*)
 
@@ -39,4 +45,4 @@ Demoscene group.
 Essentially the predecessor to Starbreeze.
 Responsible for the cancelled [Into the Shadows](https://www.pouet.net/prod.php?which=2588) game.
 
-- [HDV](triton/hdv.bt) (Mesh data; *Into the Shadows*)
+- [HDV](triton/triton_hdv.bt) (Mesh data; *Into the Shadows*)

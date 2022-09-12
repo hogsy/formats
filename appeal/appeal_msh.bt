@@ -1,0 +1,33 @@
+// Appeal, MSH format
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+int32_t magic;
+/* these seem to provide some sort of metadata for
+ * identifying the file type? noticed other files
+ * feature the same magic, but then these same bytes
+ * are different depending on the type. interesting. */
+char    unk0[ 20 ];
+int32_t fileSize;
+
+int32_t subMagic;
+char    unk1[ 24 ];
+
+int32_t numVertices;
+struct msh_vertex
+{
+	float x;
+	float y;
+	float z;
+	float w;// weight?
+};
+struct msh_vertex vertices[ numVertices ];
+
+int32_t numFaces;
+struct msh_face
+{
+	int16_t x;
+	int16_t y;
+	int16_t z;
+	int16_t texture;
+};
+struct msh_face faces[ numFaces ];
