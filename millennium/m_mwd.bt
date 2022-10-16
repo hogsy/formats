@@ -1,0 +1,18 @@
+// Guerrilla Cambridge, MWD format
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+// disclaimer: based this on mwd here 
+//	https://hiddenpalace.org/C-12:_Final_Resistance_(May_5,_2000_E3_prototype)
+
+struct MWDHeader
+{
+	int32_t magic;// dawm
+	int32_t unused;
+	char description[2040];
+} header;
+
+struct MWDTextureBank
+{
+	int32_t magic;
+	int32_t numImages;
+} textureBank;
