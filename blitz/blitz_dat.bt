@@ -1,0 +1,31 @@
+// Blitz, DAT format
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+/**
+ * -------------------------------------------------------------
+ * Disclaimer:
+ * 	I primarily did this for Titan A.E., so that was my
+ * 	primary reference, but this looks correct for some others
+ * 	I checked such as Chicken Run and Action Man Destruction X.
+ * -------------------------------------------------------------
+ *
+ * This format is heavily oriented around streaming from
+ * a PSX CD, which has sectors sized at 2,048 bytes each -
+ * so to get the file offset, it's the following...
+ * 	16384 + (block * 2048)
+ */
+
+struct
+{
+	int32_t magic;// '78563412'
+	int32_t numFiles;
+	struct
+	{
+		int32_t hash;
+		int32_t block;
+		int32_t length;
+	} files[ numFiles ];
+} header;
+
+// data always begins 16,384 bytes in
+FSeek( 16384 );

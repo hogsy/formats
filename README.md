@@ -1,4 +1,4 @@
-# RE Format Collection
+# Reversed Format Collection
 
 This repository is filled with various notes on various different formats
 that I've reversed overtime. A lot of these are provided in
@@ -14,7 +14,7 @@ Contributions are also welcome! Just keep in mind that the plan is to keep
 
 ----
 
-### [Appeal S.A.](https://www.mobygames.com/company/appeal-studios-sa)
+## [Appeal S.A.](https://www.mobygames.com/company/appeal-studios-sa)
 
 Developers behind [Outcast](https://www.mobygames.com/game/windows/outcast).
 
@@ -22,7 +22,31 @@ Developers behind [Outcast](https://www.mobygames.com/game/windows/outcast).
 |------|-------------|---------|---------|------------------------------|
 | MSH  | Mesh format | Partial | Outcast | [Link](appeal/appeal_msh.bt) |
 
-### [Computer Artworks Ltd.](https://www.mobygames.com/company/computer-artworks-ltd)
+## [Blitz Games Ltd](https://www.mobygames.com/company/blitz-games-ltd_)
+
+UK-based developer that shut down in 2013.
+Developed a number of different games, some of which do seem to share common technology.
+
+### B1
+
+This is the term we'll use to refer to Blitz's technology used in earlier games from the PlayStation, Nintendo 64 and
+Saturn era, starting with Glover.
+
+- Glover (1998)
+- Action Man: Operation Extreme (1999)
+- Action Man: Destruction X (2000)
+- Frogger 2: Swampy's Revenge (2000)
+- Titan A.E. (Demo, 2000) (Cancelled)
+- Chicken Run (2000)
+- Cubix: Robots For Everyone - Race 'N Robots (?) (2001)
+- Disney's Lilo & Stitch: Trouble in Paradise (2002)
+
+| Name | Description    | Status                   | URL                        |
+|------|----------------|--------------------------|----------------------------|
+| DAT  | Package format | **Done** (minus hashing) | [Link](blitz/blitz_dat.bt) |
+| PSI  | Model format   | Partial                  | [Link](blitz/blitz_psi.bt) |
+
+## [Computer Artworks Ltd.](https://www.mobygames.com/company/computer-artworks-ltd)
 
 Developed two games,
 [Evolva](https://www.mobygames.com/game/windows/evolva)
@@ -43,7 +67,7 @@ Both games appear to be derived from the same in-house technology.
 | PAK  | ZIP package                  | **Done** (it's a zip :shrug:) | The Thing         | N/A                                 |
 | SGH  | 'SceneGraph'                 | Pending                       | Evolva, The Thing | N/A                                 |
 
-### [Gee Whiz! Entertainment](https://www.mobygames.com/company/gee-whiz-entertainment)
+## [Gee Whiz! Entertainment](https://www.mobygames.com/company/gee-whiz-entertainment)
 
 | Name | Description    | Status   | Games       | URL                    |
 |------|----------------|----------|-------------|------------------------|
@@ -51,7 +75,7 @@ Both games appear to be derived from the same in-house technology.
 | SB0  | Package format | **Done** | Zombie Wars | [Link](geewhiz/sb0.md) |
 | SPR  | Sprite format  | Partial  | Zombie Wars | [Link](geewhiz/spr.md) |
 
-### [Guerrilla Cambridge](https://www.mobygames.com/company/guerrilla-cambridge)
+## [Guerrilla Cambridge](https://www.mobygames.com/company/guerrilla-cambridge)
 
 Also known as Millennium Interactive Ltd. and SCE Studio Cambridge.
 
@@ -59,7 +83,7 @@ Also known as Millennium Interactive Ltd. and SCE Studio Cambridge.
 |------|-----------------------------------|--------|------------------------|-----------------------------|
 | MWD  | Package format, 'Millennium WAD'? | ...    | C-12: Final Resistance | [Link](millennium/m_mwd.bt) |
 
-### [Triton](https://www.pouet.net/groups.php?which=161)
+## [Triton](https://www.pouet.net/groups.php?which=161)
 
 Demoscene group.
 Essentially the predecessor to Starbreeze.

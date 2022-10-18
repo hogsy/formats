@@ -1,0 +1,126 @@
+// Blitz, PSI format
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+struct RGB
+{
+	uint8_t r;
+	uint8_t g;
+	uint8_t b;
+	uint8_t padding;
+};
+
+struct
+{
+	int32_t magic;  // 'PSI\0'
+	int32_t version;// 1
+	int32_t flags;
+	char    name[ 32 ];// typically seems to be blank...
+
+	int32_t numMeshes;
+	int32_t numVertices;
+
+	int32_t numPolygons;
+	int32_t polygonOffset;
+
+	uint16_t firstFrame;
+	uint16_t lastFrame;
+
+	int32_t numSegments;
+	int32_t segmentOffset;
+
+	int32_t numTextures;
+	int32_t textureOffset;
+
+	int32_t meshOffset;
+
+	int32_t radius;
+} header;
+
+// textures
+if ( header.numTextures > 0 )
+{
+	FSeek( header.textureOffset );
+	struct
+	{
+		char name[ 32 ];
+	} textures[ header.numTextures ];
+}
+
+/**
+ * meshes
+ * 	unfortunately rehex will choke on the below,
+ * 	as some of these have both a child and next,
+ * 	and there's no way for me to handle such a case
+ * 	easily right now, blarrrghh...
+ */
+local int hitEnd = 0;
+FSeek( header.meshOffset );
+struct Mesh( int &hitEnd )
+{
+	if ( hitEnd == 0 )
+	{
+		local int pos = FTell();
+
+		uint32_t verticesOffset;// pos + vertexOffset
+		uint32_t numVertices;
+		uint32_t normalsOffset;// pos + normalsOffset
+		uint32_t numNormals;
+		uint32_t scale;
+		char     name[ 16 ];
+		uint32_t childOffset;// pos + childOffset
+		uint32_t nextOffset; // pos + nextOffset
+		// todo: rest of the data, though, non-crucial...
+
+		struct Vertex
+		{
+			int16_t x;
+			int16_t y;
+			int16_t z;
+			int16_t u;
+			int16_t v;
+		};
+
+		FSeek( pos + verticesOffset );
+		struct Vertex vertices[ numVertices ];
+
+		FSeek( pos + normalsOffset );
+		struct Vertex normals[ numNormals ];
+
+		if ( nextOffset > 0 )
+			FSeek( pos + nextOffset );
+		else if ( childOffset > 0 )
+			FSeek( pos + childOffset );
+		else
+			hitEnd = 1;
+	}
+};
+
+struct Mesh meshes[ 0 ];
+ArrayResize( meshes, header.numMeshes, hitEnd );
+
+// polygons
+if ( header.numPolygons > 0 )
+{
+	FSeek( header.polygonOffset );
+	struct
+	{
+		char    u0[ 7 ];
+		uint8_t type;
+
+		// todo: handle below by type...
+
+		struct RGB colours[ 3 ];
+		char       u1[ 12 ];
+	} polygons[ header.numPolygons ];
+}
+
+// segments
+// todo: yet to find a model that has these...
+if ( header.numSegments > 0 )
+{
+	FSeek( header.segmentOffset );
+	struct
+	{
+
+	} segments[ header.numSegments ];
+}
