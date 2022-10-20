@@ -83,6 +83,15 @@ Also known as Millennium Interactive Ltd. and SCE Studio Cambridge.
 |------|-----------------------------------|--------|------------------------|-----------------------------|
 | MWD  | Package format, 'Millennium WAD'? | ...    | C-12: Final Resistance | [Link](millennium/m_mwd.bt) |
 
+## [Infogrames Studios Limited](https://www.mobygames.com/company/infogrames-studios-limited)
+
+Otherwise known as Gremlin Interactive Limited. 
+Developed games such as Hogs of War, Actua Soccer, Realms of the Haunting and many more.
+
+| Name | Description | Status  | Games             | URL                            |
+|------|-------------|---------|-------------------|--------------------------------|
+| MIN  | Model data  | Partial | Hogs of War (PSX) | [Link](gremlin/gremlin_min.bt) |
+
 ## [Triton](https://www.pouet.net/groups.php?which=161)
 
 Demoscene group.
