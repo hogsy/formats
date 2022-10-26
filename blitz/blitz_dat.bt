@@ -27,5 +27,13 @@ struct
 	} files[ numFiles ];
 } header;
 
-// data always begins 16,384 bytes in
-FSeek( 16384 );
+local int i = 0;
+struct Data( int &i )
+{
+	FSeek( 16384 + ( header.files[ i ].block * 2048 ) );
+	char chunk[ header.files[ i ].length ];
+	i++;
+};
+
+struct Data data[ 0 ];
+ArrayResize( data, header.numFiles, i );
