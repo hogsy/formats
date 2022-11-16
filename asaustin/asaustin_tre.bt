@@ -1,0 +1,23 @@
+// Acclaim Studios Austin, TRE format
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+uint32_t numFiles;
+
+struct
+{
+	uint32_t offset;
+	uint32_t size;
+	uint32_t nameCRC;//crc32
+	uint32_t dataCRC;//crc32
+} toc[ numFiles ];
+
+local int i = 0;
+struct Data( int &i )
+{
+	FSeek( toc[ i ].offset );
+	char chunk[ toc[ i ].size ];
+	i++;
+};
+
+struct Data data[ 0 ];
+ArrayResize( data, numFiles, i );
