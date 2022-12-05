@@ -1,0 +1,15 @@
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+/* Core Design, HGT format
+ *
+ * Usages:
+ * 	- Herdy Gerdy (2002, PS2)
+ *
+ * Notes:
+ *  It's just a BMP with an extra header at the start.
+ */
+
+char     pending[ 4 ];
+uint32_t magic;
+char     morePending[ 44 ];
+
+/* the rest is just a regular bmp */

@@ -64,6 +64,27 @@ Saturn era, starting with Glover.
 | DAT  | Package format | **Done** ([hashing](https://github.com/OldTimes-Software/hei/blob/master/extras/blitz/blitz.c#L15)) | [Link](blitz/blitz_dat.bt) |
 | PSI  | Model format   | Partial                                                                                             | [Link](blitz/blitz_psi.bt) |
 
+## [Core Design](https://en.wikipedia.org/wiki/Core_Design)
+
+![](https://upload.wikimedia.org/wikipedia/en/3/30/Classic_Core_Design_LTD_log.png)
+
+### Herdy Gerdy Engine
+
+Unaware of any proper name for this particular engine. There is some cross-over between this and the engine developed for the cancelled Tomb Raider Anniversary.
+
+#### Games
+
+- [Herdy Gerdy (2002)](https://www.mobygames.com/game/herdy-gerdy)
+
+#### Formats
+
+| Name | Description                             | Status                      | URL                      |
+|------|-----------------------------------------|-----------------------------|--------------------------|
+| CLU  | Package format                          | **Done**                    | [Link](core/core_clu.bt) |
+| HGT  | Texture format ('Herdy Gerdy Texture'?) | Partial (container for BMP) | [Link](core/core_hgt.bt) |
+| HGM  | Model format ('Herdy Gerdy Model'?)     | Pending                     | N/A                      |
+| GLV  | Level format ('Gerdy Level'?)           | Pending                     | N/A                      |
+
 ## [Computer Artworks Ltd.](https://www.mobygames.com/company/computer-artworks-ltd)
 
 Developed two games, [Evolva](https://www.mobygames.com/game/windows/evolva)
