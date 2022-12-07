@@ -66,7 +66,7 @@ Saturn era, starting with Glover.
 
 ## [Core Design](https://en.wikipedia.org/wiki/Core_Design)
 
-![](https://upload.wikimedia.org/wikipedia/en/3/30/Classic_Core_Design_LTD_log.png)
+![Core Design logo](https://upload.wikimedia.org/wikipedia/en/3/30/Classic_Core_Design_LTD_log.png)
 
 ### Herdy Gerdy Engine
 
@@ -131,6 +131,32 @@ Didn't really have an engine, but some of their games share some technology.
 | Name | Description | Status  | Games             | URL                            |
 |------|-------------|---------|-------------------|--------------------------------|
 | MIN  | Model data  | Partial | Hogs of War (PSX) | [Link](gremlin/gremlin_min.bt) |
+
+## [nStigate Games]()
+
+![nStigate Games logo](https://upload.wikimedia.org/wikipedia/en/thumb/9/93/NStigate_Games_Logo.jpeg/220px-NStigate_Games_Logo.jpeg)
+
+Also known as Nihilistic Software.
+
+### NOD Engine (2000 - ?)
+
+Used for the following games.
+
+- Vampire: The Masquerade – Redemption ([source](https://en.wikipedia.org/wiki/Vampire:_The_Masquerade_%E2%80%93_Redemption#Technology))
+- StarCraft: Ghost
+
+| Name | Description                        | Status  | URL                         |
+|------|------------------------------------|---------|-----------------------------|
+| NAD  | Animation format                   | Pending | ...                         |
+| NCE  | ...                                | Pending | ...                         |
+| NCS  | ...                                | Pending | ...                         |
+| NOC  | ...                                | Pending | ...                         |
+| NOD  | Model format, 'Object Description' | Partial | [Link](nihilistic/n_nod.bt) |
+| NNB  | ...                                | Pending | ...                         |
+| NMB  | ...                                | Pending | ...                         |
+| NMS  | ...                                | Pending | ...                         |
+| NRT  | ...                                | Pending | ...                         |
+| NUT  | ...                                | Pending | ...                         |
 
 ## [Triton](https://www.pouet.net/groups.php?which=161)
 

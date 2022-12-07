@@ -1,0 +1,52 @@
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+/* the following is specific to the version used in Ghost -
+ * it's a bit different to that used in their earlier title! */
+
+struct Vertex
+{
+	float position[ 3 ];
+	float normal[ 3 ];
+	float uv[ 2 ];
+};
+
+struct Triangle
+{
+	uint16_t indices[ 3 ];
+};
+
+struct Bone
+{
+	int8_t unknown0[ 64 ];
+};
+
+struct Material
+{
+	char name[ 32 ];
+};
+
+struct Header
+{
+	uint32_t version;
+	uint8_t  numMaterials;
+	uint8_t  numBones;
+	uint8_t  unknown0;
+	uint8_t  numMeshes;
+	uint32_t unknown1;//possibly unused
+	float    boundsMin[ 3 ];
+	float    boundsMax[ 3 ];
+	uint32_t unknown2;
+	uint32_t numVertices;
+	char     unknown3[ 24 ];
+	uint32_t numIndices;
+	char     padding[ 20 ];//always 0
+};
+
+struct Header   header;
+struct Material materials[ header.numMaterials ];
+struct Bone     bones[ header.numBones ];
+struct Vertex   vertices[ header.numVertices ];
+
+//don't think this is correct...
+//local uint32_t  numTriangles = header.numIndices / 3;
+//struct Triangle triangles[ numTriangles ];
