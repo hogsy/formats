@@ -1,0 +1,12 @@
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+uint32_t numFiles;
+
+struct ICO_DFBlock
+{
+	char     name[ 32 ];//might just be 16 bytes, but looks like this whole thing just isn't initialised (i.e. garbage)
+	uint32_t offset;    //confirmed!
+	uint32_t size;      //seems correct for some, not for others??
+};
+
+struct ICO_DFBlock toc[ numFiles ];

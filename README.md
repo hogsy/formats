@@ -15,6 +15,10 @@ Contributions are also welcome! Just keep in mind that the plan is to keep *ever
 
 ## [Acclaim Studios Austin](https://en.wikipedia.org/wiki/Acclaim_Studios_Austin)
 
+![Acclaim Studios Austin logo](https://www.mobygames.com/images/i/43/28/779878.png)
+
+Also known as Iguana Entertainment.
+
 ### Turok Evolution Engine (2003 - )
 
 Not entirely sure if this engine has another name or not, but it appears to have been developed during Vexx's and Turok
@@ -33,6 +37,8 @@ Supported the Nintendo GameCube, Sony PlayStation 2, Microsoft Xbox and Microsof
 | EMI  | Emitter definition | Partial  | [Link](asaustin/asaustin_emi.md) |
 
 ## [Appeal S.A.](https://www.mobygames.com/company/appeal-studios-sa)
+
+![Appeal S.A. logo](https://www.mobygames.com/images/i/13/31/462181.jpeg)
 
 Developers behind [Outcast](https://www.mobygames.com/game/windows/outcast).
 
@@ -68,9 +74,12 @@ Saturn era, starting with Glover.
 
 ![Core Design logo](https://upload.wikimedia.org/wikipedia/en/3/30/Classic_Core_Design_LTD_log.png)
 
-### Herdy Gerdy Engine
+### Tomb Raider Engine (1996 - 2000)
 
-Unaware of any proper name for this particular engine. There is some cross-over between this and the engine developed for the cancelled Tomb Raider Anniversary.
+### Herdy Gerdy Engine (2002)
+
+Unaware of any proper name for this particular engine. 
+There is some cross-over between this and the engine developed for the cancelled Tomb Raider Anniversary.
 
 #### Games
 
@@ -143,7 +152,7 @@ Also known as Nihilistic Software.
 Used for the following games.
 
 - Vampire: The Masquerade – Redemption ([source](https://en.wikipedia.org/wiki/Vampire:_The_Masquerade_%E2%80%93_Redemption#Technology))
-- StarCraft: Ghost
+- StarCraft: Ghost (Cancelled)
 
 | Name | Description                        | Status  | URL                         |
 |------|------------------------------------|---------|-----------------------------|
@@ -158,13 +167,21 @@ Used for the following games.
 | NRT  | ...                                | Pending | ...                         |
 | NUT  | ...                                | Pending | ...                         |
 
+## [Team Ico](https://en.wikipedia.org/wiki/Team_Ico) (1993 - 2021)
+
+![Team Ico logo](ico/ico_logo.png)
+
+| Name | Description              | Status  | URL                   |
+|------|--------------------------|---------|-----------------------|
+| DF   | Container/package format | Done(?) | [Link](ico/ico_df.bt) |
+
 ## [Triton](https://www.pouet.net/groups.php?which=161)
 
-Demoscene group.
-Essentially the predecessor to Starbreeze.
+![Triton logo](triton/triton_logo.png)
+
+Demoscene group, and essentially the predecessor to Starbreeze.
 Responsible for the cancelled [Into the Shadows](https://www.pouet.net/prod.php?which=2588) game.
 
 | Name | Description | Status  | Games            | URL                          |
 |------|-------------|---------|------------------|------------------------------|
 | HDV  | Mesh data   | Partial | Into the Shadows | [Link](triton/triton_hdv.bt) |
-
