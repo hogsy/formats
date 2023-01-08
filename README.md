@@ -141,6 +141,23 @@ Didn't really have an engine, but some of their games share some technology.
 |------|-------------|---------|-------------------|--------------------------------|
 | MIN  | Model data  | Partial | Hogs of War (PSX) | [Link](gremlin/gremlin_min.bt) |
 
+## [Midway Studios Austin](https://en.wikipedia.org/wiki/Midway_Studios_Austin)
+
+Also known as Inevitable Entertainment, Inc..
+
+![Midway Studios Austin logo](https://www.mobygames.com/images/i/16/01/463801.png)
+
+### Unknown Engine
+
+Games using this technology range from the following.
+- The Hobbit (2003)
+- Area 51 (2005)
+
+| Name | Description         | Status                           | URL                              |
+|------|---------------------|----------------------------------|----------------------------------|
+| DFS  | TOC for packed data | Partial (**70%** for The Hobbit) | [Link](msaustin/msaustin_dfs.bt) |
+| .000 | Packed data         | **Done** (see *DFS*)             | [Link](msaustin/msaustin_dfs.bt) |
+
 ## [nStigate Games]()
 
 ![nStigate Games logo](https://upload.wikimedia.org/wikipedia/en/thumb/9/93/NStigate_Games_Logo.jpeg/220px-NStigate_Games_Logo.jpeg)

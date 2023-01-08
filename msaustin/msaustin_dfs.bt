@@ -1,0 +1,36 @@
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+/**
+ * Each entry is 24 bytes
+ * Num files is 16 bytes into header
+ * Below is confirmed for The Hobbit (2003)
+ */
+
+struct Header
+{
+	int32_t  magic;  // SFDX
+	uint32_t version;// 1 for The Hobbit, 3 for Area 51
+	// everything below assumes version 1 for now...
+	int32_t  unknown0;
+	int32_t  unknown1;
+	uint32_t numFiles;
+
+	int32_t  unknown00;
+	int32_t  stringTableSize;
+	int32_t  unknown02;
+	int32_t  unknown03;
+	uint32_t stringTableOffset;
+	uint32_t totalSize;
+};
+struct Header header;
+
+struct Index
+{
+	uint32_t nameOffset;        // 'SFX_W'
+	uint32_t nameExtendedOffset;// 'EAPONS'
+	uint32_t dirOffset;         // 'COMMON/'
+	uint32_t extensionOffset;   // '.TXT'
+	uint32_t offset;            // offset into the .000 file
+	uint32_t size;              // length of the file from offset
+};
+struct Index indices[ header.numFiles ];
