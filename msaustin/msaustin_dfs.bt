@@ -11,14 +11,22 @@ struct Header
 	int32_t  magic;  // SFDX
 	uint32_t version;// 1 for The Hobbit, 3 for Area 51
 	// everything below assumes version 1 for now...
-	int32_t  unknown0;
-	int32_t  unknown1;
+	int32_t unknown0;
+	int32_t unknown1;
+	if ( version >= 3 )
+	{
+		int32_t unknown2;
+	}
 	uint32_t numFiles;
 
-	int32_t  unknown00;
-	int32_t  stringTableSize;
-	int32_t  unknown02;
-	int32_t  unknown03;
+	int32_t unknown00;
+	int32_t stringTableSize;
+	int32_t unknown02;
+	int32_t unknown03;
+	if ( version >= 3 )
+	{
+		int32_t unknown04;
+	}
 	uint32_t stringTableOffset;
 	uint32_t totalSize;// size of the 000 file
 };
@@ -30,7 +38,11 @@ struct Index
 	uint32_t nameExtendedOffset;// 'EAPONS'
 	uint32_t dirOffset;         // 'COMMON/'
 	uint32_t extensionOffset;   // '.TXT'
-	uint32_t offset;            // offset into the .000 file
-	uint32_t size;              // length of the file from offset
+	if ( header.version >= 3 )
+	{
+		uint32_t unknown0;
+	}
+	uint32_t offset;// offset into the .000 file
+	uint32_t size;  // length of the file from offset
 };
 struct Index indices[ header.numFiles ];

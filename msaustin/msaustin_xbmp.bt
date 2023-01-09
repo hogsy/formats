@@ -1,0 +1,13 @@
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+// a lot of these I looked at are 32bit but some aren't - header was larger on those that aren't?
+
+struct XBMPHeader {
+	int32_t u0;
+	int32_t u1;
+	int32_t width;
+	int32_t height;
+	//....
+};
+
+struct XBMPHeader header;

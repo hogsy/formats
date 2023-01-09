@@ -150,13 +150,20 @@ Also known as Inevitable Entertainment, Inc..
 ### Unknown Engine
 
 Games using this technology range from the following.
+- Tribes: Aerial Assault (2002) (*need to confirm*)
+- Defender (*need to confirm*)
 - The Hobbit (2003)
 - Area 51 (2005)
 
-| Name | Description         | Status                           | URL                              |
-|------|---------------------|----------------------------------|----------------------------------|
-| DFS  | TOC for packed data | Partial (**70%** for The Hobbit) | [Link](msaustin/msaustin_dfs.bt) |
-| .000 | Packed data         | **Done** (see *DFS*)             | [Link](msaustin/msaustin_dfs.bt) |
+| Name    | Description                                 | Status                                   | URL                               |
+|---------|---------------------------------------------|------------------------------------------|-----------------------------------|
+| DFS     | TOC for packed data                         | Partial (**70%** for v1, **60%** for v3) | [Link](msaustin/msaustin_dfs.bt)  |
+| .000    | Packed data                                 | **Done** (see *DFS*)                     | [Link](msaustin/msaustin_dfs.bt)  |
+| XBMP    | Bitmap data                                 | ...                                      | [Link](msaustin/msaustin_xbmp.bt) |
+| MATX    | Plaintext model data (unused? intermediate?) | Pending                                  | ...                               |
+| NPCGEOM | NPC geometry data                           | Pending                                  | ...                               |
+| RGEOM   | 'Regular'(?) geometry data                  | Pending                                  | ...                               |
+| FXO     | Effect data                                 | Pending                                  | ...                               |
 
 ## [nStigate Games]()
 
