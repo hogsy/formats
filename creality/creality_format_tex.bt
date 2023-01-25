@@ -1,15 +1,21 @@
 // Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
 
 uint32_t numTextures;
-int32_t  unknown;// unused?
+int32_t  unknown;// format flag?
 
 struct TextureIndex
 {
-	int16_t  x;  // no idea...
-	uint16_t num;// just seems to be the slot num
+	uint16_t offset;// offset
+	uint16_t num;   // just seems to be the slot num, not always used
 };
-
 struct TextureIndex indices[ numTextures ];
 
-uint16_t width;
-uint16_t height;
+/*
+struct Texture
+{
+	uint16_t width;
+	uint16_t height;
+	char data[];
+};
+struct Texture textures[ numTextures ];
+*/

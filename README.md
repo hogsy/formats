@@ -101,16 +101,15 @@ Saturn era, starting with Glover.
 Unfortunately only used for one game, which, you guessed it,
 was [Martian Gothic: Unification](https://www.mobygames.com/game/martian-gothic-unification).
 
-| Name | Description                             | Status  | URL                                     |
-|------|-----------------------------------------|---------|-----------------------------------------|
-| ATH  | Audio table header ?                    | **50%** | [Link](creality/creality_format_ath.bt) |
-| ATF  | Audio table file ?                      | Pending |                                         |
-| ANM  | Mesh (and animation?) data              | Pending |                                         |
-| CAM  | Background / camera data                | Pending |                                         |
-| ROOM | Room data                               | Pending |                                         |
-| GRP  | Some sort of ANM related table thingy?  | Pending |                                         |
-| GFX  | Texture package, used for interface     | Pending |                                         |
-| TEX  | Texture package, used for mesh textures | **70%** | [Link](creality/creality_format_tex.bt) |
+| Name    | Description                            | Status  | URL                                     |
+|---------|----------------------------------------|---------|-----------------------------------------|
+| GFX/TEX | Texture package                        | **85%** | [Link](creality/creality_format_tex.bt) |
+| ATH     | Audio table header ?                   | **50%** | [Link](creality/creality_format_ath.bt) |
+| ATF     | Audio table file ?                     | Pending |                                         |
+| ANM     | Mesh (and animation?) data             | Pending |                                         |
+| CAM     | Background / camera data               | Pending |                                         |
+| ROOM    | Room data                              | Pending |                                         |
+| GRP     | Some sort of ANM related table thingy? | Pending |                                         |
 
 ## [Core Design](https://en.wikipedia.org/wiki/Core_Design)
 
