@@ -96,20 +96,24 @@ Saturn era, starting with Glover.
 
 ### Martian Gothic Engine
 
-- *Fun Fact*: Excluding the `QMDX.dll`, which isn't theirs, the oldest file in the PC version is from August 1998.
-
 Unfortunately only used for one game, which, you guessed it,
 was [Martian Gothic: Unification](https://www.mobygames.com/game/martian-gothic-unification).
 
-| Name    | Description                            | Status  | URL                                     |
-|---------|----------------------------------------|---------|-----------------------------------------|
-| GFX/TEX | Texture package                        | **85%** | [Link](creality/creality_format_tex.bt) |
-| ATH     | Audio table header ?                   | **50%** | [Link](creality/creality_format_ath.bt) |
-| ATF     | Audio table file ?                     | Pending |                                         |
-| ANM     | Mesh (and animation?) data             | Pending |                                         |
-| CAM     | Background / camera data               | Pending |                                         |
-| ROOM    | Room data                              | Pending |                                         |
-| GRP     | Some sort of ANM related table thingy? | Pending |                                         |
+#### Fun Facts
+- Excluding the `QMDX.dll`, which isn't theirs, the oldest file in the PC version is from August 1998.
+- PlayStation port was handled by Coyote Developments Ltd., which [went into administration in 2006](https://find-and-update.company-information.service.gov.uk/company/03657440/filing-history?page=2).
+
+#### Formats
+
+| Name    | Description                            | Status   | URL                                     |
+|---------|----------------------------------------|----------|-----------------------------------------|
+| GFX/TEX | Texture package                        | **100%** | [Link](creality/creality_format_tex.bt) |
+| ATH     | Audio table header ?                   | **50%**  | [Link](creality/creality_format_ath.bt) |
+| ATF     | Audio table file ?                     | Pending  |                                         |
+| ANM     | Mesh (and animation?) data             | Pending  |                                         |
+| CAM     | Background / camera data               | Pending  |                                         |
+| ROOM    | Room data                              | Pending  |                                         |
+| GRP     | Some sort of ANM related table thingy? | Pending  |                                         |
 
 ## [Core Design](https://en.wikipedia.org/wiki/Core_Design)
 
