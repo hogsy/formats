@@ -94,14 +94,17 @@ Saturn era, starting with Glover.
 
 ![Creative Reality logo](https://www.mobygames.com/images/i/22/45/447245.gif)
 
-### Martian Gothic Engine
+### Martian Gothic Engine (PC)
 
 Unfortunately only used for one game, which, you guessed it,
 was [Martian Gothic: Unification](https://www.mobygames.com/game/martian-gothic-unification).
 
 #### Fun Facts
 - Excluding the `QMDX.dll`, which isn't theirs, the oldest file in the PC version is from August 1998.
+- According to MobyGames, this was the last title Creative Reality would produce.
+- They appear to have made a mistake with the application icon; the largest size has the smaller icon overlaid on top.
 - PlayStation port was handled by Coyote Developments Ltd., which [went into administration in 2006](https://find-and-update.company-information.service.gov.uk/company/03657440/filing-history?page=2).
+- Some of the textures are appended with 'tiff' which may suggest they used it as an intermediate format before conversion.
 
 #### Formats
 
@@ -111,7 +114,7 @@ was [Martian Gothic: Unification](https://www.mobygames.com/game/martian-gothic-
 | ATH     | Audio table header ?                   | **50%**  | [Link](creality/creality_format_ath.bt) |
 | ATF     | Audio table file ?                     | Pending  |                                         |
 | ANM     | Mesh (and animation?) data             | Pending  |                                         |
-| CAM     | Background / camera data               | Pending  |                                         |
+| CAM     | Background / camera data               | Pending  | [Link](creality/creality_format_cam.bt) |
 | ROOM    | Room data                              | Pending  |                                         |
 | GRP     | Some sort of ANM related table thingy? | Pending  |                                         |
 
