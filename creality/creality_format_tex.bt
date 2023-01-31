@@ -1,0 +1,22 @@
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+uint32_t numTextures;
+
+int32_t format;
+/*
+ * 0 = RGB555(?)
+ * 1 = RGB444
+ */
+
+uint32_t offsets[ numTextures ];
+
+struct Texture
+{
+	uint16_t width;
+	uint16_t height;
+	int16_t  data[ width * height ];
+};
+
+// this assumes no padding...
+// if you write a loader, i would suggest by offset
+struct Texture textures[ numTextures ];

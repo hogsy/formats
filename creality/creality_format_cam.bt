@@ -1,0 +1,7 @@
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+/**
+ * Format stores backgrounds
+ * - Backgrounds all appear to use a fixed size of 640x480
+ * - Background is always 576 bytes in
+ */

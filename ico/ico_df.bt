@@ -10,3 +10,5 @@ struct ICO_DFBlock
 };
 
 struct ICO_DFBlock toc[ numFiles ];
+
+// DF files within use inflate compression!

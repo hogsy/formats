@@ -6,10 +6,11 @@ are provided in
 [Binary Template](https://solemnwarning.net/rehex/manual/bt.html) format,
 which is easily translatable into C/C++ and most other languages.
 
-As noted in the [license](./LICENSE), I'm releasing all of this documentation into the public domain. That said, a
-reference or callout wouldn't hurt! ❤️
+As noted in the [license](./LICENSE), I'm releasing all of this documentation into the public domain.
+That said, a reference or callout wouldn't hurt! ❤️
 
-Contributions are also welcome! Just keep in mind that the plan is to keep *everything* here public domain.
+Contributions are also welcome!
+Just keep in mind that the plan is to keep *everything* here public domain.
 
 ----
 
@@ -21,8 +22,9 @@ Also known as Iguana Entertainment.
 
 ### Turok Evolution Engine (2003 - )
 
-Not entirely sure if this engine has another name or not, but it appears to have been developed during Vexx's and Turok
-Evolution's development, with the latter being the first game released utilising it.
+Not entirely sure if this engine has another name or not,
+but it appears to have been developed during Vexx's and Turok Evolution's development,
+with the latter being the first game released utilising it.
 
 Supported the Nintendo GameCube, Sony PlayStation 2, Microsoft Xbox and Microsoft Windows.
 
@@ -33,8 +35,26 @@ Supported the Nintendo GameCube, Sony PlayStation 2, Microsoft Xbox and Microsof
 
 | Name | Description        | Status   | URL                              |
 |------|--------------------|----------|----------------------------------|
-| TRE  | Package format     | **Done** | [Link](asaustin/asaustin_tre.bt) |
-| EMI  | Emitter definition | Partial  | [Link](asaustin/asaustin_emi.md) |
+| TRE  | Package format     | **100%** | [Link](asaustin/asaustin_tre.bt) |
+| EMI  | Emitter definition | **80%**  | [Link](asaustin/asaustin_emi.md) |
+
+## [Acclaim Studios Teesside](https://en.wikipedia.org/wiki/List_of_Acclaim_Entertainment_subsidiaries#Acclaim_Studios_Teesside)
+
+### Vista 3D
+
+The below covers both the earlier '97 iteration of the engine and onwards.
+
+| Name | Description                                  | Status   | URL                                                                                                                                                                                                                                     |
+|------|----------------------------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 3DF  | 3dfx texture format (used for 3dfx renderer) | **100%** | [Link](https://groups.google.com/g/comp.graphics.api.opengl/c/DOyoes__iVQ/m/1xrKlM7nnNwJ) ([reference implementation](https://github.com/OldTimes-Software/hei/blob/244efe8214bacf0a4ac6f6d258d7850edea89e06/plcore/image/image_3df.c)) |
+| BSP  |                                              | Pending  |                                                                                                                                                                                                                                         |
+| BGM  | Background model (?)                         | Pending  |                                                                                                                                                                                                                                         |
+| BIN  | Texture data (used for software renderer)    | Pending  |                                                                                                                                                                                                                                         |
+| SOB  | Static objects (?)                           | Pending  |                                                                                                                                                                                                                                         |
+| MSH  | Mesh data                                    | Pending  |                                                                                                                                                                                                                                         |
+| WEI  | Mesh weight data                             | Pending  |                                                                                                                                                                                                                                         |
+| TUV  | Mesh UV data (?)                             | Pending  |                                                                                                                                                                                                                                         |
+| ANM  | Mesh animation                               | Pending  |                                                                                                                                                                                                                                         |
 
 ## [Appeal S.A.](https://www.mobygames.com/company/appeal-studios-sa)
 
@@ -44,7 +64,7 @@ Developers behind [Outcast](https://www.mobygames.com/game/windows/outcast).
 
 | Name | Description | Status  | Games   | URL                          |
 |------|-------------|---------|---------|------------------------------|
-| MSH  | Mesh format | Partial | Outcast | [Link](appeal/appeal_msh.bt) |
+| MSH  | Mesh format | **80%** | Outcast | [Link](appeal/appeal_msh.bt) |
 
 ## [Blitz Games Ltd](https://www.mobygames.com/company/blitz-games-ltd_)
 
@@ -70,6 +90,34 @@ Saturn era, starting with Glover.
 | DAT  | Package format | **Done** ([hashing](https://github.com/OldTimes-Software/hei/blob/master/extras/blitz/blitz.c#L15)) | [Link](blitz/blitz_dat.bt) |
 | PSI  | Model format   | Partial                                                                                             | [Link](blitz/blitz_psi.bt) |
 
+## [Creative Reality](https://www.mobygames.com/company/creative-reality)
+
+![Creative Reality logo](https://www.mobygames.com/images/i/22/45/447245.gif)
+
+### Martian Gothic Engine (PC)
+
+Unfortunately only used for one game, which, you guessed it,
+was [Martian Gothic: Unification](https://www.mobygames.com/game/martian-gothic-unification).
+
+#### Fun Facts
+- Excluding the `QMDX.dll`, which isn't theirs, the oldest file in the PC version is from August 1998.
+- According to MobyGames, this was the last title Creative Reality would produce.
+- They appear to have made a mistake with the application icon; the largest size has the smaller icon overlaid on top.
+- PlayStation port was handled by Coyote Developments Ltd., which [went into administration in 2006](https://find-and-update.company-information.service.gov.uk/company/03657440/filing-history?page=2).
+- Some of the textures are appended with 'tiff' which may suggest they used it as an intermediate format before conversion.
+
+#### Formats
+
+| Name    | Description                            | Status   | URL                                     |
+|---------|----------------------------------------|----------|-----------------------------------------|
+| GFX/TEX | Texture package                        | **100%** | [Link](creality/creality_format_tex.bt) |
+| ATH     | Audio table header ?                   | **50%**  | [Link](creality/creality_format_ath.bt) |
+| ATF     | Audio table file ?                     | Pending  |                                         |
+| ANM     | Mesh (and animation?) data             | Pending  |                                         |
+| CAM     | Background / camera data               | Pending  | [Link](creality/creality_format_cam.bt) |
+| ROOM    | Room data                              | Pending  |                                         |
+| GRP     | Some sort of ANM related table thingy? | Pending  |                                         |
+
 ## [Core Design](https://en.wikipedia.org/wiki/Core_Design)
 
 ![Core Design logo](https://upload.wikimedia.org/wikipedia/en/3/30/Classic_Core_Design_LTD_log.png)
@@ -78,7 +126,7 @@ Saturn era, starting with Glover.
 
 ### Herdy Gerdy Engine (2002)
 
-Unaware of any proper name for this particular engine. 
+Unaware of any proper name for this particular engine.
 There is some cross-over between this and the engine developed for the cancelled Tomb Raider Anniversary.
 
 #### Games
@@ -89,8 +137,8 @@ There is some cross-over between this and the engine developed for the cancelled
 
 | Name | Description                             | Status                      | URL                      |
 |------|-----------------------------------------|-----------------------------|--------------------------|
-| CLU  | Package format                          | **Done**                    | [Link](core/core_clu.bt) |
-| HGT  | Texture format ('Herdy Gerdy Texture'?) | Partial (container for BMP) | [Link](core/core_hgt.bt) |
+| CLU  | Package format                          | **100%**                    | [Link](core/core_clu.bt) |
+| HGT  | Texture format ('Herdy Gerdy Texture'?) | **50%** (container for BMP) | [Link](core/core_hgt.bt) |
 | HGM  | Model format ('Herdy Gerdy Model'?)     | Pending                     | N/A                      |
 | GLV  | Level format ('Gerdy Level'?)           | Pending                     | N/A                      |
 
@@ -102,16 +150,16 @@ Both games appear to be derived from the same in-house technology.
 
 | Name | Description                  | Status                        | Games             | URL                                 |
 |------|------------------------------|-------------------------------|-------------------|-------------------------------------|
-| 3DF  | Bitmap font descriptor       | Partial                       | The Thing         | [Link](computer-artworks/ca_3df.bt) |
+| 3DF  | Bitmap font descriptor       | **70%**                       | The Thing         | [Link](computer-artworks/ca_3df.bt) |
 | AN   | Animation data               | Pending                       | The Thing         | N/A                                 |
 | BIN  | Entity data                  | Partial                       | The Thing         | [Link](computer-artworks/ca_bin.bt) |
-| BT   | Strings                      | **Done**                      | The Thing         | [Link](computer-artworks/ca_bt.bt)  |
+| BT   | Strings                      | **80%**                       | The Thing         | [Link](computer-artworks/ca_bt.bt)  |
 | ENT  | Text-based entity descriptor | Pending                       | Evolva            | N/A                                 |
 | GEO  | Collision mesh data          | Pending                       | The Thing         | N/A                                 | 
 | FX   | Text-based effect descriptor | Pending                       | The Thing         | N/A                                 |
 | LVL  | INI level descriptor format  | Pending                       | Evolva, The Thing | N/A                                 |
 | MSH  | Mesh data                    | Partial                       | Evolva, The Thing | [Link](computer-artworks/ca_msh.bt) |
-| PAK  | ZIP package                  | **Done** (it's a zip :shrug:) | The Thing         | N/A                                 |
+| PAK  | ZIP package                  | **100%** (it's a zip :shrug:) | The Thing         | N/A                                 |
 | SGH  | 'SceneGraph'                 | Pending                       | Evolva, The Thing | N/A                                 |
 
 ## [Gee Whiz! Entertainment](https://www.mobygames.com/company/gee-whiz-entertainment)
@@ -119,7 +167,7 @@ Both games appear to be derived from the same in-house technology.
 | Name | Description    | Status   | Games       | URL                    |
 |------|----------------|----------|-------------|------------------------|
 | H95  |                | Partial  | Zombie Wars | [Link](geewhiz/h95.md) |
-| SB0  | Package format | **Done** | Zombie Wars | [Link](geewhiz/sb0.md) |
+| SB0  | Package format | **100%** | Zombie Wars | [Link](geewhiz/sb0.md) |
 | SPR  | Sprite format  | Partial  | Zombie Wars | [Link](geewhiz/spr.md) |
 
 ## [Guerrilla Cambridge](https://www.mobygames.com/company/guerrilla-cambridge)
@@ -150,20 +198,21 @@ Also known as Inevitable Entertainment, Inc..
 ### Unknown Engine
 
 Games using this technology range from the following.
+
 - Tribes: Aerial Assault (2002) (*need to confirm*)
 - Defender (*need to confirm*)
 - The Hobbit (2003)
 - Area 51 (2005)
 
-| Name    | Description                                 | Status                                   | URL                               |
-|---------|---------------------------------------------|------------------------------------------|-----------------------------------|
-| DFS     | TOC for packed data                         | Partial (**70%** for v1, **60%** for v3) | [Link](msaustin/msaustin_dfs.bt)  |
-| .000    | Packed data                                 | **Done** (see *DFS*)                     | [Link](msaustin/msaustin_dfs.bt)  |
-| XBMP    | Bitmap data                                 | ...                                      | [Link](msaustin/msaustin_xbmp.bt) |
+| Name    | Description                                  | Status                                   | URL                               |
+|---------|----------------------------------------------|------------------------------------------|-----------------------------------|
+| DFS     | TOC for packed data                          | Partial (**70%** for v1, **60%** for v3) | [Link](msaustin/msaustin_dfs.bt)  |
+| .000    | Packed data                                  | **100%** (see *DFS*)                     | [Link](msaustin/msaustin_dfs.bt)  |
+| XBMP    | Bitmap data                                  | ...                                      | [Link](msaustin/msaustin_xbmp.bt) |
 | MATX    | Plaintext model data (unused? intermediate?) | Pending                                  | ...                               |
-| NPCGEOM | NPC geometry data                           | Pending                                  | ...                               |
-| RGEOM   | 'Regular'(?) geometry data                  | Pending                                  | ...                               |
-| FXO     | Effect data                                 | Pending                                  | ...                               |
+| NPCGEOM | NPC geometry data                            | Pending                                  | ...                               |
+| RGEOM   | 'Regular'(?) geometry data                   | Pending                                  | ...                               |
+| FXO     | Effect data                                  | Pending                                  | ...                               |
 
 ## [nStigate Games]()
 
@@ -175,7 +224,8 @@ Also known as Nihilistic Software.
 
 Used for the following games.
 
-- Vampire: The Masquerade – Redemption ([source](https://en.wikipedia.org/wiki/Vampire:_The_Masquerade_%E2%80%93_Redemption#Technology))
+- Vampire: The Masquerade –
+  Redemption ([source](https://en.wikipedia.org/wiki/Vampire:_The_Masquerade_%E2%80%93_Redemption#Technology))
 - StarCraft: Ghost (Cancelled)
 
 | Name | Description                        | Status  | URL                         |
@@ -195,9 +245,9 @@ Used for the following games.
 
 ![Team Ico logo](ico/ico_logo.png)
 
-| Name | Description              | Status  | URL                   |
-|------|--------------------------|---------|-----------------------|
-| DF   | Container/package format | Done(?) | [Link](ico/ico_df.bt) |
+| Name | Description              | Status                    | URL                   |
+|------|--------------------------|---------------------------|-----------------------|
+| DF   | Container/package format | **90%** (still uncertain) | [Link](ico/ico_df.bt) |
 
 ## [Triton](https://www.pouet.net/groups.php?which=161)
 
@@ -208,4 +258,4 @@ Responsible for the cancelled [Into the Shadows](https://www.pouet.net/prod.php?
 
 | Name | Description | Status  | Games            | URL                          |
 |------|-------------|---------|------------------|------------------------------|
-| HDV  | Mesh data   | Partial | Into the Shadows | [Link](triton/triton_hdv.bt) |
+| HDV  | Mesh data   | **75%** | Into the Shadows | [Link](triton/triton_hdv.bt) |

@@ -1,0 +1,19 @@
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+struct Header
+{
+	int32_t  unk0;          // always 0?
+	uint16_t numIndices;    // number of indices stored in the file
+	uint16_t unk1;          // always 1?
+	char     unk2[ 12 ];    // always 0?
+	char     filename[ 64 ];// should be same as actual name
+};
+struct Header header;
+
+struct Index
+{
+	uint32_t startOffset;// metadata at the start, sometimes subtitles
+	uint32_t subOffset;  // usually an offset to a wav
+	uint32_t length;     // length of the audio file
+};
+struct Index indices[ header.numIndices ];
