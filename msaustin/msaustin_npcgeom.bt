@@ -1,0 +1,28 @@
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+/* vertex coords are stored as 32bit floats
+ */
+
+struct NPCGeomHeader
+{
+	int32_t  magic;    // ?
+	int32_t  version;  // ?
+	char     u0[ 24 ]; // all 'FFFF7FFF'??
+	uint32_t numMeshes;// or lods
+	int32_t  u1;
+	int32_t  u2;
+	int32_t  u3;
+	int32_t  u4;
+	int32_t  u5;
+	int32_t  u6;
+	int32_t  u7;
+};
+struct NPCGeomHeader header;
+
+struct NPCGeomMeshHeader
+{
+	char    name[ 16 ];
+	int32_t u0;
+	int32_t u1;
+};
+struct NPCGeomMeshHeader meshHeaders[ header.numMeshes ];
