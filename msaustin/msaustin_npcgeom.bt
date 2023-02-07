@@ -1,7 +1,32 @@
 // Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
 
 /* vertex coords are stored as 32bit floats
+ * bilbo.npcgeom - 	verts located about 19806
+ * 					possibly 28 bytes each?
+ *
+ * 					40768 bytes total for verts ... ?
+ * 					2548~ vertices?
  */
+
+struct MSATriangle
+{
+	uint16_t x;
+	uint16_t y;
+	uint16_t z;
+};
+
+struct MSAVector3
+{
+	float x;
+	float y;
+	float z;
+};
+
+struct MSAVector2
+{
+	float x;
+	float y;
+};
 
 struct NPCGeomHeader
 {
@@ -12,17 +37,50 @@ struct NPCGeomHeader
 	int32_t  u1;
 	int32_t  u2;
 	int32_t  u3;
-	int32_t  u4;
+	int32_t  numMaterials;// ?
 	int32_t  u5;
 	int32_t  u6;
 	int32_t  u7;
 };
-struct NPCGeomHeader header;
 
 struct NPCGeomMeshHeader
 {
 	char    name[ 16 ];
-	int32_t u0;
-	int32_t u1;
+	int32_t relationId;// ?
+	int32_t lodIndex;  // ?
 };
+
+struct NPCGeomVertex
+{
+	struct MSAVector3 position;
+	struct MSAVector3 normal;
+	uint32_t          boneIndex;//????
+	struct MSAVector2 uv;
+};
+
+struct Block// 32 bytes ... variably sized ?
+{
+	uint32_t u0;// always 1
+	uint32_t u1;
+	uint32_t u2;
+	uint32_t u3;
+	uint32_t elementSize;// sometimes!?
+	uint32_t u4;         // always 1?
+	uint32_t u5;         // always 0?
+	uint32_t blockSize;
+	char     data[ blockSize ];
+};
+
+/////////////////////////////////////////////////////////////////
+
+struct NPCGeomHeader     header;
 struct NPCGeomMeshHeader meshHeaders[ header.numMeshes ];
+
+uint32_t numBlocks;// ?
+uint32_t ua;       // 0
+uint32_t ub;       // always 1?
+uint32_t uc;       // 0
+uint32_t ud;       // 0
+uint32_t nextBlock;// + size after to get next
+
+struct MSATriangle triangles[ numBlocks ];
