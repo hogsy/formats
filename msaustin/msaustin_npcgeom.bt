@@ -83,4 +83,4 @@ uint32_t uc;       // 0
 uint32_t ud;       // 0
 uint32_t nextBlock;// + size after to get next
 
-struct MSATriangle triangles[ numBlocks ];
+struct MSATriangle triangles[ nextBlock / 6 ];
