@@ -6,6 +6,7 @@
  *
  * 					40768 bytes total for verts ... ?
  * 					2548~ vertices?
+ * 					1,666 triangles
  */
 
 struct MSATriangle
@@ -76,11 +77,13 @@ struct Block// 32 bytes ... variably sized ?
 struct NPCGeomHeader     header;
 struct NPCGeomMeshHeader meshHeaders[ header.numMeshes ];
 
-uint32_t numBlocks;// ?
-uint32_t ua;       // 0
+uint32_t numFaces;
+uint32_t ua;       // 0?
 uint32_t ub;       // always 1?
-uint32_t uc;       // 0
-uint32_t ud;       // 0
+uint32_t uc;       // 0?
+uint32_t ud;       // 0?
 uint32_t nextBlock;// + size after to get next
 
-struct MSATriangle triangles[ nextBlock / 6 ];
+// this is actually some weird interleaved madness...
+//struct MSATriangle triangles[ nextBlock / 6 ];
+char data[ nextBlock ];
