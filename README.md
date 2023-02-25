@@ -111,8 +111,8 @@ was [Martian Gothic: Unification](https://www.mobygames.com/game/martian-gothic-
 | Name    | Description                            | Status   | URL                                     |
 |---------|----------------------------------------|----------|-----------------------------------------|
 | GFX/TEX | Texture package                        | **100%** | [Link](creality/creality_format_tex.bt) |
-| ATH     | Audio table header ?                   | **50%**  | [Link](creality/creality_format_ath.bt) |
-| ATF     | Audio table file ?                     | Pending  |                                         |
+| ATH     | Container table format                 | **50%**  | [Link](creality/creality_format_ath.bt) |
+| ATF     | Container format                       | Pending  |                                         |
 | ANM     | Mesh (and animation?) data             | Pending  |                                         |
 | CAM     | Background / camera data               | Pending  | [Link](creality/creality_format_cam.bt) |
 | ROOM    | Room data                              | Pending  |                                         |
