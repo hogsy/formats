@@ -241,6 +241,64 @@ Used for the following games.
 | NRT  | ...                                | Pending | ...                         |
 | NUT  | ...                                | Pending | ...                         |
 
+## [Tate Interactive](https://en.wikipedia.org/wiki/Tate_Multimedia)
+
+![Tate logo](https://cdn.mobygames.com/logos/68438-tate-interactive-sp-zoo.png)
+
+Polish company primarily known for producing [Kao the Kangaroo](https://en.wikipedia.org/wiki/Kao_the_Kangaroo_(2000_video_game)).
+Seems that the engine they developed ended up getting used for a number of different games and ported to a number of
+different platforms.
+
+### Denis Engine
+
+Listing this separately for now as it seems quite different to the tech used in their later titles.
+Name was picked based on the code path indicated by strings in Penguin Kelvin, specifically, `C:\coders\denis\denis\`.
+
+#### Games
+
+Only confirmed titles are here.
+Confirmation is performed by finding matching/similar formats, and matching/similar class names and strings in the
+executable.
+
+- [Penguin Kelvin](https://www.myabandonware.com/game/penguin-kelvin-frh)
+  - Microsoft Windows, 2003
+
+#### Formats
+| Name | Description    | Status | URL                            |
+|------|----------------|--------|--------------------------------|
+| PAK  | Package format | ...    | [Link](tate/tate_denis_pak.bt) |
+
+### Tate/Elephant Engine
+
+As usual, I've decided to use this name to identify the technology but otherwise can't find any official name or term
+used for the engine. There is a config file in a few titles named 'elephant', which happens to align with their logo
+and who knows, might have served as an internal name for the engine.
+
+#### Games
+
+Only confirmed titles are here. 
+Confirmation is performed by finding matching/similar formats, and matching/similar class names and strings in the 
+executable.
+
+- [Kao the Kangaroo: Round 2](https://en.wikipedia.org/wiki/Kao_the_Kangaroo:_Round_2)
+  - Microsoft Windows, 2003
+  - Sony PlayStation 2, 2005
+- [My Horse & Me 2](https://en.wikipedia.org/wiki/My_Horse_%26_Me_2)
+  - Sony PlayStation 2, 2008
+- [I Love Horses: Rider's Paradise](https://gamefaqs.gamespot.com/wii/643133-i-love-horses-riders-paradise)
+  - Nintendo Wii, 2011
+
+#### Fun Facts
+- [I Love Horses: Rider's Paradise](https://gamefaqs.gamespot.com/wii/643133-i-love-horses-riders-paradise), 
+which is attributed as a Destineer title, appears to use this engine. 
+It may have originally been intended as a sequel to 
+[My Horse & Me 2](https://en.wikipedia.org/wiki/My_Horse_%26_Me_2).
+
+#### Formats
+| Name | Description    | Status | URL                      |
+|------|----------------|--------|--------------------------|
+| PAK  | Package format | ...    | [Link](tate/tate_pak.bt) |
+
 ## [Team Ico](https://en.wikipedia.org/wiki/Team_Ico) (1993 - 2021)
 
 ![Team Ico logo](ico/ico_logo.png)
