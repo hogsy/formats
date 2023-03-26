@@ -16,7 +16,7 @@ Just keep in mind that the plan is to keep *everything* here public domain.
 
 ## [Acclaim Studios Austin](https://en.wikipedia.org/wiki/Acclaim_Studios_Austin)
 
-![Acclaim Studios Austin logo](https://www.mobygames.com/images/i/43/28/779878.png)
+![Acclaim Studios Austin logo](asaustin/asaustin_logo.png)
 
 Also known as Iguana Entertainment.
 
@@ -40,6 +40,8 @@ Supported the Nintendo GameCube, Sony PlayStation 2, Microsoft Xbox and Microsof
 
 ## [Acclaim Studios Teesside](https://en.wikipedia.org/wiki/List_of_Acclaim_Entertainment_subsidiaries#Acclaim_Studios_Teesside)
 
+![Acclaim Studios Teeside logo](asteeside/asteeside_logo.png)
+
 ### Vista 3D
 
 The below covers both the earlier '97 iteration of the engine and onwards.
@@ -58,7 +60,7 @@ The below covers both the earlier '97 iteration of the engine and onwards.
 
 ## [Appeal S.A.](https://www.mobygames.com/company/appeal-studios-sa)
 
-![Appeal S.A. logo](https://www.mobygames.com/images/i/13/31/462181.jpeg)
+![Appeal S.A. logo](appeal/appeal_logo.jpg)
 
 Developers behind [Outcast](https://www.mobygames.com/game/windows/outcast).
 
@@ -67,6 +69,8 @@ Developers behind [Outcast](https://www.mobygames.com/game/windows/outcast).
 | MSH  | Mesh format | **80%** | Outcast | [Link](appeal/appeal_msh.bt) |
 
 ## [Blitz Games Ltd](https://www.mobygames.com/company/blitz-games-ltd_)
+
+![Blitz Games Ltd logo](blitz/blitz_logo.png)
 
 UK-based developer that shut down in 2013.
 Developed a number of different games, some of which do seem to share common technology.
@@ -92,7 +96,7 @@ Saturn era, starting with Glover.
 
 ## [Creative Reality](https://www.mobygames.com/company/creative-reality)
 
-![Creative Reality logo](https://www.mobygames.com/images/i/22/45/447245.gif)
+![Creative Reality logo](creality/creality_logo.gif)
 
 ### Martian Gothic Engine (PC)
 
@@ -120,7 +124,7 @@ was [Martian Gothic: Unification](https://www.mobygames.com/game/martian-gothic-
 
 ## [Core Design](https://en.wikipedia.org/wiki/Core_Design)
 
-![Core Design logo](https://upload.wikimedia.org/wikipedia/en/3/30/Classic_Core_Design_LTD_log.png)
+![Core Design logo](core/core_logo.png)
 
 ### Tomb Raider Engine (1996 - 2000)
 
@@ -143,6 +147,8 @@ There is some cross-over between this and the engine developed for the cancelled
 | GLV  | Level format ('Gerdy Level'?)           | Pending                     | N/A                      |
 
 ## [Computer Artworks Ltd.](https://www.mobygames.com/company/computer-artworks-ltd)
+
+![Computer Artworks Ltd. logo](computer-artworks/computer-artworks_logo.png)
 
 Developed two games, [Evolva](https://www.mobygames.com/game/windows/evolva)
 and [The Thing](https://www.mobygames.com/game/thing).
@@ -193,7 +199,7 @@ Didn't really have an engine, but some of their games share some technology.
 
 Also known as Inevitable Entertainment, Inc..
 
-![Midway Studios Austin logo](https://www.mobygames.com/images/i/16/01/463801.png)
+![Midway Studios Austin logo](msaustin/msaustin_logo.png)
 
 ### Unknown Engine
 
@@ -243,7 +249,7 @@ Used for the following games.
 
 ## [Tate Interactive](https://en.wikipedia.org/wiki/Tate_Multimedia)
 
-![Tate logo](https://cdn.mobygames.com/logos/68438-tate-interactive-sp-zoo.png)
+![Tate logo](tate/tate_logo.png)
 
 Polish company primarily known for producing [Kao the Kangaroo](https://en.wikipedia.org/wiki/Kao_the_Kangaroo_(2000_video_game)).
 Seems that the engine they developed ended up getting used for a number of different games and ported to a number of
