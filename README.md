@@ -195,6 +195,26 @@ Didn't really have an engine, but some of their games share some technology.
 |------|-------------|---------|-------------------|--------------------------------|
 | MIN  | Model data  | Partial | Hogs of War (PSX) | [Link](gremlin/gremlin_min.bt) |
 
+## [Lucasfilm Games](https://www.mobygames.com/company/72/lucasfilm-games/)
+
+### Ares Engine
+
+A 3D game engine developed by Lucasfilm Games with support for Sony PlayStation 2 and Nintendo GameCube.
+
+#### Games
+
+Only confirmed titles are here.
+Confirmation is performed by finding matching/similar formats, and matching/similar class names and strings in the
+executable.
+
+- [RTX Red Rock](https://www.mobygames.com/game/9511/rtx-red-rock/) ([source](https://mixnmojo.com/news/RTX-Producer-on-LucasForums))
+  - Sony PlayStation 2, 2003
+
+#### Fun Facts
+
+- RTX Red Rock was originally intended to come out on the Nintendo GameCube, 
+  and there are still references to the platform amongst the game's files.
+
 ## [Midway Studios Austin](https://en.wikipedia.org/wiki/Midway_Studios_Austin)
 
 Also known as Inevitable Entertainment, Inc..
@@ -205,10 +225,10 @@ Also known as Inevitable Entertainment, Inc..
 
 Games using this technology range from the following.
 
-- Tribes: Aerial Assault (2002) (*need to confirm*)
+- [Tribes: Aerial Assault](https://en.wikipedia.org/wiki/Tribes:_Aerial_Assault) (2002) (*need to confirm*)
 - Defender (*need to confirm*)
-- The Hobbit (2003)
-- Area 51 (2005)
+- [The Hobbit](https://en.wikipedia.org/wiki/The_Hobbit_(2003_video_game)) (2003)
+- [Area 51](https://en.wikipedia.org/wiki/Area_51_(2005_video_game)) (2005)
 
 | Name    | Description                                  | Status                                   | URL                               |
 |---------|----------------------------------------------|------------------------------------------|-----------------------------------|
