@@ -212,8 +212,12 @@ executable.
 
 #### Fun Facts
 
-- RTX Red Rock was originally intended to come out on the Nintendo GameCube, 
-  and there are still references to the platform amongst the game's files.
+- RTX Red Rock was originally intended to also come out on the Nintendo GameCube, 
+  and there are still references to the platform amongst the game's files 
+  (`ARES/PS2.TXT`, `ARES/TEXTINFO.TXT`).
+- The internal name during development might've been "Zodanga",
+  which is the directory name the game was under during development as seen in some scripts amongst the game's files.
+- Game was written in C++.
 
 ## [Midway Studios Austin](https://en.wikipedia.org/wiki/Midway_Studios_Austin)
 
