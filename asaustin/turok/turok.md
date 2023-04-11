@@ -6,10 +6,18 @@ with the latter being the first game released utilizing it.
 
 Supported the Nintendo GameCube, Sony PlayStation 2, Microsoft Xbox and Microsoft Windows.
 
+## Games
+
 - [Turok: Evolution](https://en.wikipedia.org/wiki/Turok:_Evolution) (2002)
 - [Vexx](https://en.wikipedia.org/wiki/Vexx) (2003)
 - [The Red Star](https://hiddenpalace.org/Category:The_Red_Star_prototypes) (Cancelled)
 - [100 Bullets](https://hiddenpalace.org/Category:100_Bullets_prototypes) (Cancelled)
+
+## Fun Facts
+
+- Engine appears to be primarily written in C++.
+
+## Formats
 
 | Name | Description                                     | Status   | URL                  |
 |------|-------------------------------------------------|----------|----------------------|
@@ -22,7 +30,7 @@ Supported the Nintendo GameCube, Sony PlayStation 2, Microsoft Xbox and Microsof
 | FNT  | Common ASA chunk-based file format for fonts    | **60%**  | [Link](turok_mtf.bt) |
 | ANM  | '**AN**i**M**ation' format                      | ...      | ...                  |
 
-## ATF Chunks
+### ATF Chunks
 
 | FourCC        | Description                                 | Status   | URL |
 |---------------|---------------------------------------------|----------|-----|
