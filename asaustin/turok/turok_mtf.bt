@@ -1,0 +1,15 @@
+// Acclaim Studios Austin, MTF format
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+struct ChunkHeader
+{
+	char     fourCC[ 4 ];
+	int32_t  unk0;
+	int32_t  unk1;
+	int32_t  unk2;
+	uint32_t offset;
+	uint32_t length;
+};
+
+uint32_t           numEntries;
+struct ChunkHeader chunks[ numEntries ];

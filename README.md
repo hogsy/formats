@@ -14,29 +14,14 @@ Just keep in mind that the plan is to keep *everything* here public domain.
 
 ----
 
-## [Acclaim Studios Austin](https://en.wikipedia.org/wiki/Acclaim_Studios_Austin)
+- [Acclaim Studios Austin](https://en.wikipedia.org/wiki/Acclaim_Studios_Austin) (Iguana Entertainment)
+  - [Turok Evolution Engine](asaustin/turok/turok.md)
+- [Lucasfilm Games](https://www.mobygames.com/company/72/lucasfilm-games/)
+  - [Ares Engine](lucasfilm/ares/ares.md)
 
-![Acclaim Studios Austin logo](asaustin/asaustin_logo.png)
+----
 
-Also known as Iguana Entertainment.
-
-### Turok Evolution Engine (2003 - )
-
-Not entirely sure if this engine has another name or not,
-but it appears to have been developed during Vexx's and Turok Evolution's development,
-with the latter being the first game released utilising it.
-
-Supported the Nintendo GameCube, Sony PlayStation 2, Microsoft Xbox and Microsoft Windows.
-
-- [Turok: Evolution](https://en.wikipedia.org/wiki/Turok:_Evolution) (2002)
-- [Vexx](https://en.wikipedia.org/wiki/Vexx) (2003)
-- [The Red Star](https://hiddenpalace.org/Category:The_Red_Star_prototypes) (Cancelled)
-- [100 Bullets](https://hiddenpalace.org/Category:100_Bullets_prototypes) (Cancelled)
-
-| Name | Description        | Status   | URL                              |
-|------|--------------------|----------|----------------------------------|
-| TRE  | Package format     | **100%** | [Link](asaustin/asaustin_tre.bt) |
-| EMI  | Emitter definition | **80%**  | [Link](asaustin/asaustin_emi.md) |
+Below is an older listing, everything will gradually be migrated above for easier navigation.
 
 ## [Acclaim Studios Teesside](https://en.wikipedia.org/wiki/List_of_Acclaim_Entertainment_subsidiaries#Acclaim_Studios_Teesside)
 
@@ -194,10 +179,6 @@ Didn't really have an engine, but some of their games share some technology.
 | Name | Description | Status  | Games             | URL                            |
 |------|-------------|---------|-------------------|--------------------------------|
 | MIN  | Model data  | Partial | Hogs of War (PSX) | [Link](gremlin/gremlin_min.bt) |
-
-## [Lucasfilm Games](https://www.mobygames.com/company/72/lucasfilm-games/)
-
-- [Ares Engine](lucasfilm/ares/ares.md)
 
 ## [Midway Studios Austin](https://en.wikipedia.org/wiki/Midway_Studios_Austin)
 
