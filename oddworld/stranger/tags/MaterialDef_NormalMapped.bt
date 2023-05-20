@@ -1,0 +1,10 @@
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+// class MaterialDef_NormalMapped
+
+#include "MaterialDef.bt"
+
+struct MaterialDef_NormalMapped
+{
+	int32_t            version;
+	struct MaterialDef materialDef;
+};

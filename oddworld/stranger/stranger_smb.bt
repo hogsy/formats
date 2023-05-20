@@ -1,0 +1,43 @@
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+#include "SharedTypes.bt"
+
+/**
+ * There is an older version of the format that uses
+ * 0x600ddea1 as it's magic instead and does not have
+ * a version number (engine interprets it as version '0')
+ */
+
+struct SMBHeader
+{
+	uint32_t magic;// 0x3a4b5c6d
+	if ( magic == 0x3a4b5c6d )
+	{
+		int32_t version;// 5
+	}
+	struct OIStringBuffer fileName;
+	int32_t               fileOffset;
+	int32_t               headerStreamEnd;
+
+	int32_t numContiguousBytes;
+	int32_t numSystemBytes;
+	if ( magic == 0x3a4b5c6d )
+	{
+		// if old format, both the below are the same as above
+		int32_t contiguousSizeUnpadded;
+		int32_t systemSizeUnpadded;
+
+		if ( version >= 3 )
+		{
+			int32_t numResources;
+		}
+		if ( version >= 4 )
+		{
+			int32_t ioMode;
+		}
+	}
+
+	uint32_t endHeaderMagic;// 0xbeef1234
+};
+
+struct SMBHeader header;

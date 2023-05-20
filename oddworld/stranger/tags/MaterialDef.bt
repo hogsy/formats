@@ -1,0 +1,24 @@
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+struct MaterialDef
+{
+	int32_t version;
+	if ( version < 19 )
+	{
+		uint32_t flags;
+	}
+	else
+	{
+		uint32_t flags[ 6 ];
+	}
+
+	float    glareStartFade;
+	float    glareEndFade;
+	float    reflectionStrength;
+	float    mipmapLodBias;
+	uint32_t glareColor;
+
+	float lmTexelSize;
+	float lmCreaseAngleDegrees;
+	float lmNormalHardness;
+};

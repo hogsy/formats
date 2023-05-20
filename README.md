@@ -18,6 +18,10 @@ Just keep in mind that the plan is to keep *everything* here public domain.
   - [Turok Evolution Engine](asaustin/turok/turok.md)
 - [Lucasfilm Games](https://www.mobygames.com/company/72/lucasfilm-games/)
   - [Ares Engine](lucasfilm/ares/ares.md)
+- [Oddworld Inhabitants Inc.](https://en.wikipedia.org/wiki/Oddworld_Inhabitants)
+  - Abe's Oddysee Engine (1997 - 1998)
+  - Oddworld Munch's Oddysee Engine (2001)
+  - [Oddworld Stranger's Wrath Engine](oddworld/stranger/stranger.md) (2005)
 
 ----
 

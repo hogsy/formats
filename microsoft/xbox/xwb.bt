@@ -1,0 +1,45 @@
+// this is for the older version XWB
+
+uint32_t magic;
+uint32_t version;
+
+struct Directory
+{
+	uint32_t offset;
+	uint32_t length;
+};
+
+struct Directory waveBankDirInfo;
+struct Directory fileRecordDirInfo;
+struct Directory nameDirInfo;
+struct Directory fileDataDirInfo;
+
+struct WaveBankInfo
+{
+	uint32_t flags;
+	uint32_t numFiles;
+	char     name[ 16 ];
+	uint32_t fileRecordSize;
+	uint32_t nameEntrySize;
+	uint32_t fileDataOffset;
+	uint32_t unused;
+};
+struct WaveBankInfo waveBankInfo;
+
+struct FileRecord
+{
+	uint16_t numChannels;
+	uint16_t format;
+	uint32_t magic;
+	uint32_t offset;
+	uint32_t size;
+	uint32_t loopRegionOffset;
+	uint32_t loopRegionLength;
+};
+struct FileRecord fileRecords[ waveBankInfo.numFiles ];
+
+struct Name
+{
+	char string[ waveBankInfo.nameEntrySize ];
+};
+struct Name names[ waveBankInfo.numFiles ];

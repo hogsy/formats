@@ -1,0 +1,8 @@
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+uint32_t version;
+float    fontHeight;
+float    topPadding;
+float    bottomPadding;
+float    fontY;
+uint32_t translatorTableSize;

@@ -1,0 +1,7 @@
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+struct OIStringBuffer
+{
+	int32_t size;
+	char    buffer[ size ];
+};
