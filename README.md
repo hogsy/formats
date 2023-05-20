@@ -16,12 +16,14 @@ Just keep in mind that the plan is to keep *everything* here public domain.
 
 - [Acclaim Studios Austin](https://en.wikipedia.org/wiki/Acclaim_Studios_Austin) (Iguana Entertainment)
   - [Turok Evolution Engine](asaustin/turok/turok.md)
-- [Lucasfilm Games](https://www.mobygames.com/company/72/lucasfilm-games/)
+- [Lucasfilm Games](lucasfilm)
   - [Ares Engine](lucasfilm/ares/ares.md)
 - [Oddworld Inhabitants Inc.](https://en.wikipedia.org/wiki/Oddworld_Inhabitants)
   - Abe's Oddysee Engine (1997 - 1998)
   - Oddworld Munch's Oddysee Engine (2001)
   - [Oddworld Stranger's Wrath Engine](oddworld/stranger/stranger.md) (2005)
+- [SingleTrac Entertainment Technologies, Inc.](singletrac)
+  - [Outwars](singletrac/readme.md#outwars-1998) (1998)
 
 ----
 

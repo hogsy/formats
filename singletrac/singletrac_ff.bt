@@ -1,0 +1,17 @@
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+uint32_t numIndices;
+
+struct Index
+{
+	uint32_t offset;
+	char     name[ 40 ];
+};
+
+struct Index indices[ numIndices ];
+
+/* file sizes can be determined like so...
+for ( unsigned int i = 0; i < ( num_indices - 1 ); ++i ) {
+	sizes[ i ] = indices[ i + 1 ].offset - indices[ i ].offset;
+}
+*/
