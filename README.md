@@ -16,6 +16,8 @@ Just keep in mind that the plan is to keep *everything* here public domain.
 
 - [Acclaim Studios Austin](https://en.wikipedia.org/wiki/Acclaim_Studios_Austin) (Iguana Entertainment)
   - [Turok Evolution Engine](templates/asaustin/turok/turok.md)
+- [Acclaim Studios Teesside](#acclaim-studios-teesside)
+- [BottleRocket Entertainment, Inc.](#bottlerocket-entertainment-inc)
 - [Lucasfilm Games](templates/lucasfilm)
   - [Ares Engine](templates/lucasfilm/ares/ares.md)
 - [Oddworld Inhabitants Inc.](https://en.wikipedia.org/wiki/Oddworld_Inhabitants)
@@ -26,8 +28,6 @@ Just keep in mind that the plan is to keep *everything* here public domain.
   - [Outwars](templates/singletrac/readme.md#outwars-1998) (1998)
 
 ----
-
-Below is an older listing, everything will gradually be migrated above for easier navigation.
 
 ## [Acclaim Studios Teesside](https://en.wikipedia.org/wiki/List_of_Acclaim_Entertainment_subsidiaries#Acclaim_Studios_Teesside)
 
