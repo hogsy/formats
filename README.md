@@ -6,8 +6,10 @@ are provided in
 [Binary Template](https://solemnwarning.net/rehex/manual/bt.html) format,
 which is easily translatable into C/C++ and most other languages.
 
-As noted in the [license](./LICENSE), I'm releasing all of this documentation into the public domain.
-That said, a reference or callout wouldn't hurt! ❤️
+As noted in the [license](./LICENSE), unless stated otherwise,
+I'm releasing all of this documentation into the public domain.
+That said, a reference or callout wouldn't hurt!
+❤️
 
 Contributions are also welcome!
 Just keep in mind that the plan is to keep *everything* here public domain.
