@@ -6,8 +6,10 @@ are provided in
 [Binary Template](https://solemnwarning.net/rehex/manual/bt.html) format,
 which is easily translatable into C/C++ and most other languages.
 
-As noted in the [license](./LICENSE), I'm releasing all of this documentation into the public domain.
-That said, a reference or callout wouldn't hurt! ❤️
+As noted in the [license](./LICENSE), unless stated otherwise,
+I'm releasing all of this documentation into the public domain.
+That said, a reference or callout wouldn't hurt!
+❤️
 
 Contributions are also welcome!
 Just keep in mind that the plan is to keep *everything* here public domain.
@@ -15,23 +17,28 @@ Just keep in mind that the plan is to keep *everything* here public domain.
 ----
 
 - [Acclaim Studios Austin](https://en.wikipedia.org/wiki/Acclaim_Studios_Austin) (Iguana Entertainment)
-  - [Turok Evolution Engine](asaustin/turok/turok.md)
-- [Lucasfilm Games](lucasfilm)
-  - [Ares Engine](lucasfilm/ares/ares.md)
+  - [Turok Evolution Engine](templates/asaustin/turok/turok.md)
+- [Acclaim Studios Teesside](#acclaim-studios-teesside)
+  - [Vista 3D](#vista-3d)
+- [BottleRocket Entertainment, Inc.](#bottlerocket-entertainment-inc)
+  - [The Mark of Kri Engine](#the-mark-of-kri-engine)
+- [Core Design](#core-design)
+  - [Tomb Raider Engine](#tomb-raider-engine-1996---2000)
+  - [Herdy Gerdy Engine](#herdy-gerdy-engine-2002)
+- [Lucasfilm Games](templates/lucasfilm)
+  - [Ares Engine](templates/lucasfilm/ares/ares.md)
 - [Oddworld Inhabitants Inc.](https://en.wikipedia.org/wiki/Oddworld_Inhabitants)
   - Abe's Oddysee Engine (1997 - 1998)
   - Oddworld Munch's Oddysee Engine (2001)
-  - [Oddworld Stranger's Wrath Engine](oddworld/stranger/stranger.md) (2005)
-- [SingleTrac Entertainment Technologies, Inc.](singletrac)
-  - [Outwars](singletrac/readme.md#outwars-1998) (1998)
+  - [Oddworld Stranger's Wrath Engine](templates/oddworld/stranger/stranger.md) (2005)
+- [SingleTrac Entertainment Technologies, Inc.](templates/singletrac)
+  - [Outwars](templates/singletrac/readme.md#outwars-1998) (1998)
 
 ----
 
-Below is an older listing, everything will gradually be migrated above for easier navigation.
-
 ## [Acclaim Studios Teesside](https://en.wikipedia.org/wiki/List_of_Acclaim_Entertainment_subsidiaries#Acclaim_Studios_Teesside)
 
-![Acclaim Studios Teeside logo](asteeside/asteeside_logo.png)
+![Acclaim Studios Teeside logo](templates/asteeside/asteeside_logo.png)
 
 ### Vista 3D
 
@@ -51,17 +58,17 @@ The below covers both the earlier '97 iteration of the engine and onwards.
 
 ## [Appeal S.A.](https://www.mobygames.com/company/appeal-studios-sa)
 
-![Appeal S.A. logo](appeal/appeal_logo.jpg)
+![Appeal S.A. logo](templates/appeal/appeal_logo.jpg)
 
 Developers behind [Outcast](https://www.mobygames.com/game/windows/outcast).
 
 | Name | Description | Status  | Games   | URL                          |
 |------|-------------|---------|---------|------------------------------|
-| MSH  | Mesh format | **80%** | Outcast | [Link](appeal/appeal_msh.bt) |
+| MSH  | Mesh format | **80%** | Outcast | [Link](templates/appeal/appeal_msh.bt) |
 
 ## [Blitz Games Ltd](https://www.mobygames.com/company/blitz-games-ltd_)
 
-![Blitz Games Ltd logo](blitz/blitz_logo.png)
+![Blitz Games Ltd logo](templates/blitz/blitz_logo.png)
 
 UK-based developer that shut down in 2013.
 Developed a number of different games, some of which do seem to share common technology.
@@ -80,14 +87,35 @@ Saturn era, starting with Glover.
 - Cubix: Robots For Everyone - Race 'N Robots (?) (2001)
 - Disney's Lilo & Stitch: Trouble in Paradise (2002)
 
-| Name | Description    | Status                                                                                              | URL                        |
-|------|----------------|-----------------------------------------------------------------------------------------------------|----------------------------|
-| DAT  | Package format | **Done** ([hashing](https://github.com/OldTimes-Software/hei/blob/master/extras/blitz/blitz.c#L15)) | [Link](blitz/blitz_dat.bt) |
-| PSI  | Model format   | Partial                                                                                             | [Link](blitz/blitz_psi.bt) |
+| Name | Description    | Status                                                                                              | URL                                  |
+|------|----------------|-----------------------------------------------------------------------------------------------------|--------------------------------------|
+| DAT  | Package format | **Done** ([hashing](https://github.com/OldTimes-Software/hei/blob/master/extras/blitz/blitz.c#L15)) | [Link](templates/blitz/blitz_dat.bt) |
+| PSI  | Model format   | Partial                                                                                             | [Link](templates/blitz/blitz_psi.bt) |
+
+## [BottleRocket Entertainment, Inc.](https://www.mobygames.com/company/6986/bottlerocket-entertainment-inc/)
+
+### The Mark of Kri Engine
+
+#### Games
+
+- [The Mark of Kri](https://www.mobygames.com/game/7648/the-mark-of-kri/) (2002) (Sony PlayStation 2)
+- [Rise of the Kasai](https://www.mobygames.com/game/21289/rise-of-the-kasai/) (2005) (Sony PlayStation 2)
+- [Xiaolin Showdown](https://www.mobygames.com/game/26311/xiaolin-showdown/) (2006) (Sony PlayStation 2, Sony PSP, Microsoft Xbox)
+
+#### Fun Facts
+
+- Package format uses the extension '.WAD'.
+- It uses a fairly simple scripting language, which seemed to fall out of use after the first game.
+
+#### Formats
+
+| Name | Description    | Status  | URL                                                                                    |
+|------|----------------|---------|----------------------------------------------------------------------------------------|
+| WAD  | Package format | **80%** | [Link](https://github.com/OldTimes-Software/hei/blob/master/extras/pl_extra_kri_wad.c) |
 
 ## [Creative Reality](https://www.mobygames.com/company/creative-reality)
 
-![Creative Reality logo](creality/creality_logo.gif)
+![Creative Reality logo](templates/creality/creality_logo.gif)
 
 ### Martian Gothic Engine (PC)
 
@@ -105,17 +133,17 @@ was [Martian Gothic: Unification](https://www.mobygames.com/game/martian-gothic-
 
 | Name    | Description                            | Status   | URL                                     |
 |---------|----------------------------------------|----------|-----------------------------------------|
-| GFX/TEX | Texture package                        | **100%** | [Link](creality/creality_format_tex.bt) |
-| ATH     | Container table format                 | **50%**  | [Link](creality/creality_format_ath.bt) |
+| GFX/TEX | Texture package                        | **100%** | [Link](templates/creality/creality_format_tex.bt) |
+| ATH     | Container table format                 | **50%**  | [Link](templates/creality/creality_format_ath.bt) |
 | ATF     | Container format                       | Pending  |                                         |
 | ANM     | Mesh (and animation?) data             | Pending  |                                         |
-| CAM     | Background / camera data               | Pending  | [Link](creality/creality_format_cam.bt) |
+| CAM     | Background / camera data               | Pending  | [Link](templates/creality/creality_format_cam.bt) |
 | ROOM    | Room data                              | Pending  |                                         |
 | GRP     | Some sort of ANM related table thingy? | Pending  |                                         |
 
 ## [Core Design](https://en.wikipedia.org/wiki/Core_Design)
 
-![Core Design logo](core/core_logo.png)
+![Core Design logo](templates/core/core_logo.png)
 
 ### Tomb Raider Engine (1996 - 2000)
 
@@ -132,14 +160,14 @@ There is some cross-over between this and the engine developed for the cancelled
 
 | Name | Description                             | Status                      | URL                      |
 |------|-----------------------------------------|-----------------------------|--------------------------|
-| CLU  | Package format                          | **100%**                    | [Link](core/core_clu.bt) |
-| HGT  | Texture format ('Herdy Gerdy Texture'?) | **50%** (container for BMP) | [Link](core/core_hgt.bt) |
+| CLU  | Package format                          | **100%**                    | [Link](templates/core/core_clu.bt) |
+| HGT  | Texture format ('Herdy Gerdy Texture'?) | **50%** (container for BMP) | [Link](templates/core/core_hgt.bt) |
 | HGM  | Model format ('Herdy Gerdy Model'?)     | Pending                     | N/A                      |
 | GLV  | Level format ('Gerdy Level'?)           | Pending                     | N/A                      |
 
 ## [Computer Artworks Ltd.](https://www.mobygames.com/company/computer-artworks-ltd)
 
-![Computer Artworks Ltd. logo](computer-artworks/computer-artworks_logo.png)
+![Computer Artworks Ltd. logo](templates/computer-artworks/computer-artworks_logo.png)
 
 Developed two games, [Evolva](https://www.mobygames.com/game/windows/evolva)
 and [The Thing](https://www.mobygames.com/game/thing).
@@ -147,15 +175,15 @@ Both games appear to be derived from the same in-house technology.
 
 | Name | Description                  | Status                        | Games             | URL                                 |
 |------|------------------------------|-------------------------------|-------------------|-------------------------------------|
-| 3DF  | Bitmap font descriptor       | **70%**                       | The Thing         | [Link](computer-artworks/ca_3df.bt) |
+| 3DF  | Bitmap font descriptor       | **70%**                       | The Thing         | [Link](templates/computer-artworks/ca_3df.bt) |
 | AN   | Animation data               | Pending                       | The Thing         | N/A                                 |
-| BIN  | Entity data                  | Partial                       | The Thing         | [Link](computer-artworks/ca_bin.bt) |
-| BT   | Strings                      | **80%**                       | The Thing         | [Link](computer-artworks/ca_bt.bt)  |
+| BIN  | Entity data                  | Partial                       | The Thing         | [Link](templates/computer-artworks/ca_bin.bt) |
+| BT   | Strings                      | **80%**                       | The Thing         | [Link](templates/computer-artworks/ca_bt.bt)  |
 | ENT  | Text-based entity descriptor | Pending                       | Evolva            | N/A                                 |
 | GEO  | Collision mesh data          | Pending                       | The Thing         | N/A                                 | 
 | FX   | Text-based effect descriptor | Pending                       | The Thing         | N/A                                 |
 | LVL  | INI level descriptor format  | Pending                       | Evolva, The Thing | N/A                                 |
-| MSH  | Mesh data                    | Partial                       | Evolva, The Thing | [Link](computer-artworks/ca_msh.bt) |
+| MSH  | Mesh data                    | Partial                       | Evolva, The Thing | [Link](templates/computer-artworks/ca_msh.bt) |
 | PAK  | ZIP package                  | **100%** (it's a zip :shrug:) | The Thing         | N/A                                 |
 | SGH  | 'SceneGraph'                 | Pending                       | Evolva, The Thing | N/A                                 |
 
@@ -163,9 +191,9 @@ Both games appear to be derived from the same in-house technology.
 
 | Name | Description    | Status   | Games       | URL                    |
 |------|----------------|----------|-------------|------------------------|
-| H95  |                | Partial  | Zombie Wars | [Link](geewhiz/h95.md) |
-| SB0  | Package format | **100%** | Zombie Wars | [Link](geewhiz/sb0.md) |
-| SPR  | Sprite format  | Partial  | Zombie Wars | [Link](geewhiz/spr.md) |
+| H95  |                | Partial  | Zombie Wars | [Link](templates/geewhiz/h95.md) |
+| SB0  | Package format | **100%** | Zombie Wars | [Link](templates/geewhiz/sb0.md) |
+| SPR  | Sprite format  | Partial  | Zombie Wars | [Link](templates/geewhiz/spr.md) |
 
 ## [Guerrilla Cambridge](https://www.mobygames.com/company/guerrilla-cambridge)
 
@@ -173,7 +201,7 @@ Also known as Millennium Interactive Ltd. and SCE Studio Cambridge.
 
 | Name | Description                       | Status | Games                  | URL                         |
 |------|-----------------------------------|--------|------------------------|-----------------------------|
-| MWD  | Package format, 'Millennium WAD'? | ...    | C-12: Final Resistance | [Link](millennium/m_mwd.bt) |
+| MWD  | Package format, 'Millennium WAD'? | ...    | C-12: Final Resistance | [Link](templates/millennium/m_mwd.bt) |
 
 ## [Infogrames Studios Limited](https://www.mobygames.com/company/infogrames-studios-limited)
 
@@ -184,13 +212,13 @@ Didn't really have an engine, but some of their games share some technology.
 
 | Name | Description | Status  | Games             | URL                            |
 |------|-------------|---------|-------------------|--------------------------------|
-| MIN  | Model data  | Partial | Hogs of War (PSX) | [Link](gremlin/gremlin_min.bt) |
+| MIN  | Model data  | Partial | Hogs of War (PSX) | [Link](templates/gremlin/gremlin_min.bt) |
 
 ## [Midway Studios Austin](https://en.wikipedia.org/wiki/Midway_Studios_Austin)
 
 Also known as Inevitable Entertainment, Inc..
 
-![Midway Studios Austin logo](msaustin/msaustin_logo.png)
+![Midway Studios Austin logo](templates/msaustin/msaustin_logo.png)
 
 ### Unknown Engine
 
@@ -203,9 +231,9 @@ Games using this technology range from the following.
 
 | Name    | Description                                  | Status                                   | URL                               |
 |---------|----------------------------------------------|------------------------------------------|-----------------------------------|
-| DFS     | TOC for packed data                          | Partial (**70%** for v1, **60%** for v3) | [Link](msaustin/msaustin_dfs.bt)  |
-| .000    | Packed data                                  | **100%** (see *DFS*)                     | [Link](msaustin/msaustin_dfs.bt)  |
-| XBMP    | Bitmap data                                  | ...                                      | [Link](msaustin/msaustin_xbmp.bt) |
+| DFS     | TOC for packed data                          | Partial (**70%** for v1, **60%** for v3) | [Link](templates/msaustin/msaustin_dfs.bt)  |
+| .000    | Packed data                                  | **100%** (see *DFS*)                     | [Link](templates/msaustin/msaustin_dfs.bt)  |
+| XBMP    | Bitmap data                                  | ...                                      | [Link](templates/msaustin/msaustin_xbmp.bt) |
 | MATX    | Plaintext model data (unused? intermediate?) | Pending                                  | ...                               |
 | NPCGEOM | NPC geometry data                            | Pending                                  | ...                               |
 | RGEOM   | 'Regular'(?) geometry data                   | Pending                                  | ...                               |
@@ -225,22 +253,22 @@ Used for the following games.
   Redemption ([source](https://en.wikipedia.org/wiki/Vampire:_The_Masquerade_%E2%80%93_Redemption#Technology))
 - StarCraft: Ghost (Cancelled)
 
-| Name | Description                        | Status  | URL                         |
-|------|------------------------------------|---------|-----------------------------|
-| NAD  | Animation format                   | Pending | ...                         |
-| NCE  | ...                                | Pending | ...                         |
-| NCS  | ...                                | Pending | ...                         |
-| NOC  | ...                                | Pending | ...                         |
-| NOD  | Model format, 'Object Description' | Partial | [Link](nihilistic/n_nod.bt) |
-| NNB  | ...                                | Pending | ...                         |
-| NMB  | ...                                | Pending | ...                         |
-| NMS  | ...                                | Pending | ...                         |
-| NRT  | ...                                | Pending | ...                         |
-| NUT  | ...                                | Pending | ...                         |
+| Name | Description                        | Status  | URL                                   |
+|------|------------------------------------|---------|---------------------------------------|
+| NAD  | Animation format                   | Pending | ...                                   |
+| NCE  | ...                                | Pending | ...                                   |
+| NCS  | ...                                | Pending | ...                                   |
+| NOC  | ...                                | Pending | ...                                   |
+| NOD  | Model format, 'Object Description' | Partial | [Link](templates/nihilistic/n_nod.bt) |
+| NNB  | ...                                | Pending | ...                                   |
+| NMB  | ...                                | Pending | ...                                   |
+| NMS  | ...                                | Pending | ...                                   |
+| NRT  | ...                                | Pending | ...                                   |
+| NUT  | ...                                | Pending | ...                                   |
 
 ## [Tate Interactive](https://en.wikipedia.org/wiki/Tate_Multimedia)
 
-![Tate logo](tate/tate_logo.png)
+![Tate logo](templates/tate/tate_logo.png)
 
 Polish company primarily known for producing [Kao the Kangaroo](https://en.wikipedia.org/wiki/Kao_the_Kangaroo_(2000_video_game)).
 Seems that the engine they developed ended up getting used for a number of different games and ported to a number of
@@ -261,9 +289,9 @@ executable.
   - Microsoft Windows, 2003
 
 #### Formats
-| Name | Description    | Status | URL                            |
-|------|----------------|--------|--------------------------------|
-| PAK  | Package format | ...    | [Link](tate/tate_denis_pak.bt) |
+| Name | Description    | Status | URL                                      |
+|------|----------------|--------|------------------------------------------|
+| PAK  | Package format | ...    | [Link](templates/tate/tate_denis_pak.bt) |
 
 ### Tate/Elephant Engine
 
@@ -294,23 +322,23 @@ It may have originally been intended as a sequel to
 #### Formats
 | Name | Description    | Status | URL                      |
 |------|----------------|--------|--------------------------|
-| PAK  | Package format | ...    | [Link](tate/tate_pak.bt) |
+| PAK  | Package format | ...    | [Link](templates/tate/tate_pak.bt) |
 
 ## [Team Ico](https://en.wikipedia.org/wiki/Team_Ico) (1993 - 2021)
 
-![Team Ico logo](ico/ico_logo.png)
+![Team Ico logo](templates/ico/ico_logo.png)
 
 | Name | Description              | Status                    | URL                   |
 |------|--------------------------|---------------------------|-----------------------|
-| DF   | Container/package format | **90%** (still uncertain) | [Link](ico/ico_df.bt) |
+| DF   | Container/package format | **90%** (still uncertain) | [Link](templates/ico/ico_df.bt) |
 
 ## [Triton](https://www.pouet.net/groups.php?which=161)
 
-![Triton logo](triton/triton_logo.png)
+![Triton logo](templates/triton/triton_logo.png)
 
 Demoscene group, and essentially the predecessor to Starbreeze.
 Responsible for the cancelled [Into the Shadows](https://www.pouet.net/prod.php?which=2588) game.
 
 | Name | Description | Status  | Games            | URL                          |
 |------|-------------|---------|------------------|------------------------------|
-| HDV  | Mesh data   | **75%** | Into the Shadows | [Link](triton/triton_hdv.bt) |
+| HDV  | Mesh data   | **75%** | Into the Shadows | [Link](templates/triton/triton_hdv.bt) |
