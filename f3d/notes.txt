@@ -1,0 +1,53 @@
+Much of this is in relation to Wild Water Adrenaline...
+
+All the meat is under the `DATA.BIN` file, which is essentially a package of sorts.
+
+Nothing particularly unusual about the package format itself. There's a table of contents at the start listing out all the files within.
+
+1844 bytes between last entry to first blob...
+6144 is first file (2048 * 3 (3 being int before length))
+4280 is size of the table...
+Each entry is 20 bytes...
+
+Soooo in summary...
+
+struct Index
+{
+	char name[ 12 ];
+	uint32_t blockNum;
+	uint32_t size;
+};
+
+struct Header
+{
+	char ident[ 8 ];
+	int32_t unk0[ 2 ]; // <- these are 0, so I've no idea
+	uint32_t numFiles;
+	Index indices[numFiles];
+};
+
+Curiously, there are a collection of strings in here that look like symbol names which indicate the title was written in C++, though more interestingly we can see quite a few that seem to relate to features that obviously would not make sense for this game, such as `mTeamSoldierLifeCycle`, `mTeamSoldierFlee`, `mNeedToFlee`, a number of names relating to hand guns, `BULLET_IMPACT_NEAR`, `GUNSHOTS_NOISE`, `UNDER_ATTACK`, `NEED_TO_INSPECT`, `mInventory`, `mAssaultGun`, `worm_start_biting`, `worm_end_biting`, references to Cutter, and uh, many others! I'll try and go over most of these later.
+
+All of the above are from NAMES.BIN - otherwise nothing else to it...all these strings are likely just old left-overs from Outcast 2 but none of it actually remains afaik.
+
+Seems quite a large portion of the game logic is actually implemented in Lua.
+
+Mountain Bike Adrenaline on PC seems to store files in a different way so we can't easily do anything with that yet.
+Haven't checked the PS2 version yet, but I'd assume it's the same as this other game.
+
+Rebuilt PS2 ISO with the following...
+    mkisofs -udf -o WILDMOD.ISO ./Wild\ Water/
+
+Starting it up with our repacked BIN doesn't work...
+There is no checksum on DATA.BIN, so that's not a problem...
+Noted it's also padded at the end, that's fixed but still doesn't work... *sigh*
+Repacking with the original order of the files retained worked!
+Then tried editing a script, saving that and packing - game didn't load... autoexec.lua
+Maybe there's a checksum on the autoexec.lua file?
+Nope, changing 'English' to 'Butt' worked fine...
+But changing it to 'ButtButtButt' did not work, file size increased marginally. Maybe there's a fixed size it loads the files into?? urgh
+
+It's explicitly mentioned here how the game uses Outcast II assets, which is neat.
+    https://web.archive.org/web/20180902143136/http://francksauer.com/index.php/15-games/published-games/24-wild-water-adrenaline
+
+Contrary to my original thoughts, lighting is actually baked into vertices as colour information rather than a lightmap as I'd originally expected. This makes sense given the target for the PS2.

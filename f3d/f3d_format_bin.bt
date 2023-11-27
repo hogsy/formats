@@ -1,0 +1,17 @@
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+struct Header
+{
+	char     identifier[ 8 ];
+	uint32_t unk0[ 2 ];
+	uint32_t numFiles;
+};
+struct Header header;
+
+struct Index
+{
+	char     name[ 12 ];
+	uint32_t blockNum;// 2048 * blockNum = offset
+	uint32_t size;
+};
+struct Index indices[ header.numFiles ];
