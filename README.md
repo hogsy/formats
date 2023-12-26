@@ -1,18 +1,14 @@
 # Reversed Format Collection
 
 This repository is filled with various notes on various different formats that I've reversed overtime. A lot of these
-are provided in
-[Rehex](https://github.com/solemnwarning/rehex)'s
-[Binary Template](https://solemnwarning.net/rehex/manual/bt.html) format,
+are provided in [Rehex](https://github.com/solemnwarning/rehex)'s [Binary Template](https://solemnwarning.net/rehex/manual/bt.html) format,
 which is easily translatable into C/C++ and most other languages.
 
-As noted in the [license](./LICENSE), unless stated otherwise,
-I'm releasing all of this documentation into the public domain.
-That said, a reference or callout wouldn't hurt!
+If you find anything here useful, please consider [sponsoring me;](https://github.com/sponsors/hogsy)
+otherwise a reference or callout wouldn't hurt!
 ❤️
 
 Contributions are also welcome!
-Just keep in mind that the plan is to keep *everything* here public domain.
 
 ----
 
@@ -199,8 +195,8 @@ Both games appear to be derived from the same in-house technology.
 
 Also known as Millennium Interactive Ltd. and SCE Studio Cambridge.
 
-| Name | Description                       | Status | Games                  | URL                         |
-|------|-----------------------------------|--------|------------------------|-----------------------------|
+| Name | Description                       | Status | Games                  | URL                                   |
+|------|-----------------------------------|--------|------------------------|---------------------------------------|
 | MWD  | Package format, 'Millennium WAD'? | ...    | C-12: Final Resistance | [Link](templates/millennium/m_mwd.bt) |
 
 ## [Infogrames Studios Limited](https://www.mobygames.com/company/infogrames-studios-limited)
@@ -229,15 +225,15 @@ Games using this technology range from the following.
 - [The Hobbit](https://en.wikipedia.org/wiki/The_Hobbit_(2003_video_game)) (2003)
 - [Area 51](https://en.wikipedia.org/wiki/Area_51_(2005_video_game)) (2005)
 
-| Name    | Description                                  | Status                                   | URL                               |
-|---------|----------------------------------------------|------------------------------------------|-----------------------------------|
+| Name    | Description                                  | Status                                   | URL                                         |
+|---------|----------------------------------------------|------------------------------------------|---------------------------------------------|
 | DFS     | TOC for packed data                          | Partial (**70%** for v1, **60%** for v3) | [Link](templates/msaustin/msaustin_dfs.bt)  |
 | .000    | Packed data                                  | **100%** (see *DFS*)                     | [Link](templates/msaustin/msaustin_dfs.bt)  |
 | XBMP    | Bitmap data                                  | ...                                      | [Link](templates/msaustin/msaustin_xbmp.bt) |
-| MATX    | Plaintext model data (unused? intermediate?) | Pending                                  | ...                               |
-| NPCGEOM | NPC geometry data                            | Pending                                  | ...                               |
-| RGEOM   | 'Regular'(?) geometry data                   | Pending                                  | ...                               |
-| FXO     | Effect data                                  | Pending                                  | ...                               |
+| MATX    | Plaintext model data (unused? intermediate?) | Pending                                  | ...                                         |
+| NPCGEOM | NPC geometry data                            | Pending                                  | ...                                         |
+| RGEOM   | 'Regular'(?) geometry data                   | Pending                                  | ...                                         |
+| FXO     | Effect data                                  | Pending                                  | ...                                         |
 
 ## [nStigate Games]()
 
@@ -320,16 +316,16 @@ It may have originally been intended as a sequel to
 [My Horse & Me 2](https://en.wikipedia.org/wiki/My_Horse_%26_Me_2).
 
 #### Formats
-| Name | Description    | Status | URL                      |
-|------|----------------|--------|--------------------------|
+| Name | Description    | Status | URL                                |
+|------|----------------|--------|------------------------------------|
 | PAK  | Package format | ...    | [Link](templates/tate/tate_pak.bt) |
 
 ## [Team Ico](https://en.wikipedia.org/wiki/Team_Ico) (1993 - 2021)
 
 ![Team Ico logo](templates/ico/ico_logo.png)
 
-| Name | Description              | Status                    | URL                   |
-|------|--------------------------|---------------------------|-----------------------|
+| Name | Description              | Status                    | URL                             |
+|------|--------------------------|---------------------------|---------------------------------|
 | DF   | Container/package format | **90%** (still uncertain) | [Link](templates/ico/ico_df.bt) |
 
 ## [Triton](https://www.pouet.net/groups.php?which=161)
@@ -339,6 +335,6 @@ It may have originally been intended as a sequel to
 Demoscene group, and essentially the predecessor to Starbreeze.
 Responsible for the cancelled [Into the Shadows](https://www.pouet.net/prod.php?which=2588) game.
 
-| Name | Description | Status  | Games            | URL                          |
-|------|-------------|---------|------------------|------------------------------|
+| Name | Description | Status  | Games            | URL                                    |
+|------|-------------|---------|------------------|----------------------------------------|
 | HDV  | Mesh data   | **75%** | Into the Shadows | [Link](templates/triton/triton_hdv.bt) |
