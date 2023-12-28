@@ -1,0 +1,42 @@
+// SPDX-License-Identifier: GPL-2.0-or-later
+// Copyright © 2023 Mark "hogsy" Sowden <hogsy@oldtimes-software.com>
+
+struct TTHavenDatHeader
+{
+	uint32_t tocOffset;
+};
+
+struct TTHavenDatIndex
+{
+	uint32_t offset;
+	uint32_t size;
+	uint32_t compressedSize;// Maybe??? Same as size, so who knows...
+	uint32_t unknown;
+};
+
+struct TTHavenDatTocHeader
+{
+	uint32_t               unknown;
+	uint32_t               numFiles;
+	struct TTHavenDatIndex files[ numFiles ];
+};
+
+struct TTHavenDatHeader header;
+
+FSeek( header.tocOffset );
+struct TTHavenDatTocHeader tocHeader;
+
+// Some unknown stuff follows here...
+
+struct TTHavenDatStringIndex
+{
+	uint32_t offset;
+	uint8_t  x;
+	uint8_t  y;
+	uint16_t z;
+};
+
+uint32_t numStrings;
+uint32_t numB;
+
+struct TTHavenDatStringIndex strings[ numStrings ];
