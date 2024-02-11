@@ -9,7 +9,7 @@ DUMMY.DAT       -> Null padding file. Nothing interesting.
 DATA/RWLDS.DAT  -> Seems to contain a collection of scripts and other data.
 
 ------------------------------
-DATA/RWLDS.DAT
+DAT Package Format
 ------------------------------
 
 Probably the bulk of the data that isn't sound or music, judging for everything else under the same directory.
@@ -32,3 +32,11 @@ That said, it's giving me a slight headache...
 So essentially, if the last digit is 0, it's usually a folder, but there appear to be some exceptions?
 
 ------------------------------
+GHG Format
+------------------------------
+
+Using ttchar/rest.ghg as a test target...
+
+Right wrist bracelet is about 41 vertices.
+    rest.ghg -soff 116640 -eoff 124000
+
