@@ -69,7 +69,7 @@ Developers behind [Outcast](https://www.mobygames.com/game/windows/outcast).
 UK-based developer that shut down in 2013.
 Developed a number of different games, some of which do seem to share common technology.
 
-### B1 (1998 - 2002)
+### BlitzTech 1
 
 This is the term we'll use to refer to Blitz's technology used in earlier games from the PlayStation, Nintendo 64 and
 Saturn era, starting with Glover.
@@ -87,6 +87,7 @@ Saturn era, starting with Glover.
 |------|----------------|-----------------------------------------------------------------------------------------------------|--------------------------------------|
 | DAT  | Package format | **Done** ([hashing](https://github.com/OldTimes-Software/hei/blob/master/extras/blitz/blitz.c#L15)) | [Link](templates/blitz/blitz_dat.bt) |
 | PSI  | Model format   | Partial                                                                                             | [Link](templates/blitz/blitz_psi.bt) |
+| SPT  | Texture format | **85%**                                                                                             | [Link](templates/blitz/blitz_spt.bt) |
 
 ## [BottleRocket Entertainment, Inc.](https://www.mobygames.com/company/6986/bottlerocket-entertainment-inc/)
 
