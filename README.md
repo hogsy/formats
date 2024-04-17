@@ -20,6 +20,7 @@ Contributions are also welcome!
   - [The Mark of Kri Engine](#the-mark-of-kri-engine)
 - [Core Design](#core-design)
   - [Tomb Raider Engine](#tomb-raider-engine-1996---2000)
+  - [Project Eden Engine](#project-eden-engine-2001)
   - [Herdy Gerdy Engine](#herdy-gerdy-engine-2002)
 - [Lucasfilm Games](templates/lucasfilm)
   - [Ares Engine](templates/lucasfilm/ares/ares.md)
@@ -144,6 +145,14 @@ was [Martian Gothic: Unification](https://www.mobygames.com/game/martian-gothic-
 
 ### Tomb Raider Engine (1996 - 2000)
 
+### Project Eden Engine (2001)
+
+Unaware of any proper name for this particular engine, though string in the executable say "engine_pc.lib".
+The engine was developed from scratch with a next-gen mindset that went away from the grid-based logic of Tomb Raider games.
+On the graphics side, the PC version included features like normal mapping, environment mapping, variable-rate animations
+and real-time morphing, which all used Direct3D 8's fixed-function pipeline.
+On the sound side, the most important feature was real-time environment-aware sound effects using DirectSound 8 and EAX 1.0.
+
 ### Herdy Gerdy Engine (2002)
 
 Unaware of any proper name for this particular engine.
@@ -151,16 +160,21 @@ There is some cross-over between this and the engine developed for the cancelled
 
 #### Games
 
+- [Project Eden (2001)](https://www.mobygames.com/game/project-eden)
 - [Herdy Gerdy (2002)](https://www.mobygames.com/game/herdy-gerdy)
 
 #### Formats
 
-| Name | Description                             | Status                      | URL                      |
-|------|-----------------------------------------|-----------------------------|--------------------------|
-| CLU  | Package format                          | **100%**                    | [Link](templates/core/core_clu.bt) |
-| HGT  | Texture format ('Herdy Gerdy Texture'?) | **50%** (container for BMP) | [Link](templates/core/core_hgt.bt) |
-| HGM  | Model format ('Herdy Gerdy Model'?)     | Pending                     | N/A                      |
-| GLV  | Level format ('Gerdy Level'?)           | Pending                     | N/A                      |
+| Name    | Description                             | Status                      | URL                      |
+|---------|-----------------------------------------|-----------------------------|--------------------------|
+| ACW     | Actor WAD format                        | **100%**                    | [Link](templates/core/core_acw.bt) |
+| EDN/PDN | Eden Level format                       | **100%**                    | [Link](templates/core/core_edn_pdn.bt) |
+| EDI/PDI | Eden Image format                       | Pending                     | N/A						 |
+| EDS/PDS | Eden Sound format                       | Pending                     | N/A						 |
+| CLU     | Package format                          | **100%**                    | [Link](templates/core/core_clu.bt) |
+| HGT     | Texture format ('Herdy Gerdy Texture'?) | **50%** (container for BMP) | [Link](templates/core/core_hgt.bt) |
+| HGM     | Model format ('Herdy Gerdy Model'?)     | Pending                     | N/A                      |
+| GLV     | Level format ('Gerdy Level'?)           | Pending                     | N/A                      |
 
 ## [Computer Artworks Ltd.](https://www.mobygames.com/company/computer-artworks-ltd)
 

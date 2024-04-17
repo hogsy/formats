@@ -1,0 +1,257 @@
+// Template created by Alan Moczulski
+/*
+ * Core Design, Project Eden shared definitions
+ */
+
+#ifndef CORE_EDEN_SHARED
+#define CORE_EDEN_SHARED
+
+typedef uint8_t bool;
+
+struct Vector3
+{
+	float x;
+	float y;
+	float z;
+};
+
+// a vertex that is shared by multiple faces
+struct Corner
+{
+	uint16_t vertex_index;
+	uint16_t padding;
+	uint32_t color;							// rgb perhaps?
+	float textureUV[2];
+	float lightmapUV[2];
+};
+
+struct Hull
+{
+	uint32_t n;
+	if (n == 0)
+	{
+		int32_t charC;
+		struct Vector3 vec0;
+		struct Vector3 vec1;
+		struct Vector3 normal;
+		struct Vector3 vec3;
+		uint32_t num_vertices;
+		struct Vector3 vertices[num_vertices];
+	}
+};
+
+struct Face
+{
+	int32_t surface_property_index;			// index in EDNFile's surface_properties
+
+	int32_t index;							// is a lightmap index if this Face does not belong to an Actor
+											// is a material index if this Face belongs to an Actor
+
+	uint32_t face_type;						// 3="triangle", 4="quad", 6="2 triangles"
+
+	uint32_t num_vertices;
+	uint16_t vertex_indices[num_vertices];
+	
+	uint16_t num_i;
+	int32_t mi[num_i];
+	
+	uint32_t num_global_i;
+	int16_t globalI[num_global_i];			// corner indices?
+
+	struct Hull hull;
+
+	struct Vector3 normal;							// normal of the face (can be used for per-vertex flat shading)
+	struct Vector3 min_extent;
+	struct Vector3 max_extent;
+	
+	bool unk5;
+	if (unk5)
+	{
+		int16_t unk6;
+		int16_t unk7;
+		int16_t unk6array[unk6];
+		int16_t unk7array[unk7];
+
+		int16_t unk8;
+		int unk8array[unk8];
+	}
+};
+
+struct Recursive
+{
+	bool read;
+	if (read)
+	{
+		char smth[9];
+
+		int16_t unk10;
+		int16_t arr[unk10];
+
+		struct Recursive r1;
+		struct Recursive r2;
+	}
+};
+
+struct Mesh
+{
+	uint32_t name_length;
+	char name[name_length];
+	
+	int32_t flags;										// used to specify smooth or flat normals (default is smooth)
+	
+	// === vertex data ===
+	uint32_t num_verts;									// it is possible for a Room not to have any vertices,
+														// which is weird but it has happened a few times during my analysis
+	struct Vector3 vertex_positions[num_verts];			// array of vertex positions in model-space
+	struct Vector3 vertex_normals[num_verts];			// array of normalised, smooth vertex normals in model-space
+	
+	uint32_t unk;
+	
+	// === bounding box ===
+	struct Vector3 min_extent;
+	struct Vector3 max_extent;
+
+	// === topology data ===
+	uint32_t num_corners;
+	if (num_corners == 0)
+		uint32_t unk1;
+	else
+	{
+		struct Corner corners[num_corners];
+		uint32_t num_faces;
+		struct Face faces[num_faces];
+	}
+	
+	struct TEXTURE_BASIS
+	{
+		struct Vector3 axis_u;							// tangent?
+		struct Vector3 axis_v;							// bitangent?
+		struct Vector3 axis_w;							// normal?
+	};
+	int num_corner_texture_basis;
+//	assert(corner_texture_basis == num_corners);
+	struct TEXTURE_BASIS corner_texture_basis[num_corner_texture_basis];
+
+	bool has_locator;
+	if (has_locator)
+		char unkarray[24];
+
+	// === HIT_DATA (collision?) ===
+	int16_t unk5;
+	if (unk5)
+		struct Recursive r;
+};
+
+struct OBJECT_PROPERTIES
+{
+	struct OBJECT_PROPERTY
+	{
+		uint32_t type;
+		uint32_t number;
+		uint32_t length;
+		char string[length];
+	};
+	uint32_t numProperties;
+	struct OBJECT_PROPERTY properties[numProperties];
+};
+
+struct Frame
+{
+	int32_t v;									// usually 131200 or 131328
+	local int16_t width = v & 0xFFFF;
+	int32_t height;
+	int32_t pixel_size;
+	int32_t unk;
+
+	local int16_t shifted = v >> 16;
+	local uint32_t size;
+	if (shifted <= 0)
+		size = width * height * pixel_size;		// compute size
+	else
+	{
+		uint32_t read_size;
+		size = read_size;						// read size
+	}
+
+	uint32_t skipped[7];						// some DDS specific stuff
+	uint32_t dxt_identifier;					// equal to '1TXD' or '3TXD' or '5TXD'
+
+	char data[size];							// actual texture data
+
+	if (shifted > 1)
+	{
+		bool has_lower_mip;
+		if (has_lower_mip)
+			struct Frame mip;					// read smaller mip
+	}
+};
+
+struct SurfaceMaterial
+{
+	uint16_t version;
+
+	bool used;
+	if (used)
+	{
+		if (version > 5)
+			bool clamp;
+
+		if (version < 3)
+		{
+			int32_t texture_index_diffuse;			// -1 if not used
+			int32_t texture_index_normal;			// same...
+			int32_t texture_index_gloss;
+			int32_t texture_index_env;
+
+			if (version > 1)
+				int32_t texture_index_emissive;
+		}
+
+		if (version > 2)
+		{
+			uint32_t num_textures; // is equal to 5 most of the time (diffuse, normal, gloss, env, emissive)
+			int32_t texture_index_array[num_textures];
+
+			if (version < 5)
+				uint8_t env_strength;
+			if (version > 4)
+				uint8_t emissive_strength;
+		}
+	}
+};
+
+struct SurfaceProperty
+{
+	uint16_t version;							// format version
+	uint16_t nmaterials;
+	if (nmaterials)
+	{
+		uint16_t pmaterials[nmaterials];		// indices of materials this surface property applies to
+		uint16_t selected_material;
+	}
+
+	// === texture color modulation (multiplication) ===
+	bool enable_modulate;
+	if (version > 2 || enable_modulate)
+	{
+		uint8_t mod_r;
+		uint8_t mod_g;
+		uint8_t mod_b;
+		uint8_t mod_a;
+	}
+
+	// === dynamic texture translation ===
+	bool enable_offset_uv;
+	if (version > 2 || enable_offset_uv)
+	{
+		float offset_u;
+		float offset_v;
+	}
+
+	if (version > 1)
+		bool unique;
+	if (version > 3)
+		uint16_t surface_type;					// perhaps this defines the type of sound the surface produces (wood, metal)?
+};
+
+#endif
