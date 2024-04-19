@@ -1,0 +1,895 @@
+// Template created by Alan Moczulski
+/* Core Design, EDN/PDN format
+ *
+ * Usages:
+ * 	- Project Eden (2001, PC (EDN) / PS2 (PDN))
+ *
+ * Notes:
+ *  This format describes a level, including its geometry, entities, lights, triggers,
+ *  textures, characters, animations and AI navigation paths.
+ *  EDN is used by the PC version, PDN is used by the PS2 version, they differ slightly.
+ *  I will indicate the differences whenever applicable.
+ *
+ *  Project Eden contains around 30 such files, where 11 are meant to be
+ *  played in single-player mode, 22 as both single-player and multi-player,
+ *  6 as non-playable inter-level cutscenes and 1 used for the main menu background.
+ *
+ *  === Modularity ===
+ *  The format is very self-contained in the sense that everything is
+ *  stored inside the EDN file so that it is fully standalone -- even the 4 main protagonists are
+ *  duplicated for every level. On first thought, this would seem like a waste of disk space but
+ *  such an approach allows easy modding by the players. "Room Editor II" was created for that
+ *  purpose, similarly to the Tomb Raider level editing tools.
+ *  "Room Editor II" was never relased to the public because of poor sales, only thing left
+ *  of it are screenshots.
+ *
+ *  === Compression ===
+ *  Some of these level files are compressed (this is indicated by the string "COMP"
+ *  in the first bytes of the file), using a variant of the LZ algorithm, though
+ *  I haven't figured out which yet. I have a hint though: the decompression function
+ *  uses a 1024-byte table allocated on the stack. I found a text reference to "LZJAT Encoder"
+ *  inside the game executable, but I couldn't find any info on it online. It doesn't exist.
+ *  As a temporary solution, I wrote a decompression program which you can find inside
+ *  the "edn_decompression" folder. It includes x86 assembly source "lzjat_decode.s" and a
+ *  console-mode program "main.c" that uses it.
+ *  As a side note, PDN files are never compressed (since that would make CD streaming harder).
+ *
+ *  === Header ===
+ *  Each of the level files are identified by a version number (demo and retail both use 72)
+ *  and a char[4] ID, not by their file name.
+ *  This means that the storyline and flow of the game can be altered by creating new
+ *  intermediate levels without the game even noticing. No level file names
+ *  are hardcoded in the executable, except the main menu background "titlebackdrop.EDN".
+ *  Other useful information is present in the header, such as the max number of players
+ *  that are able to play the level in multi-player mode and the ID of the current and next level.
+ *
+ *  The game contains code to load very early versions (< 72) of the format, although it has been
+ *  disabled using an if-statement that has not been optimised away (thanks VC6!).
+ *  That made reverse-engineering much more complicated though. The game code looks like
+ *  a labyrinth of nested switch statements.
+ *
+ *  === The Actor Wad ===
+ *  Every file contains at some point a chunk of data that can be easily recognised
+ *  by the follwing text: "ACW Actor Wad".
+ *  You can find more information on it in the corresponding core_acw.bt file.
+ *
+ *	=== Textures & Materials ===
+ *	The next piece of data contains texture and material information.
+ *  A texture can consist of one or multiple frames if it is animated.
+ *  The most common texture dimensions used by the game are 64x64, 128x128 and 256x256.
+ *	A material can reference up to 5 multiple textures:
+ *  diffuse map, normal map, gloss map, environment map, emissive map.
+ *  It is quite impressive for a game from 2001 to incorporate such features,
+ *  even if these names mean something different nowadays than what the devs had in mind.
+ */
+
+#include "core_eden_shared.bt"
+#include "core_acw.bt"
+
+struct Header
+{
+	uint32_t version;			// always equal to 72, or 'PMOC' if compressed
+	if (version != 72)
+	{
+		// the file needs to be decompressed first, the parsing cannot continue
+		char invalid_version[99999999];
+	}
+
+	int32_t level_index;		// a number from 0 to 11, indicating the single-player level order
+								// although can also be -1, in this case it is considered to be a multi-player level
+	uint32_t num_players;		// max player count allowed if multi-player level
+	uint32_t flags;				// ???
+	char level_id[4];			// current level ascii identifier
+	char next_level_id[4];		// next level ascii identifier
+};
+
+struct WP_ANIM
+{
+	struct WP_POS
+	{
+		float time;
+		float time_mod;
+		int wp;
+		int last_wp;
+		int link;
+	};
+	
+	// waypoint
+	struct WP
+	{
+		enum <uint32_t> WPS_STATE
+		{
+			WPS_SYSTEM = 0,
+			WPS_TRIGGER = 1,
+			WPS_TRIGGEROFF = 2,
+			WPS_OFF = 3,
+			WPS_ON = 4,
+			WPS_CLOSED = 5,
+			WPS_OPEN = 6,
+			WPS_LEVEL1 = 7,
+			WPS_LEVEL2 = 8,
+			WPS_LEVEL3 = 9,
+			WPS_LEVEL4 = 10,
+			WPS_WAITING = 11,
+			WPS_READY = 12,
+			WPS_MOVING = 13,
+			WPS_BROKEN = 14,
+			WPS_NUMBER = 15
+		};
+		
+		struct WP_LINK
+		{
+			enum WPS_STATE state;
+			bool check_conditions;
+			bool hold;
+			bool gravity;
+
+			struct WP_CONDITION
+			{
+				uint32_t state_index;
+			};
+			uint32_t nconditions;
+			struct WP_CONDITION conditions[nconditions];
+
+			int next;
+			float nframes;
+			float ease_to;
+			float ease_from;
+		};
+		
+		enum WPS_STATE system_state;
+		uint32_t nlinks;
+		struct WP_LINK links[nlinks];
+	};
+	uint32_t nwaypoints;
+	struct WP waypoints[nwaypoints];
+
+	int wp_pos_wp; // ???
+
+	float accdec;
+	bool ai_network;
+	bool no_deviation;
+	
+	struct WL(uint32_t& type, uint32_t nwaypoints)
+	{
+		uint32_t read_type;
+		type = read_type;
+		switch (type)
+		{
+		case 0:
+			break;
+		case 1:
+		{
+			struct WP_OBJECT_ANIM
+			{
+				bool invisible;
+				struct Vector3 position;
+				struct Vector3 rotation;
+				uint32_t location;
+				float spin;
+			};
+			struct WP_OBJECT_ANIM anim[nwaypoints];
+			break;
+		}
+		case 2:
+		{
+			uint32_t propertyIndex;
+			struct WP_TEXTURE_ANIM
+			{
+				uint32_t material;
+				float u_offset;
+				float v_offset;
+				float roll;
+				float r;
+				float g;
+				float b;
+			};
+			struct WP_TEXTURE_ANIM anim[nwaypoints];
+			break;
+		}
+		case 3:
+		{
+			struct WP_SOUND_ANIM
+			{
+				uint32_t arrivalSoundID;
+				uint32_t leavingSoundID;
+			};
+			struct WP_SOUND_ANIM anim[nwaypoints];
+			break;
+		}
+		case 4:
+		{
+			struct WP_CHARACTER_ANIM
+			{
+				uint32_t type;
+				uint32_t speed;
+				uint32_t state;
+				uint16_t stateData;
+				bool joinable;
+			};
+			struct WP_CHARACTER_ANIM anim[nwaypoints];
+			break;
+		}
+		default:
+			char crash[99999999];
+		}
+	};
+	struct WL wls[0]; // we don't know the size yet
+	local uint32_t type = 1; // so that we enter the while-loop
+	while (type)
+		ArrayExtend(wls, 1, type, nwaypoints);
+};
+
+struct Light
+{
+	enum Type
+	{
+		Point,
+		Fog,
+		Dynamic,
+		Spot,
+		FogPlane,
+		DynamicSpot
+	};
+	enum Type type;
+	struct Vector3 position;				// world-space position
+	int32_t rgb_color[3];					// each channel [0;255]
+	float intensity;						// [0;1]
+	float falloff;
+	float falloff_cos;
+	float hotspot;
+	float hotspot_cos;
+	struct Vector3 direction;				// local-space direction
+	float ambient;							// [0;1]
+};
+
+struct SubObjectsLoad
+{
+	uint32_t count;
+	struct Internal
+	{
+		uint32_t index;
+		struct SubObjectsLoad sol; // recursion
+	};
+	struct Internal internal[count];
+};
+
+struct TriggerDataLoad
+{
+	char unk1[7];
+	int unk2;
+	int32_t arr[unk2];
+	char t[16];
+};
+
+struct Trigger
+{
+	uint32_t name_length;
+	char name[name_length];
+
+	// === bounding box ===
+	struct Vector3 min_extent;
+	struct Vector3 max_extent;
+
+	int32_t unk0;
+	int32_t unk1;
+	int32_t unk2;
+
+	bool b1;
+	if (b1)
+		struct TriggerDataLoad tdl;
+
+	int32_t unk3;
+	int32_t num;
+	int32_t unkarray[num];
+};
+
+struct Room
+{
+	// === transformation data ===
+	float scale;
+	struct Vector3 position;							// world-space position
+	
+	// === sound data ===
+	int32_t ambient_sound;
+	struct EnvironmentSoundData
+	{
+		uint16_t type;									// defines room type (big, small), used for reverb effects
+		uint8_t delay;
+		uint8_t feedback;
+	};
+	struct EnvironmentSoundData env_sound_data;
+	
+	// === lighting data ===
+	uint32_t num_lights;
+	uint32_t light_indices[num_lights];					// indices to EDNFile's lights array
+	
+	struct SubObjectsLoad sol;
+	
+	// === interaction data ===
+	uint32_t num_triggers;
+	struct Trigger triggers[num_triggers];
+	
+	// === AI navigation path data ===
+	uint32_t num_ai_networks;
+	uint32_t ai_network_indices[num_ai_networks];		// indices to EDNFile's ai_networks array
+	
+	// === visibility optimisation data ===
+	uint32_t num_visible_rooms;
+	uint32_t visible_room_indices[num_visible_rooms];	// indices to EDNFile's rooms array
+	
+	// === geometry data ===
+	struct Mesh mesh;
+};
+
+struct Color32
+{
+	uint8_t r;
+	uint8_t g;
+	uint8_t b;
+	uint8_t a;
+};
+
+struct Emitter
+{
+	uint32_t name_length;
+	char name[name_length];
+//	Printf("Read emitter %s.\n", name);
+
+	bool color_addition;									// whether to multiply by environment color?
+
+	float gravity;
+
+	int ttt;
+	int rate;
+	float life_time;										// how long each particle lives
+	int timer;												// current time accumulator?
+	int pause;
+
+	struct Color32 start_color;
+	struct Color32 end_color;
+
+	float start_scale;
+	float end_scale;
+
+	float speed;
+	float scatter;
+	float area_x;
+	float area_y;
+
+	float spin;
+	uint32_t thing2;
+	int texture_index;
+
+	int particle_type;
+	int num_initial_particles;
+
+	uint32_t num_drawable_indices;
+	uint32_t drawable_indices[num_drawable_indices];
+
+	float particle_length;
+
+	bool deflection_plane_active;
+	uint32_t a;
+	struct Vector3 b;
+	float deflection_plane_reduction;
+	
+	float speed_random;
+};
+
+struct VALUE_CONTROL_FLOAT
+{
+	struct VALUE_INSTANCE
+	{
+		float value;
+		float time;
+	};
+	uint32_t num_values;
+	struct VALUE_INSTANCE values[num_values];
+	uint8_t flag_random;
+};
+
+struct VALUE_CONTROL_U8
+{
+	struct VALUE_INSTANCE
+	{
+		uint8_t value;
+		float time;
+	};
+	uint32_t num_values;
+	struct VALUE_INSTANCE values[num_values];
+	uint8_t flag_random;
+};
+
+struct STREAMER_EFFECT_DATA
+{
+	uint32_t index_surface_property;
+	uint16_t count_segments;
+	float wrap_u;
+	float wrap_v;
+	bool use_surface_material_list_to_animate;
+	bool blend_additive;
+	bool face_camera;
+	bool double_sided;
+	struct VALUE_CONTROL_FLOAT radius_modulate;
+	struct VALUE_CONTROL_FLOAT edge_wibble_frequency;
+	struct VALUE_CONTROL_FLOAT edge_wibble_amplitude;
+	struct VALUE_CONTROL_FLOAT point_wibble_frequency;
+	struct VALUE_CONTROL_FLOAT point_wibble_amplitude;
+	struct VALUE_CONTROL_FLOAT radius;
+	struct VALUE_CONTROL_FLOAT offset_u;
+	struct VALUE_CONTROL_U8 colour_a_start;
+	struct VALUE_CONTROL_U8 colour_r_start;
+	struct VALUE_CONTROL_U8 colour_g_start;
+	struct VALUE_CONTROL_U8 colour_b_start;
+	struct VALUE_CONTROL_U8 colour_a_end;
+	struct VALUE_CONTROL_U8 colour_r_end;
+	struct VALUE_CONTROL_U8 colour_g_end;
+	struct VALUE_CONTROL_U8 colour_b_end;
+	float initial_length;
+};
+
+struct Entity // I gave this structure a more meaningful name since the game calls this "spot effect", very oddly
+{
+	uint32_t name_length;
+	char name[name_length];
+//	Printf("Read entity %s.\n", name);
+
+	enum <uint16_t> Type
+	{
+		NONE = 0,
+		SHOCK_SPHERE,
+		LAYERED_BILLBOARD,
+		MESH,
+		MULTI,
+		EMITTER,
+		LIGHT,
+		HEMI_SPHERE,
+		SOUND,
+		TOGGLE_LIGHTMAP,				// used whenever the player brings power to a dark room
+		STREAMER,						// a quad with a scrolling texture (used for the FlyCam)
+		TEXTURE_HOLDER,
+		SPAWNER,						// usually used for spawning monsters
+		CAMERA_SHAKE,					// used to shake the player's camera
+		CUTSCENE,
+		DISC,
+		CYLINDER,
+		TRAILER,
+		LIGHT_VOLUME,
+		DAMAGE_SPHERE
+	};
+	enum Type type;
+
+	switch (type)
+	{
+	case NONE:
+		break;
+	case SHOCK_SPHERE:
+		float life_max;
+		uint32_t index_surface_property;
+		bool use_surface_material_list_to_animate;
+		bool blend_additive;
+		struct VALUE_CONTROL_FLOAT size;
+		struct VALUE_CONTROL_U8 colour_a;
+		struct VALUE_CONTROL_U8 colour_r;
+		struct VALUE_CONTROL_U8 colour_g;
+		struct VALUE_CONTROL_U8 colour_b;
+		bool looping;
+		uint32_t life_loop;
+		break;
+	case LAYERED_BILLBOARD:
+		uint32_t ua;
+		uint32_t ub;
+		uint32_t uc;
+		bool ba;
+		bool bb;
+		bool bc;
+		bool bd;
+		bool be;
+
+		struct VALUE_CONTROL_FLOAT a;
+		struct VALUE_CONTROL_FLOAT b;
+		struct VALUE_CONTROL_FLOAT c;
+
+		struct VALUE_CONTROL_U8 d;
+		struct VALUE_CONTROL_U8 e;
+		struct VALUE_CONTROL_U8 f;
+
+		struct VALUE_CONTROL_U8 g;
+		struct VALUE_CONTROL_FLOAT h;
+
+		bool looping;
+		uint32_t life_loop;
+		break;
+	case MESH:
+		float life_max;
+		uint32_t drawable_number;
+		bool smth0;
+		struct VALUE_CONTROL_FLOAT size;
+		struct VALUE_CONTROL_U8 colour_a;
+		struct VALUE_CONTROL_U8 colour_r;
+		struct VALUE_CONTROL_U8 colour_g;
+		struct VALUE_CONTROL_U8 colour_b;
+		bool looping;
+		uint32_t lifeLoopStart;
+		uint32_t lifeLoopEnd;
+		uint32_t indexSurfaceProperty;
+		break;
+	case MULTI: // this defines an explosion, I think
+		uint16_t count;
+		uint32_t arr[count];
+		break;
+	case EMITTER:
+		uint32_t a;
+		uint32_t b;
+		bool c;
+		uint32_t d;
+		break;
+	case LIGHT:
+		FSkip(4);
+		FSkip(1);
+		FSkip(4);
+		
+		struct VALUE_CONTROL_FLOAT a;
+		struct VALUE_CONTROL_FLOAT b;
+		
+		struct VALUE_CONTROL_U8 c;
+		struct VALUE_CONTROL_U8 d;
+		struct VALUE_CONTROL_U8 e;
+
+		FSkip(9); // 4,1,4?
+
+		struct VALUE_CONTROL_U8 f;
+		
+		struct VALUE_CONTROL_FLOAT g;
+		break;
+	case HEMI_SPHERE:
+		float life_max;
+		uint32_t index_surface_property;
+		bool use_surface_material_list_to_animate;
+		bool blend_additive;
+		float angle_start;
+		float angle_end;
+		float wrap_u;
+		float wrap_v;
+		uint16_t count_rings;
+		uint16_t count_segments;
+		bool double_sided;
+		bool facing;
+		bool looping;
+		struct VALUE_CONTROL_FLOAT size;
+		struct VALUE_CONTROL_U8 colour_a;
+		struct VALUE_CONTROL_U8 colour_r;
+		struct VALUE_CONTROL_U8 colour_g;
+		struct VALUE_CONTROL_U8 colour_b;
+		struct VALUE_CONTROL_U8 colour_angle_a;
+		struct VALUE_CONTROL_U8 colour_angle_r;
+		struct VALUE_CONTROL_U8 colour_angle_g;
+		struct VALUE_CONTROL_U8 colour_angle_b;
+		uint32_t lifeLoop;
+		break;
+	case SOUND:
+		uint32_t a;
+		bool b;
+		uint32_t c;
+		uint16_t d;
+		bool e;
+		break;
+	case TOGGLE_LIGHTMAP:
+		uint32_t thing;
+		break;
+	case STREAMER:
+		float lifeMax;
+		bool looping;
+		bool useMatchingArray;
+		struct VALUE_CONTROL_FLOAT arrayWibbleAmplitude;
+		struct VALUE_CONTROL_FLOAT arrayWibbleFrequency;
+		struct STREAMER_EFFECT_DATA data;
+		uint32_t lifeLoop;
+		break;
+	case TEXTURE_HOLDER:
+		uint32_t count;
+		uint32_t arr[count];
+		break;
+	case SPAWNER:
+		uint32_t a;
+		uint32_t b;
+		uint32_t c;
+		uint32_t d;
+		bool bb;
+		break;
+	case CAMERA_SHAKE:
+		float life_max;
+		uint8_t looping;
+		uint8_t scale_with_distance;
+		uint8_t verticle_rectify;
+		struct VALUE_CONTROL_FLOAT radius;
+		struct VALUE_CONTROL_FLOAT center_strength;
+		struct VALUE_CONTROL_FLOAT center_random;
+		struct VALUE_CONTROL_FLOAT verticle_amplitude;
+		struct VALUE_CONTROL_FLOAT verticle_frequency;
+		struct VALUE_CONTROL_FLOAT tilt_angle;
+		uint32_t life_loop;
+		break;
+	case CUTSCENE:
+		uint32_t id;
+		break;
+	case DISC:
+		float life_max;
+		uint32_t index_surface_property;
+		bool use_surface_material_list_to_animate;
+		bool blend_additive;
+		float wrap_u;
+		float wrap_v;
+		uint16_t count_rings;
+		uint16_t count_segments;
+		bool double_sided;
+		bool facing;
+		bool looping;
+		struct VALUE_CONTROL_FLOAT radius_inner;
+		struct VALUE_CONTROL_FLOAT radius_outter;
+		struct VALUE_CONTROL_U8 colour_a;
+		struct VALUE_CONTROL_U8 colour_r;
+		struct VALUE_CONTROL_U8 colour_g;
+		struct VALUE_CONTROL_U8 colour_b;
+		struct VALUE_CONTROL_U8 colour_radius_a;
+		struct VALUE_CONTROL_U8 colour_radius_r;
+		struct VALUE_CONTROL_U8 colour_radius_g;
+		struct VALUE_CONTROL_U8 colour_radius_b;
+		uint32_t lifeLoop;
+		break;
+	case CYLINDER:
+		float life_max;
+		uint32_t index_surface_property;
+		bool use_surface_material_list_to_animate;
+		bool blend_additive;
+		float wrap_u;
+		float wrap_v;
+		uint16_t count_rings;
+		uint16_t count_segments;
+		bool double_sided;
+		bool facing;
+		bool looping;
+		struct VALUE_CONTROL_FLOAT size;
+		struct VALUE_CONTROL_U8 colour_a;
+		struct VALUE_CONTROL_U8 colour_r;
+		struct VALUE_CONTROL_U8 colour_g;
+		struct VALUE_CONTROL_U8 colour_b;
+		struct VALUE_CONTROL_FLOAT radius_delta;
+		struct VALUE_CONTROL_U8 colour_delta_a;
+		struct VALUE_CONTROL_U8 colour_delta_r;
+		struct VALUE_CONTROL_U8 colour_delta_g;
+		struct VALUE_CONTROL_U8 colour_delta_b;
+		uint32_t lifeLoop;
+		struct VALUE_CONTROL_FLOAT length;
+		break;
+	case TRAILER:
+		float life_max;
+		struct STREAMER_EFFECT_DATA data;
+		break;
+	case LIGHT_VOLUME:
+		char crash_now[99999999];
+		break;
+	case DAMAGE_SPHERE:
+		uint32_t a;
+		uint32_t b;
+		uint32_t c;
+		break;
+	default:
+		char crash_now[99999999];
+	}
+};
+
+struct Object
+{
+	enum MESH_TYPE
+	{
+		MESH,
+		EMITTER,
+		UNUSED_SPRITE,
+		HIERARCHY,
+		TRIGGER,
+		SPOT_EFFECT
+	};
+	enum MESH_TYPE meshType;
+	uint32_t actorID;
+
+	float radius;
+	float scale;
+	struct Vector3 position;
+	struct Vector3 rotation;
+
+	uint32_t some_type;
+	uint32_t unk;
+
+	struct ObjectData(uint32_t& type)
+	{
+		uint32_t read_type;
+		type = read_type;
+		switch (type)
+		{
+		case 2: //OBJECT ANIM
+		{
+			struct WP_ANIM wpAnim;
+			break;
+		}
+		case 3: //TRIGGER
+		{
+			uint32_t s1;
+			uint32_t s2;
+			uint32_t arr[s2];
+			break;
+		}
+		case 8:
+		{
+			struct OBJECT_PROPERTIES properties;
+			break;
+		}
+		case 14: //POSITION_SOURCE_TARGET
+		{
+			struct Vector3 source_position;
+			struct Vector3 target_position;
+			break;
+		}
+		case 15: //EMITTER deflection plane?
+		{
+			struct Vector3 v;
+			uint32_t a;
+			break;
+		}
+		case 18: //TEXTURE_SCALES::Load (only in retail)
+		{
+			uint32_t numTextureScales;
+			struct TextureScale
+			{
+				struct Vector3 a;
+				struct Vector3 b;
+				struct Vector3 c;
+			};
+			struct TextureScale ts[numTextureScales];
+			break;
+		}
+		default:
+			break;
+		}
+	};
+	struct ObjectData od[0]; // we don't know the size yet
+	local uint32_t type = 1; // so that we enter the while-loop
+	while (type)
+		ArrayExtend(od, 1, type);
+};
+
+struct EDNTexture
+{
+	uint32_t num_frames;
+	struct Frame frames[num_frames];
+
+	enum <uint16_t> Usage
+	{
+		NONE,
+		DIFFUSE,
+		LIGHT,
+		BUMP,
+		GLOSS,
+		ENVIRONMENT_MAP,
+		SPRITE,
+		EMISSIVE,
+		TEXT,
+		IMAGE
+	};
+	
+	if (num_frames > 0)
+	{
+		enum Usage usage;
+		bool is_transparent;
+		bool allow_mipmaps;
+		bool is_emissive;
+	}
+};
+
+struct EDNFile
+{
+	struct Header header;
+	
+	FSkip(1);											// no idea what this is, it is skipped by the game anyway
+	
+	uint32_t num_drawables;
+	int32_t drawables[num_drawables];
+	uint32_t num_ai_networks;
+	struct WP_ANIM ai_networks[num_ai_networks];
+
+	Printf("Reading lights...\n");
+	uint32_t num_lights;
+	struct Light lights[num_lights];
+
+	uint32_t num_objects;								// this is used later on
+
+	Printf("Reading rooms...\n");
+	uint32_t num_rooms;
+	struct Room rooms[num_rooms];
+	uint32_t num_reflected_rooms;
+//	struct Room reflected_rooms[num_reflected_rooms];	// fake flipped rooms rendered by mirror surfaces
+
+	struct Color32 fog_color;
+
+	Printf("Reading meshes...\n");
+	uint32_t num_meshes;
+	struct Mesh meshes[num_meshes];
+	
+	Printf("Reading emitters...\n");
+	uint32_t num_emitters;
+	struct Emitter emitters[num_emitters];
+	
+	Printf("Reading entities...\n");
+	uint32_t num_entities;
+	struct Entity entities[num_entities];
+
+	Printf("Reading objects...\n");
+	struct Object objects[num_objects];
+
+	Printf("Reading Actor WAD...\n");
+	struct ActorWad actor_wad;
+
+	// === textures & materials ===
+	Printf("Reading world tex&mat...\n");
+	uint32_t num_system_textures;						// usually 5
+	uint32_t num_textures;								// usually 2048 (fixed slots)
+	struct EDNTexture textures[num_textures];
+	uint32_t num_surface_materials;
+	struct SurfaceMaterial surface_materials[num_surface_materials];
+	uint32_t num_surface_properties;
+	struct SurfaceProperty surface_properties[num_surface_properties];
+
+	struct THING(int32_t& thing)
+	{
+		int32_t read_thing;
+		thing = read_thing;
+		if (thing >= 0)
+		{
+			uint32_t count;
+			struct SMTH
+			{
+				uint32_t position;
+			};
+			struct SMTH arr[count];
+		}
+	};
+	struct THING ts[0]; // we don't know the size yet
+	local int32_t thing = 1; // so that we enter the while-loop
+	while (thing >= 0)
+		ArrayExtend(ts, 1, thing);
+	
+	uint32_t k;
+	
+	// === level-specific dialogue strings ===
+	struct DialogueString
+	{
+		uint32_t length;
+		char str[length];
+		uint32_t id;
+	};
+	uint32_t num_dialogue_strings;						// often empty since Core moved them to separate EDT file
+	struct DialogueString dialogues[num_dialogue_strings];
+	
+	// === additional metadata ===
+	bool has_metadata;
+	if (has_metadata)
+	{
+		bool has_sound_file;
+		if (has_sound_file)
+			char eds_file_path[259];					// file name of the corresponding sound bank
+		else
+		{
+			struct DevStrings
+			{
+				uint16_t length;
+				char string[length];
+			};
+			uint32_t num_dev_strings;
+			struct DevStrings devstrings[num_dev_strings];
+		}
+	}
+
+	// the end, *whew* :)
+};
+struct EDNFile edn_file;

@@ -1,0 +1,817 @@
+// Template created by Alan Moczulski
+/* Core Design, ACW format
+ *
+ * Usages:
+ * 	- Project Eden (2001, PC/PS2)
+ *
+ * Notes:
+ *	This file format holds mesh and animation data of characters
+ *  (such as Carter, Minoko, Andre, Amber, Dr. Molenski, Lucy, Death Head, Mutant Dog),
+ *  and props (like a door exploding, a desk falling down).
+ *  I think it was once a separate file with the extension "ACW", but because the EDN files
+ *  were designed to be self-contained it was ultimately decided by the developers to just
+ *  include it inside. I decided to split it since the BT script was getting really big,
+ *  and because it is self-sufficient.
+ *
+ *  An "actor" is composed of a mesh, a weighted skin and a set of animations related to it.
+ *  The animation itself is composed of keyframed positions (XYZ) and rotations (WXYZ quaternions)
+ *  and TCB control points (Kochanek-Bartels splines that allow for more control of
+ *  the interpolation, they define movement accentuation and flow).
+ *  These same curves can be exported from early versions of 3ds Max.
+ *
+ *  An "animation project" can be thought of like a universal animation clip that can be applied
+ *  to different "actors", given they share the same bone structure.
+ *
+ *  "Model morphing" is a feature of the game which enables seamless interpolation between
+ *  two different models (which, as a side effect, need to have the same amount of vertices).
+ *  This is used for human or dog actors morphing into monsters.
+ */
+ 
+ #include "core_eden_shared.bt"
+
+struct LoadCollision(uint32_t num_bones)
+{
+	struct CollisionComponent(uint32_t num_bones)
+	{
+		uint32_t a;
+		switch (a)
+		{
+		case 1:
+			struct Vector3 something;
+			float radius;
+			float bone_radiuses[num_bones];
+			break;
+		case 2:
+			float radius;
+			float bone_radiuses[num_bones];
+			break;
+		case 3:
+			float radius;
+			float bone_radiuses[num_bones];
+			float cylinderRadius;
+			float cylinderHeight;
+			break;
+		default:
+			break;
+		}
+	};
+	struct CollisionComponent collision(num_bones);
+};
+
+// defines a mesh and skin
+struct Model
+{
+	uint32_t type;
+	switch (type)
+	{
+	case 5:
+	{
+		uint32_t version; // should be 72
+
+		uint32_t someValue;
+		bool skinned;
+		uint32_t id;
+
+		uint32_t num_meshes;
+		struct Mesh meshes[num_meshes];
+
+		uint32_t num_bones;
+		uint32_t hkyFlag[num_bones];
+
+		struct SkinData
+		{
+			uint32_t vert_index;
+			uint32_t nverts;
+			
+			uint32_t num_weights;
+			float weights[num_weights];
+
+			struct Vector3 child_transform;
+			struct Vector3 parent_transform;
+		};
+		uint32_t num_skin_groups;
+		struct SkinData skin_data[num_skin_groups];
+
+		struct LoadCollision lc(num_bones);
+
+		struct ModelMorph
+		{
+			uint32_t a;
+			if (a == 1)
+			{
+				int32_t topologyKey;
+				uint32_t nverts;
+				uint16_t model2skin[nverts];
+				uint16_t skin2model[nverts];
+			}
+		};
+		bool uses_morph;
+		if (uses_morph)
+			struct ModelMorph morph;
+
+		uint32_t ntexture_id2index;
+		uint64_t texture_id2index[ntexture_id2index];
+
+		struct PRRemap
+		{
+			uint32_t buffer;
+			if (buffer == 1 || buffer == 2)
+			{
+				int size_unused;
+				uint8_t unused[size_unused];
+				int level;
+				int index;
+				int size_remap;
+				uint16_t remap[size_remap];
+
+				struct PRTable
+				{
+					uint32_t buffer;
+					if (buffer == 1)
+					{
+						int size;
+						int nindices;
+						int nlevels;
+						uint16_t table[size];
+						int size_vtable;
+						uint16_t vtable[size_vtable];
+					}
+				};
+				bool uses_reduction;
+				if (uses_reduction)
+					struct PRTable reduction;
+				
+				if (buffer == 2)
+				{
+					float falloff_near_size;
+					float falloff_far_size;
+					float falloff_power;
+				}
+			}
+		};
+		bool uses_remap;
+		if (uses_remap)
+			struct PRRemap remap;
+
+		break;
+	}
+	default:
+		char undefined[99999999];
+	}
+};
+
+// defines an orientation in 3D space
+struct Quaternion
+{
+	float w;
+	float x;
+	float y;
+	float z;
+};
+
+struct BodyLoc
+{
+	uint32_t version;
+	uint32_t num_body_locs;
+	struct BodyLocInternal(uint32_t version)
+	{
+		switch (version)
+		{
+		case 1:
+			uint32_t a;
+			struct Vector3 b;
+			uint32_t c;
+			uint32_t d;
+			uint32_t e;
+			break;
+		case 2:
+		case 4:
+			uint32_t a;
+			uint32_t b;
+			struct Vector3 c;
+			struct Vector3 d;
+			uint32_t e;
+			break;
+		case 3:
+			uint32_t a;
+			uint32_t b;
+			struct Vector3 c;
+			struct Quaternion orientation;
+			uint32_t d;
+			break;
+		default:
+			Printf("CRASH\n");
+			char crash[99999999];
+		}
+	};
+	struct BodyLocInternal bli(version)[num_body_locs];
+};
+
+struct sub_4D1580
+{
+	uint32_t version;
+	if (version == 1)
+	{
+		uint32_t smth;
+		uint32_t sz;
+		struct Internal
+		{
+			uint32_t unk;
+			bool t;
+			uint32_t a;
+			uint32_t b;
+			uint32_t c;
+			uint32_t d;
+		};
+		struct Internal array[sz];
+	}
+};
+
+struct sub_4D14D0
+{
+	uint32_t count;
+	struct sub_4D1580 s4[count];
+};
+
+struct Actor
+{
+	uint32_t type;
+	switch (type)
+	{
+	case 100:
+	{
+		uint32_t curr_model;
+		uint32_t num_flags;
+		char unfinished[99999999];
+		break;
+	}
+	case 109:
+	{
+		int32_t object_id;
+
+		uint32_t num_models;
+		struct Model models[num_models];
+		uint32_t curr_model;
+
+		uint32_t num_flags;
+		uint16_t flags[num_flags];
+
+		struct BodyLoc body_loc;
+		
+		struct ANIM_SET
+		{
+			int project_id;
+			int spec_id;
+		};
+		struct ANIM_SET bind_pose; // default character pose (usually T-pose)
+		struct ANIM_SET init_anim; // initial animation?
+		float velocity_ratio;
+		int32_t state_root_project;
+
+		uint32_t num_bones;
+		uint32_t bone_rel[num_bones];
+
+		struct sub_4D14D0 s4;
+
+		bool has_properties;
+		if (has_properties)
+		{
+			uint32_t version; // must be 72
+			struct OBJECT_PROPERTIES properties;
+		}
+
+		bool has_shadow;
+		break;
+	}
+	default:
+		char unfinished[99999999];
+	}
+};
+
+// a packed version of a keyframe
+struct PACKEDKEY
+{
+	int16_t time;
+	uint8_t tcb_index;
+	uint8_t data;
+	uint16_t index1;
+	uint16_t index2;
+	uint16_t index3;
+	uint16_t index4;
+};
+
+struct ANIM_POOL
+{
+	uint32_t smth;
+	uint32_t nkeys;
+	uint32_t nvectors;
+	uint32_t nquats;
+
+	struct PACKEDKEY keys[nkeys];
+	struct Vector3 vectors[nvectors];
+	struct Quaternion quats[nquats];
+};
+
+struct ANIM_SET
+{
+	int prj_id;
+	int spec_id;
+};
+
+struct EXPR
+{
+	uint32_t type; // warning: PS2 uses uint8_t
+};
+
+struct COND
+{
+	uint32_t count;
+	struct EXPR expressions[count];
+};
+
+struct TRANGE
+{
+	float st;
+	float et;
+};
+
+struct LINK_KEY
+{
+	struct TRANGE tr;
+	bool dynamic;
+	bool dyn_frames;
+	int16_t range_id;
+};
+
+struct LINK
+{
+	struct COND cond;
+	int state;
+	struct ANIM_SET linkto;
+	struct ANIM_SET via_link; // warning: PS2 code is different here
+	uint32_t num_keys;
+	struct LINK_KEY keys[num_keys];
+};
+
+struct RANGE_KEY
+{
+	struct TRANGE tr;
+};
+
+struct COMMAND
+{
+	uint32_t smth;
+
+	struct COND cond;
+
+	enum COMMAND_TYPE
+	{
+		IK_START,
+		IK_END,
+		EXTRA_ROTATION,
+		SPLIT_ANIM,
+		JOIN_ANIM,
+		HKY_INSERT,
+		HKY_REMOVE,
+		ACTION,
+		HKY_MORPH,
+		HKY_MORPH_REVERSE,
+		SOUND,
+		JOIN_HOLD,
+		TEXTURE_PROFILE,
+		CUTSCENE
+	};
+	enum COMMAND_TYPE type;
+
+	struct COMMAND_KEY
+	{
+		struct Default
+		{
+			bool active;
+			FSkip(3);
+			float time;
+		};
+		
+		enum COMMAND_TYPE type;
+		switch (type)
+		{
+		case 0:
+			struct Default def;
+			FSkip(4);
+			FSkip(4);
+			FSkip(4);
+			struct Vector3 a;
+			FSkip(4);
+			struct Vector3 b;
+			FSkip(4);
+			FSkip(4);
+			FSkip(4);
+			break;
+		case 1:
+		case 4:
+		case 11:
+			struct Default def;
+			FSkip(4);
+			FSkip(4);
+			break;
+		case 2:
+			struct Default def;
+			FSkip(4);
+			struct Vector3 smth;
+			break;
+		case 3:
+		case 7:
+		case 10:
+		case 12:
+			struct Default def;
+			FSkip(4);
+			break;
+		case 5:
+		case 6:
+			struct Default def;
+			FSkip(4);
+			FSkip(4);
+			FSkip(4);
+			break;
+		case 8:
+		case 13:
+			struct Default def;
+			FSkip(4);
+			FSkip(4);
+			FSkip(4);
+			FSkip(4);
+			break;
+		case 9:
+			struct Default def;
+			break;
+		default:
+			Printf("CRASH\n");
+			char crash[99999999];
+		};
+	};
+	uint32_t numKeys;
+	struct COMMAND_KEY keys[numKeys];
+};
+
+struct POSKEY
+{
+	float time;
+	float oodt;
+	int16_t tcb_index;
+	uint8_t pad0;
+	uint8_t pad1;
+	struct Vector3 p;
+	struct Vector3 c1;
+	struct Vector3 c2;
+	struct Vector3 c3;
+};
+
+struct ROTKEY
+{
+	float time;
+	float oodt;
+	int16_t tcb_index;
+	uint8_t linearity;
+	uint8_t padding;
+	struct Quaternion q;
+	struct Quaternion q0;
+	struct Quaternion q1;
+};
+
+// collection of position and rotation keyframes
+struct ANIM
+{
+	uint32_t num_pos_keys;
+	struct POSKEY pos_keys[num_pos_keys];
+	uint32_t num_rot_keys;
+	struct ROTKEY rot_keys[num_rot_keys];
+
+	// skip some old stuff, unused by the game
+	uint32_t local_4;
+	struct POSKEY skippable[local_4];
+};
+
+struct ANIM_PACKED
+{
+	int numPositionKeys;
+	uint32_t pos_key_index; // index into ANIM_POOL::keys
+
+	int numRotationKeys;
+	uint32_t rot_key_index; // index into ANIM_POOL::keys
+};
+
+// Kochanek-Bartels spline control point
+struct TCB
+{
+	float t;
+	float c;
+	float b;
+	float ease_to;
+	float ease_from;
+};
+
+struct FLOATKEY
+{
+	float time;
+	float oodt;
+	int16_t tcb_index;
+	int16_t padding;
+	float val;
+	float c1;
+	float c2;
+	float c3;
+};
+
+// defines a special animation
+struct SPECIAL_ANIM
+{
+	int id;
+	uint32_t type;
+	switch (type)
+	{
+	case 0:
+	{
+		struct ANIM anim;
+		break;
+	}
+	case 1:
+	{
+		// texture coordinates animation
+		struct ANIM_UV
+		{
+			uint32_t numU;
+			struct FLOATKEY u[numU];
+			uint32_t numV;
+			struct FLOATKEY v[numV];
+		};
+		struct ANIM_UV animUV;
+		break;
+	}
+	case 2:
+	{
+		// camera animation
+		struct ANIM_CAMERA
+		{
+			uint32_t numPositionKeys;
+			struct POSKEY pos[numPositionKeys];
+			uint32_t numTargetKeys;
+			struct POSKEY target[numTargetKeys];
+			uint32_t numRollKeys;
+			struct FLOATKEY roll[numRollKeys];
+			uint32_t numFOVKeys;
+			struct FLOATKEY fov[numFOVKeys];
+		};
+		struct ANIM_CAMERA animCamera;
+		break;
+	}
+	default:
+		Printf("CRASH\n");
+		char crash[99999999];
+	}
+};
+
+struct ANIMATION(uint32_t type, bool load_velocity)
+{
+	switch (type)
+	{
+	case 7:
+		bool packed;
+		uint32_t num_bones;
+
+		uint32_t version; // must be 2
+		if (version != 2)
+		{
+			Printf("CRASH\n");
+			char crash[99999999];
+		}
+
+		if (!packed)
+			struct ANIM bones[num_bones];
+		else
+			struct ANIM_PACKED packed_bones[num_bones];
+
+		float nframes;
+
+		// === curve control points ===
+		uint32_t ntcbs;
+		struct TCB tcbs[ntcbs];
+
+		bool hips_absolute;
+
+		uint32_t nspecials;
+		struct SPECIAL_ANIM specials[nspecials];
+
+		bool cylinder_height_set;
+		float cylinder_height;
+
+		if (load_velocity)
+		{
+			if (!packed)
+				struct ANIM velocity;
+			else
+				struct ANIM_PACKED velocity;
+		}
+
+		break;
+	default:
+		Printf("CRASH\n");
+		char crash[99999999];
+	}
+};
+
+struct ALT_ANIM
+{
+	bool original;
+	struct COND cond;
+	struct ANIMATION anim(7, 1);
+};
+
+struct ANIM_SPEC
+{
+	uint32_t smth;
+	switch (smth)
+	{
+	case 7:
+	{
+		int state;
+		uint8_t prop_to_bind;
+		
+		struct ANIM_SET jumpto;
+		float jumpto_time;
+
+		uint32_t num_ranges;
+		struct RANGE_KEY range[num_ranges];
+
+		uint32_t num_links;
+		struct LINK links[num_links];
+
+		uint32_t num_commands;
+		struct COMMAND commands[num_commands];
+
+		uint32_t num_alt_anims;
+		struct ALT_ANIM altAnims[num_alt_anims];
+
+		uint8_t type;
+
+		break;
+	}
+	default:
+		Printf("CRASH\n");
+		char crash[99999999];
+	}
+};
+
+struct SPLIT_DEF
+{
+	uint32_t local_8;
+	if (local_8 == 1)
+	{
+		uint32_t splitID;
+		uint32_t num_bones;
+		uint8_t bones[num_bones];
+	}
+};
+
+struct AnimationProject
+{
+	int32_t read_num_specs;
+	local int32_t num_specs;
+	local uint32_t local_20;
+	if (read_num_specs < 0)
+	{
+		num_specs = -read_num_specs;
+		uint32_t read_local;
+		local_20 = read_local;
+	}
+	else
+	{
+		num_specs = read_num_specs;
+		local_20 = 1;
+	}
+
+	switch (local_20)
+	{
+	case 4:
+	{
+		bool use_anim_pool;
+		if (use_anim_pool)
+			struct ANIM_POOL anim_pool;
+
+		struct ANIM_SPEC specs[num_specs];
+		
+		uint32_t num_split_defs;
+		struct SPLIT_DEF splits[num_split_defs];
+
+		uint32_t project_id;
+		break;
+	}
+	default:
+		Printf("CRASH\n");
+		char crash[99999999];
+	}
+};
+
+struct Cutscene
+{
+	uint32_t smth;
+	uint32_t anim_type;
+	if (anim_type != 7)
+	{
+		Printf("Crash!\n");
+		char crash[99999999];
+	}
+	if (smth == 1) // TODO: never hit???
+	{
+		uint32_t a;
+		struct ANIMATION anim(anim_type, 0);
+		uint32_t count;
+		struct SMTH
+		{
+			uint32_t l;
+			uint64_t m;
+		};
+		struct SMTH arr[count];
+	}
+	else if (smth == 2)
+	{
+		uint32_t a;
+		uint32_t b;
+		struct ANIMATION anim(anim_type, 0);
+		uint32_t count;
+		struct SMTH
+		{
+			uint32_t l;
+			uint64_t m;
+		};
+		struct SMTH arr[count];
+	}
+};
+
+struct ACWTexture
+{
+	uint32_t num_frames;
+	struct Frame frames[num_frames];
+
+	enum <uint32_t> Usage
+	{
+		NONE,
+		DIFFUSE,
+		LIGHT,
+		BUMP,
+		GLOSS,
+		ENVIRONMENT_MAP,
+		SPRITE,
+		EMISSIVE,
+		TEXT,
+		IMAGE
+	};
+	
+	if (num_frames > 0)
+	{
+		enum Usage usage;
+		bool is_transparent;
+		bool allow_mipmaps;
+		bool is_emissive;
+	}
+};
+
+struct ActorWad
+{
+	char magic[14]; // should be "ACW Actor Wad"
+	
+	uint32_t version; // should be 9
+	if (version != 9)
+	{
+		Printf("CRASH\n");
+		char crash[99999999];
+	}
+
+	uint32_t num_actors;
+	uint32_t num_animation_projects;
+	uint32_t num_cutscenes;
+	uint32_t num_textures;
+	uint32_t num_surface_materials;
+	uint32_t num_surface_properties;
+
+	Printf("Reading actors...\n");
+	struct Actor actors[num_actors];
+
+	Printf("Reading animations...\n");
+	struct AnimationProject projects[num_animation_projects];
+
+	Printf("Reading cutscenes...\n");
+	struct Cutscene cutscenes[num_cutscenes];
+
+	int32_t texture_version;
+	if (texture_version != 5)
+	{
+		Printf("CRASH\n");
+		char crash[99999999];
+	}
+	
+	Printf("Reading actors tex&mat...\n");
+	struct ACWTexture textures[num_textures];
+	struct SurfaceMaterial surface_materials[num_surface_materials];
+	struct SurfaceProperty surface_properties[num_surface_properties];
+};
+ 
