@@ -29,8 +29,9 @@
  *  I haven't figured out which yet. I have a hint though: the decompression function
  *  uses a 1024-byte table allocated on the stack. I found a text reference to "LZJAT Encoder"
  *  inside the game executable, but I couldn't find any info on it online. It doesn't exist.
- *  As a temporary solution, I provided x86 assembly source inside "lzjat_decode.s" and a
- *  console program inside "edn_decompress.c" that uses it, which you can use to decompress EDNs.
+ *  As a temporary solution, I wrote a decompression program which you can find inside
+ *  the "edn_decompression" folder. It includes x86 assembly source "lzjat_decode.s" and a
+ *  console-mode program "main.c" that uses it.
  *  As a side note, PDN files are never compressed (since that would make CD streaming harder).
  *
  *  === Header ===

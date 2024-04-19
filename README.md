@@ -147,11 +147,20 @@ was [Martian Gothic: Unification](https://www.mobygames.com/game/martian-gothic-
 
 ### Project Eden Engine (2001)
 
-Unaware of any proper name for this particular engine, though string in the executable say "engine_pc.lib".
+Unaware of any proper name for this particular engine.
+
+#### Description
 The engine was developed from scratch with a next-gen mindset that went away from the grid-based logic of Tomb Raider games.
 On the graphics side, the PC version included features like normal mapping, environment mapping, variable-rate animations
-and real-time morphing, which all used Direct3D 8's fixed-function pipeline.
+and real-time morphing, which all used Direct3D 8.0a's fixed-function pipeline.
 On the sound side, the most important feature was real-time environment-aware sound effects using DirectSound 8 and EAX 1.0.
+
+#### Fun Facts
+- The game uses the GameSpy SDK for multi-player.
+- The game was statically linked with `engine_pc.lib` on PC and `engine_ps2.lib` on PS2.
+- PlayStation 2 version of the game was botched. It doesn't even use the integrated hardware vector units.
+- Some of the internal texture metadata uses the 'tga' extension which may suggest they used it as an intermediate format before conversion.
+- An official level editor was planned, but never released due to poor sales.
 
 ### Herdy Gerdy Engine (2002)
 
