@@ -59,8 +59,8 @@ The below covers both the earlier '97 iteration of the engine and onwards.
 
 Developers behind [Outcast](https://www.mobygames.com/game/windows/outcast).
 
-| Name | Description | Status  | Games   | URL                          |
-|------|-------------|---------|---------|------------------------------|
+| Name | Description | Status  | Games   | URL                                    |
+|------|-------------|---------|---------|----------------------------------------|
 | MSH  | Mesh format | **80%** | Outcast | [Link](templates/appeal/appeal_msh.bt) |
 
 ## [Blitz Games Ltd](https://www.mobygames.com/company/blitz-games-ltd_)
@@ -84,11 +84,11 @@ Saturn era, starting with Glover.
 - Cubix: Robots For Everyone - Race 'N Robots (?) (2001)
 - Disney's Lilo & Stitch: Trouble in Paradise (2002)
 
-| Name | Description    | Status                                                                                              | URL                                  |
-|------|----------------|-----------------------------------------------------------------------------------------------------|--------------------------------------|
-| DAT  | Package format | **Done** ([hashing](https://github.com/OldTimes-Software/hei/blob/master/extras/blitz/blitz.c#L15)) | [Link](templates/blitz/blitz_dat.bt) |
-| PSI  | Model format   | Partial                                                                                             | [Link](templates/blitz/blitz_psi.bt) |
-| SPT  | Texture format | **85%**                                                                                             | [Link](templates/blitz/blitz_spt.bt) |
+| Name | Description    | Status                                                                                              | URL                                        |
+|------|----------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------|
+| DAT  | Package format | **Done** ([hashing](https://github.com/OldTimes-Software/hei/blob/master/extras/blitz/blitz.c#L15)) | [Link](templates/blitz/blitz_dat.bt)       |
+| PSI  | Model format   | Partial                                                                                             | [Link](templates/blitz/blitz_psi.bt)       |
+| SPT  | Texture format | **85%**                                                                                             | [Link](templates/blitz/image_blitz_spt.bt) |
 
 ## [BottleRocket Entertainment, Inc.](https://www.mobygames.com/company/6986/bottlerocket-entertainment-inc/)
 
@@ -129,15 +129,15 @@ was [Martian Gothic: Unification](https://www.mobygames.com/game/martian-gothic-
 
 #### Formats
 
-| Name    | Description                            | Status   | URL                                     |
-|---------|----------------------------------------|----------|-----------------------------------------|
+| Name    | Description                            | Status   | URL                                               |
+|---------|----------------------------------------|----------|---------------------------------------------------|
 | GFX/TEX | Texture package                        | **100%** | [Link](templates/creality/creality_format_tex.bt) |
 | ATH     | Container table format                 | **50%**  | [Link](templates/creality/creality_format_ath.bt) |
-| ATF     | Container format                       | Pending  |                                         |
-| ANM     | Mesh (and animation?) data             | Pending  |                                         |
+| ATF     | Container format                       | Pending  |                                                   |
+| ANM     | Mesh (and animation?) data             | Pending  |                                                   |
 | CAM     | Background / camera data               | Pending  | [Link](templates/creality/creality_format_cam.bt) |
-| ROOM    | Room data                              | Pending  |                                         |
-| GRP     | Some sort of ANM related table thingy? | Pending  |                                         |
+| ROOM    | Room data                              | Pending  |                                                   |
+| GRP     | Some sort of ANM related table thingy? | Pending  |                                                   |
 
 ## [Core Design](https://en.wikipedia.org/wiki/Core_Design)
 
@@ -162,6 +162,19 @@ On the sound side, the most important feature was real-time environment-aware so
 - Some of the internal texture metadata uses the 'tga' extension which may suggest they used it as an intermediate format before conversion.
 - An official level editor was planned, but never released due to poor sales.
 
+#### Games
+
+- [Project Eden (2001)](https://www.mobygames.com/game/project-eden)
+
+#### Formats
+
+| Name    | Description                             | Status                      | URL                                    |
+|---------|-----------------------------------------|-----------------------------|----------------------------------------|
+| ACW     | Actor WAD format                        | **100%**                    | [Link](templates/core/core_acw.bt)     |
+| EDN/PDN | Eden Level format                       | **100%**                    | [Link](templates/core/core_edn_pdn.bt) |
+| EDI/PDI | Eden Image format                       | Pending                     | N/A						                              |
+| EDS/PDS | Eden Sound format                       | Pending                     | N/A						                              |
+
 ### Herdy Gerdy Engine (2002)
 
 Unaware of any proper name for this particular engine.
@@ -169,21 +182,16 @@ There is some cross-over between this and the engine developed for the cancelled
 
 #### Games
 
-- [Project Eden (2001)](https://www.mobygames.com/game/project-eden)
 - [Herdy Gerdy (2002)](https://www.mobygames.com/game/herdy-gerdy)
 
 #### Formats
 
-| Name    | Description                             | Status                      | URL                      |
-|---------|-----------------------------------------|-----------------------------|--------------------------|
-| ACW     | Actor WAD format                        | **100%**                    | [Link](templates/core/core_acw.bt) |
-| EDN/PDN | Eden Level format                       | **100%**                    | [Link](templates/core/core_edn_pdn.bt) |
-| EDI/PDI | Eden Image format                       | Pending                     | N/A						 |
-| EDS/PDS | Eden Sound format                       | Pending                     | N/A						 |
-| CLU     | Package format                          | **100%**                    | [Link](templates/core/core_clu.bt) |
-| HGT     | Texture format ('Herdy Gerdy Texture'?) | **50%** (container for BMP) | [Link](templates/core/core_hgt.bt) |
-| HGM     | Model format ('Herdy Gerdy Model'?)     | Pending                     | N/A                      |
-| GLV     | Level format ('Gerdy Level'?)           | Pending                     | N/A                      |
+| Name    | Description                             | Status                      | URL                                    |
+|---------|-----------------------------------------|-----------------------------|----------------------------------------|
+| CLU     | Package format                          | **100%**                    | [Link](templates/core/core_clu.bt)     |
+| HGT     | Texture format ('Herdy Gerdy Texture'?) | **50%** (container for BMP) | [Link](templates/core/core_hgt.bt)     |
+| HGM     | Model format ('Herdy Gerdy Model'?)     | Pending                     | N/A                                    |
+| GLV     | Level format ('Gerdy Level'?)           | Pending                     | N/A                                    |
 
 ## [Computer Artworks Ltd.](https://www.mobygames.com/company/computer-artworks-ltd)
 
@@ -193,24 +201,24 @@ Developed two games, [Evolva](https://www.mobygames.com/game/windows/evolva)
 and [The Thing](https://www.mobygames.com/game/thing).
 Both games appear to be derived from the same in-house technology.
 
-| Name | Description                  | Status                        | Games             | URL                                 |
-|------|------------------------------|-------------------------------|-------------------|-------------------------------------|
+| Name | Description                  | Status                        | Games             | URL                                           |
+|------|------------------------------|-------------------------------|-------------------|-----------------------------------------------|
 | 3DF  | Bitmap font descriptor       | **70%**                       | The Thing         | [Link](templates/computer-artworks/ca_3df.bt) |
-| AN   | Animation data               | Pending                       | The Thing         | N/A                                 |
+| AN   | Animation data               | Pending                       | The Thing         | N/A                                           |
 | BIN  | Entity data                  | Partial                       | The Thing         | [Link](templates/computer-artworks/ca_bin.bt) |
 | BT   | Strings                      | **80%**                       | The Thing         | [Link](templates/computer-artworks/ca_bt.bt)  |
-| ENT  | Text-based entity descriptor | Pending                       | Evolva            | N/A                                 |
-| GEO  | Collision mesh data          | Pending                       | The Thing         | N/A                                 | 
-| FX   | Text-based effect descriptor | Pending                       | The Thing         | N/A                                 |
-| LVL  | INI level descriptor format  | Pending                       | Evolva, The Thing | N/A                                 |
+| ENT  | Text-based entity descriptor | Pending                       | Evolva            | N/A                                           |
+| GEO  | Collision mesh data          | Pending                       | The Thing         | N/A                                           | 
+| FX   | Text-based effect descriptor | Pending                       | The Thing         | N/A                                           |
+| LVL  | INI level descriptor format  | Pending                       | Evolva, The Thing | N/A                                           |
 | MSH  | Mesh data                    | Partial                       | Evolva, The Thing | [Link](templates/computer-artworks/ca_msh.bt) |
-| PAK  | ZIP package                  | **100%** (it's a zip :shrug:) | The Thing         | N/A                                 |
-| SGH  | 'SceneGraph'                 | Pending                       | Evolva, The Thing | N/A                                 |
+| PAK  | ZIP package                  | **100%** (it's a zip :shrug:) | The Thing         | N/A                                           |
+| SGH  | 'SceneGraph'                 | Pending                       | Evolva, The Thing | N/A                                           |
 
 ## [Gee Whiz! Entertainment](https://www.mobygames.com/company/gee-whiz-entertainment)
 
-| Name | Description    | Status   | Games       | URL                    |
-|------|----------------|----------|-------------|------------------------|
+| Name | Description    | Status   | Games       | URL                              |
+|------|----------------|----------|-------------|----------------------------------|
 | H95  |                | Partial  | Zombie Wars | [Link](templates/geewhiz/h95.md) |
 | SB0  | Package format | **100%** | Zombie Wars | [Link](templates/geewhiz/sb0.md) |
 | SPR  | Sprite format  | Partial  | Zombie Wars | [Link](templates/geewhiz/spr.md) |
