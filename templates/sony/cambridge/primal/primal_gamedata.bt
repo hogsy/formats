@@ -1,0 +1,64 @@
+/* Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+ * -------------------------------------------------------------
+ * Purpose:		Binary template file for Primal's 'GAMEDATA.BIN' format
+ * Created:		2024-07-26
+ * Modified:	2024-07-26
+ */
+
+#define SECTOR_SIZE                2048
+#define MAGIC_TO_NUM( A, B, C, D ) ( ( ( D ) << 24 ) + ( ( C ) << 16 ) + ( ( B ) << 8 ) + ( A ) )
+#define ROOT_MAGIC                 MAGIC_TO_NUM( 'T', 'O', 'C', 'S' )
+#define TOC_MAGIC                  MAGIC_TO_NUM( 'T', 'O', 'C', '0' )
+
+/*
+ * Hashing string method.
+	static int32_t hash_string( char *string )
+	{
+		int32_t tag;
+		for ( size_t len = strlen( string ); 0 < len; len-- )
+		{
+			char cVar1 = *string;
+			string     = string + 1;
+			tag        = tag * 0x81 + ( int ) cVar1;
+		}
+		return tag;
+	}
+*/
+
+struct RootEntry
+{
+	uint32_t size;
+	uint32_t sector;
+	char     name[ 32 ];
+};
+
+struct Root
+{
+	uint32_t         magic;// TOCS
+	uint32_t         entryCount;
+	struct RootEntry entries[ entryCount ];
+};
+
+struct TocEntry
+{
+	uint32_t offset;
+	uint16_t length;
+	uint16_t other;
+};
+
+struct Toc
+{
+	uint32_t        magic;// TOC0
+	uint32_t        numFiles;
+	uint32_t        numFileTypes;
+	uint32_t        treeRoot;
+	struct TocEntry entries[ numFiles ];
+};
+
+struct Root root;
+for ( uint32_t i = 0; i < root.entryCount; ++i )
+{
+	local int offset = SECTOR_SIZE * entry.sector;
+	FSeek( offset );
+	struct Toc toc;
+}

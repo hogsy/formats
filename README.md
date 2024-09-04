@@ -12,46 +12,43 @@ Contributions are also welcome!
 
 ----
 
-- [Acclaim Studios Austin](https://en.wikipedia.org/wiki/Acclaim_Studios_Austin) (Iguana Entertainment)
-  - [Turok Evolution Engine](templates/asaustin/turok/turok.md)
-- [Acclaim Studios Teesside](#acclaim-studios-teesside)
-  - [Vista 3D](#vista-3d)
+- [Acclaim Entertainment, Inc.](templates/acclaim/index.md)
+  - [Vista 3D](templates/acclaim/index.md#vista-3d) (Acclaim Studios Teesside)
+    - **Years:** 1999–2002
+    - **Platforms:** Microsoft Windows, Nintendo 64, SEGA Dreamcast, Sony PlayStation, Sony PlayStation 2
+  - [Unknown Engine](templates/acclaim/index.md#unknown-engine) (Acclaim Studios Cheltenham)
+  - [Turok Evolution Engine](templates/acclaim/index.md#turok-evolution-engine)*
+    - **Platforms:** Microsoft Windows, Microsoft Xbox, Nintendo GameCube, Sony PlayStation 2
 - [BottleRocket Entertainment, Inc.](#bottlerocket-entertainment-inc)
-  - [The Mark of Kri Engine](#the-mark-of-kri-engine)
-- [Core Design](#core-design)
-  - [Tomb Raider Engine](#tomb-raider-engine-1996---2000)
-  - [Project Eden Engine](#project-eden-engine-2001)
-  - [Herdy Gerdy Engine](#herdy-gerdy-engine-2002)
+  - [The Mark of Kri Engine](#the-mark-of-kri-engine)*
+    - **Years:** 2002–2006
+    - **Platforms:** ...
+- Core Design
+  - [Project Eden Engine](#project-eden-engine-2001)*
+    - **Years:** 2001
+    - **Platforms:** Microsoft Windows, Sony PlayStation 2
+  - [Herdy Gerdy Engine](#herdy-gerdy-engine-2002)*
+    - **Years:** 2002
+    - **Platforms:** Sony PlayStation 2
 - [Lucasfilm Games](templates/lucasfilm)
   - [Ares Engine](templates/lucasfilm/ares/ares.md)
-- [Oddworld Inhabitants Inc.](https://en.wikipedia.org/wiki/Oddworld_Inhabitants)
-  - Abe's Oddysee Engine (1997 - 1998)
-  - Oddworld Munch's Oddysee Engine (2001)
-  - [Oddworld Stranger's Wrath Engine](templates/oddworld/stranger/stranger.md) (2005)
+- Oddworld Inhabitants Inc.
+  - [Oddworld Stranger's Wrath Engine](templates/oddworld/stranger/stranger.md)*
+    - **Years:** 2005
+    - **Platforms:** Microsoft Xbox
+- SCE Studio Cambridge
+  - [Primal Engine](templates/sony/primal/index.md)*
+    - **Years:** 2003–2006
+    - **Platforms:** Sony PlayStation 2
 - [SingleTrac Entertainment Technologies, Inc.](templates/singletrac)
-  - [Outwars](templates/singletrac/readme.md#outwars-1998) (1998)
+  - [Outwars](templates/singletrac/readme.md#outwars-1998)
+    - **Years:** 1998
+    - **Platforms:** Microsoft Windows
+
+
+`*` = Speculated/unofficial name
 
 ----
-
-## [Acclaim Studios Teesside](https://en.wikipedia.org/wiki/List_of_Acclaim_Entertainment_subsidiaries#Acclaim_Studios_Teesside)
-
-![Acclaim Studios Teeside logo](templates/asteeside/asteeside_logo.png)
-
-### Vista 3D
-
-The below covers both the earlier '97 iteration of the engine and onwards.
-
-| Name | Description                                  | Status   | URL                                                                                                                                                                                                                                     |
-|------|----------------------------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 3DF  | 3dfx texture format (used for 3dfx renderer) | **100%** | [Link](https://groups.google.com/g/comp.graphics.api.opengl/c/DOyoes__iVQ/m/1xrKlM7nnNwJ) ([reference implementation](https://github.com/OldTimes-Software/hei/blob/244efe8214bacf0a4ac6f6d258d7850edea89e06/plcore/image/image_3df.c)) |
-| BSP  |                                              | Pending  |                                                                                                                                                                                                                                         |
-| BGM  | Background model (?)                         | Pending  |                                                                                                                                                                                                                                         |
-| BIN  | Texture data (used for software renderer)    | Pending  |                                                                                                                                                                                                                                         |
-| SOB  | Static objects (?)                           | Pending  |                                                                                                                                                                                                                                         |
-| MSH  | Mesh data                                    | Pending  |                                                                                                                                                                                                                                         |
-| WEI  | Mesh weight data                             | Pending  |                                                                                                                                                                                                                                         |
-| TUV  | Mesh UV data (?)                             | Pending  |                                                                                                                                                                                                                                         |
-| ANM  | Mesh animation                               | Pending  |                                                                                                                                                                                                                                         |
 
 ## [Appeal S.A.](https://www.mobygames.com/company/appeal-studios-sa)
 
