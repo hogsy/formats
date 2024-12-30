@@ -83,7 +83,7 @@ Saturn era, starting with Glover.
 
 | Name | Description    | Status                                                                                              | URL                                        |
 |------|----------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------|
-| DAT  | Package format | **Done** ([hashing](https://github.com/OldTimes-Software/hei/blob/master/extras/blitz/blitz.c#L15)) | [Link](templates/blitz/blitz_dat.bt)       |
+| DAT  | Package format | **Done** ([hashing](https://github.com/QuartermindGames/hei/blob/master/extras/blitz/blitz.c#L15)) | [Link](templates/blitz/blitz_dat.bt)       |
 | PSI  | Model format   | Partial                                                                                             | [Link](templates/blitz/blitz_psi.bt)       |
 | SPT  | Texture format | **85%**                                                                                             | [Link](templates/blitz/image_blitz_spt.bt) |
 
@@ -106,7 +106,7 @@ Saturn era, starting with Glover.
 
 | Name | Description    | Status  | URL                                                                                    |
 |------|----------------|---------|----------------------------------------------------------------------------------------|
-| WAD  | Package format | **80%** | [Link](https://github.com/OldTimes-Software/hei/blob/master/extras/pl_extra_kri_wad.c) |
+| WAD  | Package format | **80%** | [Link](https://github.com/QuartermindGames/hei/blob/master/extras/pl_extra_kri_wad.c) |
 
 ## [Creative Reality](https://www.mobygames.com/company/creative-reality)
 
