@@ -1,16 +1,19 @@
 # Reversed Format Collection
 
-This repository is filled with various notes on various different formats that I've reversed overtime. A lot of these
-are provided in [Rehex](https://github.com/solemnwarning/rehex)'s [Binary Template](https://solemnwarning.net/rehex/manual/bt.html) format,
-which is easily translatable into C/C++ and most other languages.
+This repository is filled with various notes on various different formats that I've reversed over time. 
+A lot of these are provided in [Rehex](https://github.com/solemnwarning/rehex)'s [Binary Template](https://solemnwarning.net/rehex/manual/bt.html) format, which is easily translatable into C/C++ and most other languages.
 
-If you find anything here useful, please consider [sponsoring me;](https://github.com/sponsors/hogsy)
-otherwise a reference or callout wouldn't hurt!
+If you find anything here useful, please consider [sponsoring me;](https://github.com/sponsors/hogsy) otherwise a reference or callout wouldn't hurt!
 ❤️
 
-Contributions are also welcome!
+## Contributing
 
-----
+Contributions are very welcome!
+Just mind the [licence](LICENSE) and as a general rule, again, I'm using Rehex's Binary Template format, so ideally please stick with that if or when possible, and avoid adding binary data.
+
+If you've implemented some sort of loader or other functionality in code, I might suggest adding it to the [Hei library](https://github.com/QuartermindGames/hei) instead, which provides APIs for supporting additional package, texture and model formats.
+
+## Format Listings
 
 - [Acclaim Entertainment, Inc.](templates/acclaim/index.md)
   - [Vista 3D](templates/acclaim/index.md#vista-3d) (Acclaim Studios Teesside)
