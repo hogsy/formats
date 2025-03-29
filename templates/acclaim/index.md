@@ -24,16 +24,16 @@ Supported the Nintendo GameCube, Sony PlayStation 2, Microsoft Xbox and Microsof
 
 ### Formats
 
-| Name | Description                                     | Status   | URL                  |
-|------|-------------------------------------------------|----------|----------------------|
-| TRE  | Package format ('**T**u**R**ok **E**volution'?) | **100%** | [Link](turok_tre.bt) |
-| EMI  | '**EMI**tter' definition script                 | **80%**  | [Link](turok_emi.md) |
-| TGAX | Texture format                                  | ...      | ...                  |
-| TXM  | Key / value script format for text/dialog       | ...      | ...                  |
-| MTF  | Common ASA chunk-based file format              | **60%**  | [Link](turok_mtf.bt) |
-| ATF  | Common ASA chunk-based file format for actors   | **60%**  | [Link](turok_mtf.bt) |
-| FNT  | Common ASA chunk-based file format for fonts    | **60%**  | [Link](turok_mtf.bt) |
-| ANM  | '**AN**i**M**ation' format                      | ...      | ...                  |
+| Name | Description                                     | Status   | URL                               |
+|------|-------------------------------------------------|----------|-----------------------------------|
+| TRE  | Package format ('**T**u**R**ok **E**volution'?) | **100%** | [Link](austin/turok/turok_tre.bt) |
+| EMI  | '**EMI**tter' definition script                 | **80%**  | [Link](austin/turok/turok_emi.md) |
+| TGAX | Texture format                                  | ...      | ...                               |
+| TXM  | Key / value script format for text/dialog       | ...      | ...                               |
+| MTF  | Common ASA chunk-based file format              | **60%**  | [Link](austin/turok/turok_mtf.bt) |
+| ATF  | Common ASA chunk-based file format for actors   | **60%**  | [Link](austin/turok/turok_mtf.bt) |
+| FNT  | Common ASA chunk-based file format for fonts    | **60%**  | [Link](austin/turok/turok_mtf.bt) |
+| ANM  | '**AN**i**M**ation' format                      | ...      | ...                               |
 
 #### ATF Chunks
 

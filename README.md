@@ -40,7 +40,7 @@ If you've implemented some sort of loader or other functionality in code, I migh
     - **Years:** 2005
     - **Platforms:** Microsoft Xbox
 - SCE Studio Cambridge
-  - [Primal Engine](templates/sony/primal/index.md)*
+  - [Primal Engine](templates/sony/cambridge/primal/index.md)*
     - **Years:** 2003–2006
     - **Platforms:** Sony PlayStation 2
 - [SingleTrac Entertainment Technologies, Inc.](templates/singletrac)
@@ -84,11 +84,11 @@ Saturn era, starting with Glover.
 - Cubix: Robots For Everyone - Race 'N Robots (?) (2001)
 - Disney's Lilo & Stitch: Trouble in Paradise (2002)
 
-| Name | Description    | Status                                                                                              | URL                                        |
-|------|----------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------|
-| DAT  | Package format | **Done** ([hashing](https://github.com/QuartermindGames/hei/blob/master/extras/blitz/blitz.c#L15)) | [Link](templates/blitz/blitz_dat.bt)       |
-| PSI  | Model format   | Partial                                                                                             | [Link](templates/blitz/blitz_psi.bt)       |
-| SPT  | Texture format | **85%**                                                                                             | [Link](templates/blitz/image_blitz_spt.bt) |
+| Name | Description    | Status                                                                                             | URL                                  |
+|------|----------------|----------------------------------------------------------------------------------------------------|--------------------------------------|
+| DAT  | Package format | **Done** ([hashing](https://github.com/QuartermindGames/hei/blob/master/extras/blitz/blitz.c#L15)) | [Link](templates/blitz/blitz_dat.bt) |
+| PSI  | Model format   | Partial                                                                                            | [Link](templates/blitz/blitz_psi.bt) |
+| SPT  | Texture format | **85%**                                                                                            | [Link](templates/blitz/blitz_spt.bt) |
 
 ## [BottleRocket Entertainment, Inc.](https://www.mobygames.com/company/6986/bottlerocket-entertainment-inc/)
 
@@ -107,9 +107,9 @@ Saturn era, starting with Glover.
 
 #### Formats
 
-| Name | Description    | Status  | URL                                                                                    |
-|------|----------------|---------|----------------------------------------------------------------------------------------|
-| WAD  | Package format | **80%** | [Link](https://github.com/QuartermindGames/hei/blob/master/extras/pl_extra_kri_wad.c) |
+| Name | Description    | Status  | URL                                                                                                                     |
+|------|----------------|---------|-------------------------------------------------------------------------------------------------------------------------|
+| WAD  | Package format | **80%** | [Link](https://github.com/QuartermindGames/hei/blob/b41211c10abb188f806e188b77930155851ae88e/extras/pl_extra_kri_wad.c) |
 
 ## [Creative Reality](https://www.mobygames.com/company/creative-reality)
 
@@ -117,7 +117,7 @@ Saturn era, starting with Glover.
 
 ### Martian Gothic Engine (PC)
 
-Unfortunately only used for one game, which, you guessed it,
+Unfortunately, only used for one game, which, you guessed it,
 was [Martian Gothic: Unification](https://www.mobygames.com/game/martian-gothic-unification).
 
 #### Fun Facts
@@ -238,8 +238,8 @@ Developed games such as Hogs of War, Actua Soccer, Realms of the Haunting and ma
 
 Didn't really have an engine, but some of their games share some technology.
 
-| Name | Description | Status  | Games             | URL                            |
-|------|-------------|---------|-------------------|--------------------------------|
+| Name | Description | Status  | Games             | URL                                      |
+|------|-------------|---------|-------------------|------------------------------------------|
 | MIN  | Model data  | Partial | Hogs of War (PSX) | [Link](templates/gremlin/gremlin_min.bt) |
 
 ## [Midway Studios Austin](https://en.wikipedia.org/wiki/Midway_Studios_Austin)
