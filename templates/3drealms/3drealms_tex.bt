@@ -1,0 +1,26 @@
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+// To my knowledge, only used for one unreleased game...
+
+struct 3DRTexHeader
+{
+    uint16_t mode;
+    uint16_t numMipMaps;
+    uint16_t width;
+    uint16_t height;
+
+    char unk0[ 28 ];
+
+    // first mip w and height?
+    uint16_t width2;
+    uint16_t height2;
+
+    char unk1[ 12 ];
+
+    // if mode is 0x500, image has alpha, otherwise if 0
+}
+
+struct 3DRTexHeader header;
+
+// data follows...
+// for a working loader, see
+//  https://github.com/QuartermindGames/hei/blob/55d38a57fba9503c8981e9e5edc8d19349a81ca7/plcore/image/image_3dr_tex.c
