@@ -1,0 +1,24 @@
+// SPDX-License-Identifier: GPL-2.0-or-later
+// Copyright © 2025 Mark "hogsy" Sowden <hogsy@oldtimes-software.com>
+
+BigEndian();
+
+struct VenomPakHeader
+{
+    char        identifier[ 15 ];
+    uint32_t    headerSize;
+    uint32_t    numFiles;
+    uint32_t    postHeaderSize;
+};
+
+struct VenomPakHeader header;
+
+local int tableSize = header.headerSize - FTell();
+char fileTable[ tableSize ];
+
+/**
+d:\base\models\weapons\fphands_hunter\anim\idle.md5anim    path
+45672                                                      size
+121599                                                     offset (+ headerSize)
+1                                                          unknown...
+**/
