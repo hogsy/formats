@@ -1,0 +1,39 @@
+// SPDX-License-Identifier: GPL-2.0-or-later
+// Copyright © 2025 Mark "hogsy" Sowden <hogsy@oldtimes-software.com>
+
+// Trike, 18 joints?
+
+// Texture block 672
+// Pal 349 / 289~
+// Header is 144 for texture? NOPE! Size isn't fixed...
+// W & H are 80 bytes into the header? NOPE! Not fixed either...
+
+struct Nu2TextureHeader
+{
+    uint8_t     unk0[ 80 ];
+    uint32_t    width;
+    uint32_t    height;
+};
+
+struct Nu2GHGHeader
+{
+    uint32_t fileSize;   //?
+    uint32_t version;    // 0 per Haven
+    uint32_t numTextures;
+    uint32_t textureTableOffset;
+    uint32_t numMaterials;  // ?
+    uint32_t unkOffset0;    // maybe material data?
+    uint32_t unkNum0;       // ? 12 per Trike
+};
+
+struct Nu2GHGHeader header;
+
+FSeek( header.textureTableOffset );
+uint32_t textureOffsets[ header.numTextures ];
+
+for ( local uint32_t i = 0; i < header.numTextures; ++i )
+{
+    SetComment( textureOffsets[ i ], 0, "Texture" );
+}
+
+SetComment( header.unkOffset0, 0, "Unknown data 0" );
