@@ -35,7 +35,9 @@ If you've implemented some sort of loader or other functionality in code, I migh
     - **Platforms:** Sony PlayStation 2
 - [Lucasfilm Games](templates/lucasfilm)
   - [Ares Engine](templates/lucasfilm/ares/ares.md)
-- Oddworld Inhabitants Inc.
+- [Traveller's Tales (UK) Ltd.](templates/tt)
+  - [Haven: Call of the King](templates/tt/haven)
+- [Oddworld Inhabitants Inc.](templates/oddworld)
   - [Oddworld Stranger's Wrath Engine](templates/oddworld/stranger/stranger.md)*
     - **Years:** 2005
     - **Platforms:** Microsoft Xbox

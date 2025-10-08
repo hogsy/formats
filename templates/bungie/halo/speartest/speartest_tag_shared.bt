@@ -1,0 +1,64 @@
+// Bungie TAG format, per Halo Speartest
+// Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+
+// Much of this is derived from information from the below
+// https://c20.reclaimers.net/h1/tags/
+
+BigEndian();
+
+typedef char BungieTagString[ 4 ];
+
+struct BungieTagHeader
+{
+	uint32_t 		id;
+	char 			name[ 32 ];
+	BungieTagString	group;
+	uint32_t		checksum;
+	uint32_t		headerSize; // 64, even in speartest :)
+	uint32_t		groupSize;
+	uint32_t		unk0;
+	uint32_t		unk1;
+	BungieTagString	engineId;	// blam, like retail
+								// (should be uint32_t, but char here for readability sake in Rehex)
+};
+
+///////////////////////////////////////////////////////////////
+// bitm / Bitmap
+///////////////////////////////////////////////////////////////
+
+enum <uint16_t> BungieBitmapHeaderType
+{
+	BUNGIE_BITMAP_HEADER_TYPE_TEXTURES 					= 0,
+	BUNGIE_BITMAP_HEADER_TYPE_SPRITES 					= 1,
+	BUNGIE_BITMAP_HEADER_TYPE_GAME_INTERFACE_ELEMENTS 	= 2,
+	BUNGIE_BITMAP_HEADER_TYPE_DIALOG_INTERFACE_ELEMENTS	= 3,
+};
+
+enum <uint32_t> BungieBitmapHeaderFlag
+{
+	BUNGIE_BITMAP_HEADER_FLAG_NO_DIFFUSION_DITHER	= 1,
+	BUNGIE_BITMAP_HEADER_FLAG_NO_COMPRESSION		= 2,
+	BUNGIE_BITMAP_HEADER_FLAG_NO_SCALING			= 4,
+	BUNGIE_BITMAP_HEADER_FLAG_ALLOW_32BIT			= 8,
+	BUNGIE_BITMAP_HEADER_FLAG_ALLOW_GREYSCALE		= 16,
+	BUNGIE_BITMAP_HEADER_FLAG_ALLOW_MIPMAPS			= 32,
+	BUNGIE_BITMAP_HEADER_FLAG_NO_HW_FORMATS			= 64,
+	BUNGIE_BITMAP_HEADER_FLAG_REFLECTION_MAP		= 128,
+};
+
+struct BungieTagBitmapHeader
+{
+	enum BungieBitmapHeaderType	type;
+	uint16_t					unk0;
+	enum BungieBitmapHeaderFlag	flags;
+	float						sharpen;
+};
+
+///////////////////////////////////////////////////////////////
+
+struct BungieTagHeader header;
+
+if ( header.group == "bitm" )
+{
+	struct BungieTagBitmapHeader bitmapHeader;
+}

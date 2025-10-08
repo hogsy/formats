@@ -1,0 +1,7 @@
+struct DfEntry
+{
+    uint8_t unk[40];
+    char    filename[256];
+};
+
+struct DfEntry entries[FileSize() / 296];
