@@ -1,0 +1,151 @@
+/* Template created by Mark "hogsy" Sowden <markelswo@gmail.com>
+ * -------------------------------------------------------------
+ * Purpose:		Binary template file for Rubu Tribe's MRF format
+ * Created:		2025-11-03
+ * Modified:	2025-11-07
+ */
+
+#include "../../shared.h"
+
+/**
+* 32 bytes of padding after mesh block?
+*/
+
+// these are based on the highest and lowest value encountered in the Rubu build
+local uint32_t GROUP_VERSION_MIN = 8;
+local uint32_t GROUP_VERSION_MAX = 35;
+
+local uint32_t GROUP_CHUNK_HEAD     = fourcc_r( 'H', 'E', 'A', 'D' );// start of header block
+local uint32_t GROUP_CHUNK_HEAD_END = fourcc_r( 'R', 'E', 'M', 'F' );
+local uint32_t GROUP_CHUNK_END      = fourcc_r( 'E', 'N', 'D', 'C' );// end of chunk
+
+local uint32_t GROUP_CHUNK_TEXT     = fourcc_r( 'T', 'E', 'X', 'T' );// texture name
+local uint32_t GROUP_CHUNK_TEXU     = fourcc_r( 'T', 'E', 'X', 'U' );// unsure, related to texturing
+local uint32_t GROUP_CHUNK_MESH     = fourcc_r( 'M', 'E', 'S', 'H' );
+local uint32_t GROUP_CHUNK_JOINT    = fourcc_r( 'J', 'O', 'N', 'T' );
+local uint32_t GROUP_CHUNK_ANIM     = fourcc_r( 'A', 'N', 'I', 'M' );
+local uint32_t GROUP_CHUNK_ANIM_MAX = fourcc_r( 'A', 'M', 'A', 'X' );
+
+// exclusive to mrf (game aborts load if these are in the header block)
+local uint32_t GROUP_CHUNK_CPSX = fourcc_r( 'C', 'P', 'S', 'X' );// for playstation 1
+local uint32_t GROUP_CHUNK_CPS2 = fourcc_r( 'C', 'P', 'S', '2' );// for playstation 2
+// mesh tag used in newer mrf files (32+?), which seems to replace the two above
+local uint32_t GROUP_CHUNK_P2CC = fourcc_r( 'P', '2', 'C', 'C' );
+
+local uint32_t numTextures = 0;
+local uint32_t numChunks = 0;
+
+struct GroupHeader
+{
+    uint32_t tag;
+    uint32_t version;
+};
+
+struct GroupChunkHeader
+{
+    uint32_t tag;
+    uint32_t size;
+};
+
+struct GroupHeader header;
+if ( header.tag != GROUP_CHUNK_HEAD_END )
+{
+    Error( "Unexpected start tag, probably not a valid group file!" );
+}
+
+// need to set and deal with crap manually here... see the following
+//  https://github.com/solemnwarning/rehex/issues/269
+while( !FEof() )
+{
+    local int64_t startOffset = FTell();
+
+    // chunk header, basically tag and size
+    private struct GroupChunkHeader chunkHeader;
+    SetComment(startOffset, 8 + chunkHeader.size, SPrintf("Chunk %s (%u bytes)", unpack_fourcc(chunkHeader.tag), chunkHeader.size));
+
+    local uint32_t endOffset = FTell() + chunkHeader.size;
+    set_comment_at("Chunk Data", chunkHeader.size);
+
+    if (chunkHeader.tag == GROUP_CHUNK_TEXT)
+    {
+        set_comment_at("Texture Name", chunkHeader.size);
+        numTextures++;
+    }
+    else if (chunkHeader.tag == GROUP_CHUNK_CPSX)
+    {
+        struct MeshIndex
+        {
+            uint32_t texture;
+            uint32_t size;
+        };
+
+        struct CPSXHeader
+        {
+            float unk0;
+            float max[3];
+            float min[3];
+            float origin[3];
+            float offset[3];
+
+            uint32_t numPrims;
+            uint32_t numMeshes;
+            uint32_t unused;//?
+
+            struct MeshIndex meshBlocks[numPrims];
+        };
+
+        struct CPSXHeader cpsxHeader;
+
+        struct MeshHeader
+        {
+            uint32_t numIndices;
+            uint32_t numFaces;
+            uint32_t numVertices;
+            uint32_t size;
+        };
+
+        struct MeshFace
+        {
+            uint32_t unk0;
+            uint32_t numVertices;
+            uint32_t offset;
+            uint32_t unk1;
+        };
+
+        struct MeshFaceIndex
+        {
+            float       u;
+            float       v;
+            uint32_t    unk0;
+            uint32_t    vertexIndex;
+        };
+
+        struct Mesh
+        {
+            struct MeshHeader       header;
+            struct MeshFace         faces[header.numFaces];
+            struct MeshFaceIndex    indices[header.numIndices];
+        };
+
+        struct Mesh mesh;
+    }
+
+    // seek to the end marker, just in case we did anything earlier
+    FSeek(endOffset);
+
+    // validate it has an end marker
+    private uint32_t chunkEnd;
+    if ( chunkEnd != GROUP_CHUNK_END )
+    {
+        set_comment_at("Hit invalid end!", 0);
+        break;
+    }
+
+    numChunks++;
+}
+
+local string texturesSummary = SPrintf("\t%u textures\n", numTextures);
+local string chunksSummary = SPrintf("\t%u chunks\n", numChunks);
+Printf("Group Summary\n%s%s",
+    chunksSummary,
+    texturesSummary);
