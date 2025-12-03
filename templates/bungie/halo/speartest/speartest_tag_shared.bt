@@ -55,10 +55,29 @@ struct BungieTagBitmapHeader
 };
 
 ///////////////////////////////////////////////////////////////
+// snpm / Sound Sample
+///////////////////////////////////////////////////////////////
+
+struct BungieTagSoundSampleHeader
+{
+    char        name[ 60 ];
+    uint32_t    playTime;       // in milliseconds
+    uint16_t    compressionType;// 1 in most cases?
+    uint16_t    soundEncoding;
+    uint16_t    sampleRate;
+    uint16_t    unk0;
+    uint32_t    soundSamples;   // in bytes
+};
+
+///////////////////////////////////////////////////////////////
 
 struct BungieTagHeader header;
 
 if ( header.group == "bitm" )
 {
 	struct BungieTagBitmapHeader bitmapHeader;
+}
+else if ( header.group == "snpm" )
+{
+    struct BungieTagSoundSampleHeader soundSampleHeader;
 }
