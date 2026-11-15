@@ -17,13 +17,13 @@ struct Nu2TextureHeader
 
 struct Nu2GHGHeader
 {
-    uint32_t fileSize;   //?
-    uint32_t version;    // 0 per Haven
+    uint32_t fileSize;              //?
+    uint32_t version;               // 0 per Haven
     uint32_t numTextures;
     uint32_t textureTableOffset;
-    uint32_t numMaterials;  // ?
-    uint32_t unkOffset0;    // maybe material data?
-    uint32_t unkNum0;       // ? 12 per Trike
+    uint32_t numMaterials;          // ?
+    uint32_t materialTableOffset;   // maybe material data?
+    uint32_t unkNum0;               // ? 12 per Trike
 };
 
 struct Nu2GHGHeader header;
